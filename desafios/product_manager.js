@@ -1,41 +1,14 @@
 
 
-
-const list_of_product = [
-    {
-        title:"Producto 1",
-        description:"Este es el producto numero 1",
-        thumbnail:"/imagen_1.jpg",
-        stock: 0
-    },
-    {
-        title:"Producto 2",
-        description:"Este es el producto numero 2",
-        thumbnail:"/imagen_2.jpg",
-        stock:20
-    },
-    {
-        title:"Producto 3",
-        description:"Este es el producto numero 3",
-        thumbnail:"/imagen_3.jpg",
-        stock:30
-    },
-    {
-        title:"Producto 4",
-        description:"Este es el producto numero 4",
-        thumbnail:"/imagen_3.jpg",
-        stock: 1
-    }
-]
-
-
 class Product{
-    constructor(title, description, thumbnail, code, stock){
+    constructor({title, description, price, thumbnail, id, code, stock}){
+        this.id = id
         this.title = title
         this.description = description
         this.thumbnail = thumbnail
         this.code = code
         this.stock = stock 
+        this.price = price 
 
         if (!(this.title.length > 1)) {
             throw new Error('debe incluir el titulo', this.title);
@@ -46,13 +19,16 @@ class Product{
         if (!(this.thumbnail.length > 1)) {
             throw new Error('debe incluir la imagen', this.thumbnail);
         }
-
-        if (!(typeof this.code === 'number')) {
+        if (!(this.thumbnail.length > 1)) {
             throw new Error('debe incluir el codigo', this.code);
         }
         if (!(typeof this.stock === 'number')) {
             throw new Error('debe incluir el stock', this.stock);
         }
+        if (!(typeof this.price === 'number')) {
+            throw new Error('debe incluir el price', this.price);
+        }
+
     }
 }
 
@@ -60,43 +36,58 @@ class ProductManager{
 
     constructor(){
         this.products = []
+        this._idControl = []
         this._codeControl = []
     }
 
     _new_id = () => {
-        return this._codeControl.length + 1
+        return this._idControl.length + 1
     }
 
-    addProduct = ({title, description, thumbnail, stock}) => {
+    _verify_code = (code) => {
+
+        if (this._codeControl.includes(code)) {
+            throw new Error('ya existe un producto registrado bajo el codigo: ' + code);
+        }
+        return true
+    }
+
+    addProduct = ({title, description, price, thumbnail, code, stock}) => {
         try {
-            let code = this._new_id()
+            this._verify_code(code)
+            let id = this._new_id()
             let product = new Product(
-                title, 
-                description, 
-                thumbnail, 
-                code, 
-                stock
+                {
+                    title, 
+                    description, 
+                    thumbnail, 
+                    price,
+                    code, 
+                    stock,
+                    id
+                }
             )
             this.products.push({...product})
+            this._idControl.push(id)
             this._codeControl.push(code)
-            console.log(`se agrego productos el codigo es: ${code}`)
+            console.log(`se agrego productos el id: ${id}`)
         } catch (error) {
-            console.error("no fue posible agregar el producto: " + error);
+            console.error("No fue posible agregar el producto " + error);
         }
     }
 
-    getProductById = (code) => {
-        console.log("buscar producto por id: ", code)
+    getProductById = (id) => {
+        console.log("buscar producto por id: ", id)
 
         let found_product = this.products.filter((product) => {
-            return product.code === code
+            return product.id === id
         })
 
         if (!found_product.length) {
-            console.error("Not found") 
-            return
+            console.error("Not found")
+            return {}
         }
-
+        console.log(found_product)
         return found_product
     }
 
@@ -108,15 +99,41 @@ class ProductManager{
 
 let productManager = new ProductManager();
 
-list_of_product.map(product_item => {
-    productManager.addProduct(product_item)
-})
 
 
-
-console.log(productManager)
-console.log("--------------------------------------------------------")
-console.log(productManager.getProductById(id=4))
-
-console.log("--------------------------------------------------------")
+console.log("--------------------- OBTENER PRODUCTOS ------------------------------")
 console.log(productManager.getProducts())
+
+
+console.log("-------------------------- AGREGAR PRODICTO ------------------------------")
+productManager.addProduct({
+        title: "producto prueba",
+        description: "Este es un producto prueba",
+        price:200,
+        thumbnail: "Sin imagen",
+        code: "abc123",
+        stock: 25
+    }
+)
+
+console.log("--------------------- OBTENER PRODUCTOS ------------------------------")
+console.log(productManager.getProducts())
+
+console.log("-------------------------- AGREGAR PRODICTO ------------------------------")
+productManager.addProduct({
+        title: "producto prueba",
+        description: "Este es un producto prueba",
+        price:200,
+        thumbnail: "Sin imagen",
+        code: "abc123",
+        stock: 25
+    }
+)
+
+
+console.log("--------------------- OBTENER PRODUCTOS ------------------------------")
+console.log(productManager.getProducts())
+
+console.log("--------------------- BUSCAR -----------------------------------")
+productManager.getProductById(id=1)
+productManager.getProductById(id=4)
