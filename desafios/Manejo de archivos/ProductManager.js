@@ -1,3 +1,5 @@
+const { error } = require("console")
+const { copyFileSync } = require("fs")
 
 
 
@@ -35,77 +37,100 @@ class Product{
 
 class ProductManager{
 
-    constructor({path}){
-        this.path = path
-        this._idControl = []
+    #products
+    #productDirPath
+    #productFilePath
+    #fileSystem
+    #codeAvailables
+
+    constructor(){
+        this.#products = new Array()
+        this.#productDirPath = "./files"
+        this.#productFilePath = this.#productDirPath + "/products.json"
+        this.#fileSystem = require("fs")
     }
 
-    #new_id = () => {
-        return this._idControl.length + 1
+    #new_id = (elements) => {
+        return elements.length + 1
     }
 
-    addProduct = ({title, description, price, thumbnail, code, stock}) => {
-        console.log("add producto a partir del objeto")
+    #getProdcutList = async () => {
 
-        let id = this.#new_id()
-        let product = new Product(
-            {
-                title, 
-                description, 
-                thumbnail, 
-                price,
-                code, 
-                stock,
-                id
+        await this.#fileSystem.promises.mkdir(this.#productDirPath, { recursive: true})
+
+        if (!this.#fileSystem.existsSync(this.#productFilePath)) {
+            await this.#fileSystem.promises.writeFile(this.#productFilePath, "[]")
+        }
+
+        let productsFile = await this.#fileSystem.promises.readFile(this.#productFilePath, "utf-8")
+        return JSON.parse(productsFile)
+
+    }
+
+    #writeFile = async (document) => {
+        await this.#fileSystem.promises.writeFile(this.#productFilePath, JSON.stringify(document, null, 4))
+    }
+
+    addProduct = async ({title, description, price, thumbnail, code, stock}) => {
+        try {
+
+            this.#products = await this.#getProdcutList()
+
+            let id = this.#new_id(this.#products)
+            let new_product = new Product(
+                {
+                    title, 
+                    description, 
+                    thumbnail, 
+                    price,
+                    code, 
+                    stock,
+                    id
+                }
+            )
+
+            this.#products.push(new_product)
+            await this.#writeFile(this.#products)
+
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    getProducts = () => {
+        return this.#getProdcutList()
+    }
+
+    getProductById = async (id) => {
+        let x = new Array
+        let all_products = await this.#getProdcutList()
+        return all_products.filter((element) => element.id === id)
+    }
+
+    updateProductById = async ({id, title, description, price, thumbnail, code, stock}) => {
+        let all_products = await this.#getProdcutList()
+        all_products.forEach(element => {
+            if (element.id === id) {
+                element.thumbnail = thumbnail
+                element.description = description
+                element.title = title
+                element.description = 
+                element.code = code
+                element.stock = stock
+                element.price = price
             }
-        )
-
-        console.log(product)
-
-    }
-
-    getProducts = (id) => {
-        console.log("get all")
-    }
-
-    getProductById = (id) => {
-        console.log("get by id")
-    }
-
-    updateProduct = (id) => {
-        console.log("update")
+        });
+        await this.#writeFile(all_products)
     }
     
 
-    deleteProduct = (id) => {
-        console.log("delete")
+    deleteProduct = async (id) => {
+        let all_products = await this.#getProdcutList()
+        let new_list_products = all_products.filter((element) => element.id !== id)
+        await this.#writeFile(new_list_products)
     }
 
 }
 
-
-// ########################  INSTANCIA DE CLASE
-let productManager = new ProductManager("./fs/");
-
-console.log('########################  AGREGAR PROD')
-productManager.addProduct({
-    title: "producto prueba",
-    description: "Este es un producto prueba",
-    price:200,
-    thumbnail: "Sin imagen",
-    code: "abc123",
-    stock: 25
-}
-)
-
-console.log("########################  CONSULTAR TODOS LOS PRODUCTOS")
-productManager.getProducts()
-
-console.log("########################  CONSULTAR PRODUCTOS POR ID")
-productManager.getProductById(1)
-
-console.log('########################  BORRAR PRODUCTO POR ID')
-productManager.deleteProduct(1)
-
-console.log('########################  ACTUALIZAR PRODICTO POR ID')
-productManager.updateProduct(1)
+module.exports = ProductManager
