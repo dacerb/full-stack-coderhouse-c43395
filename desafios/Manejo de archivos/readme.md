@@ -5,6 +5,7 @@
 > Salida de la ejecucion
 
 ```
+para su ejecucion: full-stack-coderhouse-c43395\desafios\Manejo de archivos> node.exe .\index.js
 
 ```
 
