@@ -162,7 +162,7 @@ router.post("/", uploaderThumbnails.array('thumbnails'), async (req, res) => {
         ...req.body
     });
 
-    res.send(JSON.stringify({"message": `a new product was added with id ${new_product}` }, null, 4));
+    res.status(200).send(JSON.stringify({"message": `a new product was added with id ${new_product}` }, null, 4));
 })
 
 
