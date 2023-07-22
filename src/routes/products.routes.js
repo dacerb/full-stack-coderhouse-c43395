@@ -44,10 +44,9 @@ router.delete("/:pid", (req, res) => {
 
 // POST
 router.post("/", uploader.array('thumbnails'), async (req, res) => {
-    
 
-    if (!req.files) {
-        return res.status(400).send({ status: "error", mensaje: "you must attach image files." });
+    if (!req.files.length > 0) {
+        return res.status(400).send(JSON.stringify({ status: "error", mensaje: "you must attach image files." }, null, 4));
     }
     const filesPath = req.files.map(file =>   {
         return file.path
@@ -57,15 +56,13 @@ router.post("/", uploader.array('thumbnails'), async (req, res) => {
 
         title: "A tu casa",
         description: "nos re vimos",
-        thumbnail: ["asda"],
+        thumbnail: filesPath,
         price: 9128123,
         code: 'NSpqs123',
         stock: 100
     });
 
-    res.send(JSON.stringify({
-        "message": "POST"
-    }));
+    res.send(JSON.stringify({"message": `a new product was added with id ${new_product}` }, null, 4));
 })
 
 

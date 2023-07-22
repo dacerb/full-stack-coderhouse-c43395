@@ -4,3 +4,6 @@ desafios/Servidor.*/node_modules/*
 desafios/Servidor con Express/node_modules/*
 node_modules/*
 *node_modules/*
+
+files/products/*
+src/public/img/*

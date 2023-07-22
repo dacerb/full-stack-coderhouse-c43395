@@ -95,6 +95,8 @@ class ProductManager{
             this.#products.push(new_product)
             await this.#writeFile(this.#products)
 
+            return id
+
 
         } catch (error) {
             console.error(error)
