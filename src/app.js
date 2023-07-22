@@ -21,9 +21,6 @@ app.use('/api/cart', cartRoutes);
 
 
 
-
-
-
 // ------------------------ RUN APP
 app.get('/',  (req, res) => {
     const apiName = 'Desafio Server con Express';
