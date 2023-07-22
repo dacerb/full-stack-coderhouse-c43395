@@ -6,16 +6,22 @@ import { copyFileSync } from 'fs';
 import fileSystem from 'fs';
 
 
+import __dirname from './utils.js'
+
+console.log(__dirname)
+
 
 class Product{
-    constructor({title, description, price, thumbnail, id, code, stock}){
-        this.id = id
+    constructor({title, description, price, thumbnail, id, code, stock, status = true, category}){
+        this.id = parseInt(id)
         this.title = title
         this.description = description
-        this.thumbnail = thumbnail
         this.code = code
-        this.stock = stock 
-        this.price = price 
+        this.price = parseFloat(price) 
+        this.status = Boolean(status)
+        this.stock = parseInt(stock) 
+        this.category = category 
+        this.thumbnail = thumbnail
 
         //if (!(this.title.length > 1)) {
         //    throw new Error('debe incluir el titulo', this.title);
@@ -48,7 +54,7 @@ class ProductManager{
 
     constructor(){
         this.#products = new Array()
-        this.#productDirPath = "./files"
+        this.#productDirPath = __dirname +"/db"
         this.#productFilePath = this.#productDirPath + "/products.json"
         this.#fileSystem = fileSystem
     }
@@ -113,17 +119,19 @@ class ProductManager{
         return all_products.filter((element) => element.id === id)
     }
 
-    updateProductById = async ({id, title, description, price, thumbnail, code, stock}) => {
+    updateProductById = async ({id, title, description, price, thumbnail, code, stock, status, category}) => {
         let all_products = await this.#getProdcutList()
         all_products.forEach(element => {
             if (element.id === id) {
-                element.thumbnail = thumbnail
+
+                element.thumbnail = thumbnail.length > 0 ? thumbnail :  element.thumbnail // Siempre va a haber una imagen para el producto
                 element.description = description
                 element.title = title
-                element.description = 
+                element.status = Boolean(status)
+                element.category = category
                 element.code = code
-                element.stock = stock
-                element.price = price
+                element.stock = parseInt(stock)
+                element.price = parseFloat(price)
             }
         });
         await this.#writeFile(all_products)

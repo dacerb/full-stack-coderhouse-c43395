@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Sonor AQX22",
+        "description": "Bateria sonor aqx super jazz",
+        "code": "ZSPAS123",
+        "price": 1500,
+        "status": true,
+        "stock": 1000,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062829573-aqx.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062829579-aqx.jpg"
+        ],
+        "category": "drum"
+    },
+    {
+        "id": 2,
+        "title": "Sonor Sq1",
+        "description": "Bateria ",
+        "code": "RD132s",
+        "price": 2000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062834762-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062834765-sq2.jpg"
+        ]
+    }
+]
