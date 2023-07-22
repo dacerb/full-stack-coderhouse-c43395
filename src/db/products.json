@@ -1,19 +1,5 @@
 [
     {
-        "id": 1,
-        "title": "Sonor AQX22",
-        "description": "Bateria sonor aqx super jazz",
-        "code": "ZSPAS123",
-        "price": 1500,
-        "status": true,
-        "stock": 1000,
-        "thumbnail": [
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062829573-aqx.jpg",
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062829579-aqx.jpg"
-        ],
-        "category": "drum"
-    },
-    {
         "id": 2,
         "title": "Sonor Sq1",
         "description": "Bateria ",
@@ -22,8 +8,60 @@
         "status": true,
         "stock": 99,
         "thumbnail": [
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062834762-sq1.jpg",
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690062834765-sq2.jpg"
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063935627-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063935630-sq2.jpg"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Sonor Sq1",
+        "description": "Bateria ",
+        "code": "RD132s",
+        "price": 2000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063936918-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063936921-sq2.jpg"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Sonor Sq1",
+        "description": "Bateria ",
+        "code": "RD132s",
+        "price": 2000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063959045-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063959051-sq2.jpg"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Sonor Sq1",
+        "description": "Bateria ",
+        "code": "RD132s",
+        "price": 2000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063979136-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063979138-sq2.jpg"
+        ]
+    },
+    {
+        "id": 6,
+        "title": "Sonor Sq1",
+        "description": "Bateria ",
+        "code": "RD132s",
+        "price": 2000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063988487-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690063988493-sq2.jpg"
         ]
     }
 ]

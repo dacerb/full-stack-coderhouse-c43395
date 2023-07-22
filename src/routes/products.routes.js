@@ -87,12 +87,20 @@ router.put("/:pid", uploaderThumbnails.array('thumbnails'), async (req, res) => 
             ...req.body
         });
 
-        return res.status(200).send(
+
+        if (new_product) {
+            return res.status(200).send(
+                JSON.stringify({
+                    "message": `the product with id ${id} was updated.`
+                }, null, 4)
+            );
+        }
+
+        return res.status(404).send(
             JSON.stringify({
-                "message": "PUT."
+                "message": `the product with id ${id} not found.`
             }, null, 4)
         );
-
     }
 
     res.status(400).send(
@@ -104,10 +112,38 @@ router.put("/:pid", uploaderThumbnails.array('thumbnails'), async (req, res) => 
 
 
 // DELETE
-router.delete("/:pid", (req, res) => {
-    res.send(JSON.stringify({
-        "message": "DELETE"
-    }));
+router.delete("/:pid", async (req, res) => {
+
+    let { pid } = req.params;
+    const id = parseInt(pid);
+
+    if (!isNaN(id) && id > 0) { 
+        
+    
+        let new_product = await productManager.deleteProduct(id);
+
+        if (new_product) {
+            return res.status(200).send(
+                JSON.stringify({
+                    "message": `the product with id ${id} was deleted.`
+                }, null, 4)
+            );
+        }
+
+        return res.status(404).send(
+            JSON.stringify({
+                "message": `the product with id ${id} not found.`
+            }, null, 4)
+        );
+        
+
+    }
+
+    res.status(400).send(
+        JSON.stringify({
+            "message": "the id parameter must be a positive integer."
+        }, null, 4)
+    );
 })
 
 
