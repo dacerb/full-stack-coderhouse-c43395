@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products?limit=10",
+							"raw": "http://localhost:8080/api/products?limit=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -28,7 +28,7 @@
 							"query": [
 								{
 									"key": "limit",
-									"value": "10"
+									"value": "1"
 								}
 							]
 						}
@@ -41,7 +41,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/1",
+							"raw": "http://localhost:8080/api/products/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -50,7 +50,7 @@
 							"path": [
 								"api",
 								"products",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -62,16 +62,57 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"string\",\r\n    \"description\": \"string\",\r\n    \"code\": \"string\",\r\n    \"price\": \"Numnber\",\r\n    \"status\": \"Boolean TRUE\",\r\n    \"stock\": \"Number\",\r\n    \"category\": \"String\",\r\n    \"thumbnails\": \"Array of String\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Sonor AQX22",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Bateria sonor aqx super jazz",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "ZSPAS123",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1500",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "drum",
+									"type": "text"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/aqx.jpg"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/aqx.jpg"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/products/1",
+							"raw": "http://localhost:8080/api/products/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -80,7 +121,7 @@
 							"path": [
 								"api",
 								"products",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -92,16 +133,57 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"string\",\r\n    \"description\": \"string\",\r\n    \"code\": \"string\",\r\n    \"price\": \"Numnber\",\r\n    \"status\": \"Boolean TRUE\",\r\n    \"stock\": \"Number\",\r\n    \"category\": \"String\",\r\n    \"thumbnails\": \"Array of String\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Sonor Sq1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Bateria ",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "RD132s",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "True",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "99",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "snare",
+									"type": "text"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/sq1.jpg"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/sq2.jpg"
 								}
-							}
+							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/products/1",
+							"raw": "http://localhost:8080/api/products/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -110,7 +192,7 @@
 							"path": [
 								"api",
 								"products",
-								"1"
+								""
 							]
 						}
 					},
@@ -122,7 +204,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/1",
+							"raw": "http://localhost:8080/api/products/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -131,7 +213,7 @@
 							"path": [
 								"api",
 								"products",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -170,7 +252,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Id\": \"Number/String\",\r\n    \"products\": \"Array of objects\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -178,7 +260,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/1/product/1 ",
+							"raw": "http://localhost:8080/api/cart/1/product/19",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -189,7 +271,7 @@
 								"cart",
 								"1",
 								"product",
-								"1 "
+								"19"
 							]
 						}
 					},
