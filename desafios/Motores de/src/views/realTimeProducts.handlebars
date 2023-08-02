@@ -1,0 +1,30 @@
+<div class="main">
+<div>
+    <h1>{{ apiName }} API</h1>
+    <div class="api-info">
+    <p>API Name: {{ apiName }}</p>
+    </div>
+    <h2>Products:</h2>
+    <div class="container">
+    <ul class="">
+        {{#each data}}
+            <h1>{{ title }}</h1>
+            <p>{{ description }}</p>
+            <p>Code: {{ code }}</p>
+            <p>Price: ${{ price }}</p>s
+                {{#if status}}
+                    <p>Status: Available</p>
+                {{else}}
+                    <p>Status: Not Available</p>
+                {{/if}}
+                    <p>Stock: {{ stock }}</p>
+            <div>
+                {{#each thumbnail}}
+                    <img src="{{ this }}" alt="Thumbnail {{ @index }}">
+                {{/each}}
+            </div>
+        {{/each}}
+    </ul>
+    </div>
+</div>
+</div>

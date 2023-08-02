@@ -1,0 +1,22 @@
+<div class="main">
+<div>
+    <h1>{{ apiName }} API</h1>
+    <div class="api-info">
+    <p>API Name: {{ apiName }}</p>
+    </div>
+    <h2>Endpoints:</h2>
+    <div class="container">
+    <ul class="endpoint-list">
+        {{#each endpoints}}
+        <li>
+            <p>
+            <strong>{{ path }}</strong>
+            <strong class="{{ verbo }}">{{ verbo }}</strong> - <i>{{ description }}</i>
+            </p>
+            <hr>
+        </li>
+        {{/each}}
+    </ul>
+    </div>
+</div>
+</div>
