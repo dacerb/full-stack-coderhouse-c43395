@@ -14,7 +14,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + '/public'))
 
 
 //Preparar la configuracion del servidor para recibir objetos JSON.
@@ -43,7 +43,11 @@ app.get('/',  (req, res) => {
         { path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'}
     ];
 
-    res.render('home', { apiName, endpoints });
+    res.render('home', {
+        apiName,
+        endpoints,
+        style: 'home.css'
+    });
 });
 
 

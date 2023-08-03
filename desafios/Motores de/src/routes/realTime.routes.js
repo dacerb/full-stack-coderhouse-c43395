@@ -17,7 +17,8 @@ router.get("/", async (req, res) => {
 
     res.render('realTimeProducts', {
         qty: all_products.length,
-        data: all_products
+        data: all_products,
+        style: 'realTimeProducts.css'
     });
 })
 
