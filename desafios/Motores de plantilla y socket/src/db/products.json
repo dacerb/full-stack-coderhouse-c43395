@@ -1,0 +1,64 @@
+[
+    {
+        "id": 1,
+        "title": "Sonor sq1",
+        "description": "Bateria sonor aqx super jazz",
+        "code": "ZSPAS123",
+        "price": 1500,
+        "status": true,
+        "stock": 1020,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119634193-mango-sonor.png"
+        ],
+        "category": "snare"
+    },
+    {
+        "id": 2,
+        "title": "Sonor sq1",
+        "description": "Bateria sonor aqx super jazz",
+        "code": "ZSPAS123",
+        "price": 1500,
+        "status": true,
+        "stock": 1020,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119644005-webony-sonor.jpeg"
+        ],
+        "category": "snare"
+    },
+    {
+        "id": 3,
+        "title": "Sonor SQ1",
+        "description": "Bateria ",
+        "code": "RD1s",
+        "price": 3000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119565239-sq1.jpg"
+        ]
+    },
+    {
+        "id": 4,
+        "title": "Sonor SQ2",
+        "description": "Bateria ",
+        "code": "RD1s",
+        "price": 6000,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119580864-sq2.jpg"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Sonor AQX",
+        "description": "Bateria ",
+        "code": "RD1s",
+        "price": 2500,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119597286-aqx.jpg"
+        ]
+    }
+]

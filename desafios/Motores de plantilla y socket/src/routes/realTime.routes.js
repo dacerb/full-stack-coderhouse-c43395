@@ -13,15 +13,11 @@ const productManager = new ProductManager()
 router.get("/", async (req, res) => {
 
     const all_products = await productManager.getProducts();
-
-
     res.render('realTimeProducts', {
         qty: all_products.length,
         data: all_products,
         style: 'realTimeProducts.css'
     });
 })
-
-
 
 export default router;
