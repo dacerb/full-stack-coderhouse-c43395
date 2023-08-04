@@ -60,5 +60,18 @@
         "thumbnail": [
             "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119597286-aqx.jpg"
         ]
+    },
+    {
+        "id": 6,
+        "title": "Sonor AQX Promo",
+        "description": "Bateria sonor aqx super jazz",
+        "code": "ZSPAS123",
+        "price": 1500,
+        "status": true,
+        "stock": 1020,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691122887763-1691119597286-aqx.jpg"
+        ],
+        "category": "drum"
     }
 ]

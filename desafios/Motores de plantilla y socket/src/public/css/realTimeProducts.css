@@ -19,6 +19,7 @@ h1 {
 .main {
     margin-top: 50px;
     display: flex;
+    flex-wrap: wrap;
     font-size: 1rem;
     align-items: center;
     justify-items: center;
