@@ -35,7 +35,7 @@ app.use('/api/realtimeproducts', realTime);
 
 // ------------------------ RUN APP
 app.get('/',  (req, res) => {
-    const apiName = 'Desafio Server con Express';
+    const apiName = 'Desafio Motores de Plantilla y Socket';
     const endpoints = [
         { path: '/api/products?limit=10', verbo: 'GET', description: 'listar todos los productos de la base' },
         { path: '/api/products/:pid', verbo: 'GET',description: 'traer sólo el producto con el id proporcionado'},
