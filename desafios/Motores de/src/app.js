@@ -1,9 +1,14 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
+import {Server} from 'socket.io'
+import ProductManager from "./helpers/ProductManager.js"
 import productsRoutes from './routes/products.routes.js'
 import cartRoutes from './routes/cart.routes.js'
 import realTime from './routes/realTime.routes.js'
 import __dirname from './helpers/utils.js'
+
+// INSTANCIA DE CLASE GLOBAL PRODUCTS
+const productManager = new ProductManager()
 
 const app = express();
 const PORT = 8080;
@@ -50,7 +55,50 @@ app.get('/',  (req, res) => {
     });
 });
 
-
-app.listen(PORT, () => {
+const httpServer = app.listen(PORT, () => {
     console.log(`server run on port: ${PORT}`);
 })
+
+// Instancia del server de socket
+const socketServer = new Server(httpServer);
+
+
+// Renderizado de templates para las respuestas del socket
+function renderToString(template, data) {
+    return new Promise((resolve, reject) => {
+        app.render(template, data, (err, html) => {
+        if (err) {
+            reject(err);
+        } else {
+            resolve(html);
+        }
+        });
+    });
+}
+
+// Sever de socket
+socketServer.on('connection', (socket) => {
+    socket.on('message', data => {
+        console.log(data)
+    })
+
+    socket.emit('message', 'Saludos desde el servidor')
+
+    socket.on('getUpdateProducts', data => {
+        console.log("recibi una solicitud del tipo getUpdateProducts: ", data)
+        async function getAll() {
+            const all_products = await productManager.getProducts();
+            const renderedStringHtml = await renderToString("realTimeProducts", {
+                qty: all_products.length,
+                data: all_products,
+                style: 'realTimeProducts.css'
+            });
+
+            //console.log(renderedStringHtml)
+            const bodyContent = /<body>([\s\S]*)<\/body>/.exec(renderedStringHtml);
+            socket.emit('productsUpdated', bodyContent);
+        }
+        getAll();
+    })
+})
+export default socketServer

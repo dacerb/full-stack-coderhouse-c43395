@@ -3,26 +3,25 @@
         "id": 1,
         "title": "Sonor Sq1",
         "description": "Bateria ",
-        "code": "RD132s",
-        "price": 2000,
+        "code": "RD132s2",
+        "price": 2100,
         "status": true,
         "stock": 99,
         "thumbnail": [
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690072624751-sq1.jpg",
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690072624753-sq2.jpg"
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de\\src\\public\\thumbnails\\1691118709085-sq1.jpg",
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de\\src\\public\\thumbnails\\1691118709087-sq1.jpg"
         ]
     },
     {
-        "id": 3,
-        "title": "Sonor Sq12",
+        "id": 2,
+        "title": "Sonor Sq1",
         "description": "Bateria ",
-        "code": "RD132s",
-        "price": 2000,
+        "code": "RD132s2",
+        "price": 2100,
         "status": true,
         "stock": 99,
         "thumbnail": [
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690072626953-sq1.jpg",
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1690072626956-sq2.jpg"
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de\\src\\public\\thumbnails\\1691118742276-webony-sonor.jpeg"
         ]
     }
 ]

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { uploaderThumbnails } from "../helpers/utils.js";
 import ProductManager from "../helpers/ProductManager.js"
+import socketServer from "../app.js"
 
 
 const router = Router();
@@ -12,11 +13,11 @@ const productManager = new ProductManager()
 
 // GET
 router.get("/", async (req, res) => {
-
+    
     const { limit } = req.query;
     const all_products = await productManager.getProducts();
     const limit_element = parseInt(limit);
-
+    
     if (!isNaN(limit_element) && limit_element > -1) {
         const limit_products = all_products.slice(0, limit_element);
         return res.send(
@@ -26,7 +27,7 @@ router.get("/", async (req, res) => {
             }, null, 4)
         );
     }
-
+    
     return res.send(
         JSON.stringify({
             qty: all_products.length,
@@ -89,6 +90,7 @@ router.put("/:pid", uploaderThumbnails.array('thumbnails'), async (req, res) => 
 
 
         if (new_product) {
+            socketServer.emit('changeInPorducts', "put")
             return res.status(200).send(
                 JSON.stringify({
                     "message": `the product with id ${id} was updated.`
@@ -123,6 +125,7 @@ router.delete("/:pid", async (req, res) => {
         let new_product = await productManager.deleteProduct(id);
 
         if (new_product) {
+            socketServer.emit('changeInPorducts', "delete")
             return res.status(200).send(
                 JSON.stringify({
                     "message": `the product with id ${id} was deleted.`
@@ -161,7 +164,7 @@ router.post("/", uploaderThumbnails.array('thumbnails'), async (req, res) => {
         thumbnail: filesPath,
         ...req.body
     });
-
+    socketServer.emit('changeInPorducts', "post")
     res.status(200).send(JSON.stringify({"message": `a new product was added with id ${new_product}` }, null, 4));
 })
 
