@@ -41,7 +41,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/2",
+							"raw": "http://localhost:8080/api/products/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -50,7 +50,7 @@
 							"path": [
 								"api",
 								"products",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -66,7 +66,7 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Sonor AQX22",
+									"value": "Sonor sq1",
 									"type": "text"
 								},
 								{
@@ -86,28 +86,28 @@
 								},
 								{
 									"key": "status",
-									"value": "false",
+									"value": "true",
 									"type": "text"
 								},
 								{
 									"key": "stock",
-									"value": "1000",
+									"value": "1020",
 									"type": "text"
 								},
 								{
 									"key": "category",
-									"value": "drum",
+									"value": "snare",
 									"type": "text"
 								},
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/aqx.jpg"
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/webony-sonor.jpeg"
 								},
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/aqx.jpg"
+									"src": []
 								}
 							]
 						},
@@ -137,7 +137,7 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Sonor Sq1",
+									"value": "Sonor AQX",
 									"type": "text"
 								},
 								{
@@ -147,12 +147,12 @@
 								},
 								{
 									"key": "code",
-									"value": "RD132s",
+									"value": "RD1s",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "2000",
+									"value": "2500",
 									"type": "text"
 								},
 								{
@@ -167,18 +167,18 @@
 								},
 								{
 									"key": "category",
-									"value": "snare",
+									"value": "drum",
 									"type": "text"
 								},
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/sq1.jpg"
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/aqx.jpg"
 								},
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/sq2.jpg"
+									"src": []
 								}
 							]
 						},
@@ -204,7 +204,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/7",
+							"raw": "http://localhost:8080/api/products/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -213,7 +213,7 @@
 							"path": [
 								"api",
 								"products",
-								"7"
+								"2"
 							]
 						}
 					},
@@ -260,7 +260,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/1/product/19",
+							"raw": "http://localhost:8080/api/cart/2/product/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -269,9 +269,9 @@
 							"path": [
 								"api",
 								"cart",
-								"1",
+								"2",
 								"product",
-								"19"
+								"4"
 							]
 						}
 					},
