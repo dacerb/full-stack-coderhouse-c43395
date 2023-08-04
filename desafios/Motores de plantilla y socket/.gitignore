@@ -6,5 +6,5 @@ node_modules/*
 *node_modules/*
 
 files/products/*
-src/public/thumbnail/*
-src/public/thumbnails*
+#src/public/thumbnail/*
+#src/public/thumbnails*
