@@ -1,22 +1,28 @@
-<div class="main">
-<div>
-    <h1>{{ apiName }} API</h1>
-    <div class="api-info">
-    <p>API Name: {{ apiName }}</p>
-    </div>
-    <h2>Endpoints:</h2>
-    <div class="container">
-    <ul class="endpoint-list">
-        {{#each endpoints}}
-        <li>
-            <p>
-            <strong>{{ path }}</strong>
-            <strong class="{{ verbo }}">{{ verbo }}</strong> - <i>{{ description }}</i>
-            </p>
-            <hr>
-        </li>
+<div class="container">
+    <h1> Home List Of Products </h1>
+    <div class="main">
+        {{#each data}}
+            <div class="card">
+                <h2>{{ title }}</h2>
+                <p><strong>Id</strong>: {{id}}</p>
+                <p><strong>description: </strong> {{ description }}</p>
+                <p><strong>code:</strong> {{ code }}</p>
+                <p class="price"><strong>price: $</strong>{{ price }}</p>
+                {{#if status}}
+                    <p class="status-available"><strong>status:</strong> Available</p>
+                {{else}}
+                    <p class="status-not-available"><strong>status:</strong> Not Available</p>
+                {{/if}}
+                <p class="stock"><strong>stock:</strong> {{ stock }}</p>
+                <div>
+                    <p><strong>thumbnail:</strong></p>
+                    <ul>
+                    {{#each thumbnail}}
+                        <li class="links"><a href="{{ this }}">{{ this }}</a></li>
+                    {{/each}}
+                    </ul>
+                </div>
+            </div>
         {{/each}}
-    </ul>
     </div>
-</div>
 </div>

@@ -3,6 +3,7 @@ import handlebars from 'express-handlebars';
 import {Server} from 'socket.io'
 import ProductManager from "./helpers/ProductManager.js"
 import productsRoutes from './routes/products.routes.js'
+import homeRoutes from './routes/home.routes.js'
 import cartRoutes from './routes/cart.routes.js'
 import realTime from './routes/realTime.routes.js'
 import __dirname from './helpers/utils.js'
@@ -26,9 +27,11 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/realtimeproducts', realTime);
+app.use('/home', homeRoutes);
 
 
 
@@ -45,10 +48,11 @@ app.get('/',  (req, res) => {
         { path: '/api/carts/', verbo: 'POST',description: 'deberá crear un nuevo carrito', curl: 'xxx' },
         { path: '/api/carts/:cid', verbo: 'GET',description: 'deberá listar los productos que pertenezcan al carrito con el parámetro cid', curl: "curl --location --request GET 'http://localhost:8080/api/cart/1'" },
         { path: '/api/carts/:cid/product/:pid ', verbo: 'POST',description: 'deberá agregar el producto al arreglo “products” del carrito seleccionado, agregándose como un objeto'},
-        { path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'}
+        { path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'},
+        { path: '/home/ ', verbo: 'GET',description: 'Deberá listar todos los productos que hay almacenados al momento de hacer el request'}
     ];
 
-    res.render('home', {
+    res.render('api', {
         apiName,
         endpoints,
         style: 'home.css'

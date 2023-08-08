@@ -36,6 +36,20 @@ router.get("/", async (req, res) => {
     );
 })
 
+// GET HOME
+router.get("/home", async (req, res) => {
+    
+
+    const all_products = await productManager.getProducts();
+    
+    return res.send(
+        JSON.stringify({
+            qty: all_products.length,
+            data: all_products
+        }, null, 4)
+    );
+})
+
 
 // GET
 router.get("/:pid", async (req, res) => {
