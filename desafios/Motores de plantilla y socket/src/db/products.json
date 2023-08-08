@@ -14,16 +14,16 @@
     },
     {
         "id": 2,
-        "title": "Sonor sq1",
+        "title": "actualizo titulo",
         "description": "Bateria sonor aqx super jazz",
-        "code": "ZSPAS199",
-        "price": 4500,
+        "code": "ZSPAS123",
+        "price": 1500,
         "status": true,
         "stock": 1020,
         "thumbnail": [
             "D:\\CURSOS\\full-stack-coderhouse-c43395\\desafios\\Motores de plantilla y socket\\src\\public\\thumbnails\\1691119644005-webony-sonor.jpeg"
         ],
-        "category": "snare"
+        "category": "drum"
     },
     {
         "id": 3,
