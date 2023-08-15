@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: #333;
+}
+body {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
+}
+h1 {
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.main {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+}
+
+.card {
+    border: 1px solid ;
+    padding: 10px;
+    min-width: 300px;
+    max-width: 350px;
+    background-color: white;
+}
+
+p {
+    margin-top: 4px;
+}
+
+.links {
+    overflow: hidden;
+    word-wrap: break-word;
+    font-size: .9rem;
+    margin-top: 10px;
+}
