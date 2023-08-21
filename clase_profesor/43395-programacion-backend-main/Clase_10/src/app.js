@@ -25,7 +25,7 @@ const httpServer = app.listen(PORT, () => {
     console.log("Server run on port: " + PORT);
 })
 
-// delclaramos el routers
+// delclaramos el router
 app.use('/', viewRouter);
 
 
