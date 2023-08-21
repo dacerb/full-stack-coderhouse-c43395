@@ -11,7 +11,7 @@ const router = Router();
 let pets = [];
 
 
-// middleware a nivel de router
+// middleware a nivel de routers
 router.use(function (request, response, next) {
     console.log("Mi propio middleware a nivel de ROUTER!!.");
     console.log("Time: " + Date().toLocaleString());
