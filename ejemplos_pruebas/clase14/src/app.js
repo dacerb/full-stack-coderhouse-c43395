@@ -19,8 +19,10 @@ app.listen(SERVER_PORT, () => {
     console.log('El servicio inicion en el puerto: ' + SERVER_PORT)
 })
 
+const USER = 'xx'
+const PASS = "xxx"
 
-const DB = 'mongodb+srv://dda:I2GcvukgthSxvbWc@cluster0.koltvse.mongodb.net/pruebas?retryWrites=true&w=majority'
+const DB = `mongodb+srv://${USER}:${PASS}@cluster0.koltvse.mongodb.net/pruebas?retryWrites=true&w=majority`
 const connectMongoDB = async () =>  {
     try {
         const mongoose_run = await mongoose.connect(DB);
