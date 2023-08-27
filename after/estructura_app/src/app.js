@@ -13,7 +13,7 @@ const app = express();
 // para recibir data desde postman o payloads por bodu
 // Middlewares a nivel de app
 app.use(express.json());
-
+app.use(morgan("dev"));
 // Router
 app.use("/users", UsersRoutes)
 
