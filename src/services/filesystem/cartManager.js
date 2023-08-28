@@ -43,7 +43,7 @@ class CartManager {
 
             this.#products = await this.#getCartsList()
 
-            let id = this.#new_id(this.#products)
+            let id = this.#new_id(this.#products);
             let new_product = new Cart({
                 id,
                 products: []
@@ -61,7 +61,8 @@ class CartManager {
     }
 
 
-    getCartById = async (id) => {
+    getCartById = async (_id) => {
+        let id = parseInt(_id)
         let x = new Array
         let all_carts = await this.#getCartsList()
         const found_cart = all_carts.filter((element) => element.id === id)?.[0]
@@ -73,7 +74,10 @@ class CartManager {
 
     }
 
-    addProductInCart = async (cartId, productId) => {
+    addProductInCart = async (_cartId, _productId) => {
+
+        let  cartId = parseInt(_cartId)
+        let productId = parseInt(_productId)
 
         let all_carts = await this.#getCartsList()
         let found_cart = false
