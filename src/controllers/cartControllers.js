@@ -1,7 +1,4 @@
-import CartManager from "../services/filesystem/cartManager.js";
-// INSTANCIA DE CLASE GLOBAL CARTS
-const cartManager = new CartManager()
-
+import cartManager from "../dao/selectedCartDb.js";
 
 export async function getACartById(req, res) {
 
@@ -31,7 +28,7 @@ export async function getACartById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-}
+};
 
 export async function addProductInACart(req, res) {
 
@@ -63,7 +60,7 @@ export async function addProductInACart(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-}
+};
 
 export async function createACart(req, res) {
     const id = await cartManager.addCart()
@@ -77,4 +74,4 @@ export async function createACart(req, res) {
     res.status(500).send(JSON.stringify({
         "message": "it was not possible to create a new cart"
     }));
-}
+};

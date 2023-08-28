@@ -1,7 +1,5 @@
-import ProductManager from "../services/filesystem/productManager.js";
+import productManager from "../dao/selectedProductDb.js";
 
-// INSTANCIA DE CLASE GLOBAL PRODUCTS
-const productManager = new ProductManager()
 export async function getHome(req, res) {
     const all_products = await productManager.getProducts();
     res.render('home', {
@@ -9,4 +7,4 @@ export async function getHome(req, res) {
         data: all_products,
         style: 'home.css'
     });
-}
+};

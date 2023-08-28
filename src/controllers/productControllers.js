@@ -1,7 +1,4 @@
-import ProductManager from "../services/filesystem/productManager.js";
-// INSTANCIA DE CLASE GLOBAL PRODUCTS
-const productManager = new ProductManager()
-
+import productManager from "../dao/selectedProductDb.js";
 export async function createNewProduct(req, res) {
 
     if (!req.files.length > 0) {
@@ -17,7 +14,7 @@ export async function createNewProduct(req, res) {
     });
 
     res.status(200).send(JSON.stringify({"message": `a new product was added with id ${new_product}` }, null, 4));
-}
+};
 
 export async function deleteProductById(req, res) {
 
@@ -51,7 +48,7 @@ export async function deleteProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-}
+};
 
 export async function updateProductById(req, res) {
 
@@ -90,7 +87,7 @@ export async function updateProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-}
+};
 
 export async function getProducts(req, res) {
 
@@ -114,7 +111,7 @@ export async function getProducts(req, res) {
             data: all_products
         }, null, 4)
     );
-}
+};
 
 export async function getProductById(req, res) {
 
@@ -145,4 +142,4 @@ export async function getProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-}
+};
