@@ -1,0 +1,64 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.api-info {
+    margin-bottom: 30px;
+}
+.api-info p {
+    font-weight: bold;
+}
+.endpoint-list {
+    list-style-type: none;
+    padding: 0;
+}
+.endpoint-list li {
+    margin-bottom: 10px;
+}
+.endpoint-list li strong {
+    color: #333;
+}
+.main {
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: center;
+    margin-top: 200px;
+}
+.container {
+    padding: 50px;
+    background-color: whitesmoke;
+}
+p {
+    padding: 0;
+    margin: 0;
+}
+.GET {
+    background-color: greenyellow;
+    padding: 4px;
+}
+.PUT {
+    background-color: skyblue;
+    padding: 4px;
+}
+.DELETE {
+    background-color: deeppink;
+    padding: 4px;
+}
+.POST {
+    background-color: orange;
+    padding: 4px;
+}
+#texto-a-copiar {
+    font-size: 1rem;
+}
+.content-copy {
+    display: flex;
+    padding: 2px;
+    align-items: center;
+    justify-content: space-between;
+}

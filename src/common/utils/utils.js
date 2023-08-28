@@ -6,13 +6,10 @@ import multer from 'multer';
 const __filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(__filename)
 
-const removeString = '\\\\helpers';
+const removeString = '\\\\common\\\\utils';
 const __dirname = _dirname.replace(new RegExp(removeString), '');
 
-
 export default __dirname;
-
-
 
 // Configuracion MULTER
 const storageThumbnails = multer.diskStorage(
