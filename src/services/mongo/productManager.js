@@ -1,39 +1,79 @@
 import { productsModel } from './models/products.js';
+
 class ProductManager {
 
-    constructor() {
-        console.log("hola productos")
-    }
-
     addProduct = async ({title, description, price, thumbnail, code, stock}) => {
-        try {
-
-            console.log("add producto")
-
-
-        } catch (error) {
-            console.error(error)
-        }
+         return productsModel.create({
+                title,
+                description,
+                price,
+                thumbnail,
+                code,
+                stock
+            })
+             .then( newProduct => {
+                    console.log("Add new product: ", newProduct);
+                    return newProduct.toJSON();
+                })
+             .catch(error => {
+                 console.error('Error:', error);
+             });
     }
 
-    getProducts = () => {
-        console.log("get all product")
-        console.log(productsModel.find({}))
-        return []
+    getProducts = async () => {
+        return productsModel.find({})
+            .then(products => {
+                    return products;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     getProductById = async (id) => {
-        console.log("get product x id")
+
+        return productsModel.findOne({_id: id})
+            .then(product => {
+                    if (product) return product.toJSON();
+                    return product;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     updateProductById = async ({id, title, description, price, thumbnail, code, stock, status, category}) => {
-        console.log('update product')
+        return productsModel.findByIdAndUpdate(id, {
+            title,
+            description,
+            price,
+            thumbnail,
+            code,
+            stock,
+            status,
+            category
+        }, { new: true })
+            .then(productUpdated => {
+                    if (productUpdated) return productUpdated.toJSON();
+                    return productUpdated;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
-
     deleteProduct = async (id) => {
-
-        console.log("delete p")
+        return productsModel.deleteOne({_id: id})
+            .then(productDeleted => {
+                    return Boolean(productDeleted.deletedCount)
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
 }

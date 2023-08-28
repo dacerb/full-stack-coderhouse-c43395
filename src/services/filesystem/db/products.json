@@ -40,18 +40,6 @@
         ]
     },
     {
-        "id": 8,
-        "title": "Sonor AQX",
-        "description": "Bateria ",
-        "code": "RD1s",
-        "price": 2500,
-        "status": true,
-        "stock": 99,
-        "thumbnail": [
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693186767479-1691119518230-webony-sonor.jpeg"
-        ]
-    },
-    {
         "id": 5,
         "title": "Sonor AQX",
         "description": "Bateria ",
@@ -62,5 +50,42 @@
         "thumbnail": [
             "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693187095635-1691119518230-webony-sonor.jpeg"
         ]
+    },
+    {
+        "id": 6,
+        "title": "Sonor AQX",
+        "description": "Bateria ",
+        "code": "RD1s",
+        "price": 2500,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693264630015-1691119580864-sq2.jpg"
+        ]
+    },
+    {
+        "id": 7,
+        "title": "Sonor AQX",
+        "description": "Bateria ",
+        "code": "RD1s",
+        "price": 2500,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693264640218-1691119580864-sq2.jpg"
+        ]
+    },
+    {
+        "id": 9,
+        "title": "Sonor AQX Promo",
+        "description": "Bateria sonor aqx super jazz",
+        "code": "ZSPAS123",
+        "price": 123123,
+        "status": true,
+        "stock": 1020,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693264700834-1691119580864-sq2.jpg"
+        ],
+        "category": "drum"
     }
 ]

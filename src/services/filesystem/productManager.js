@@ -71,13 +71,15 @@ class ProductManager {
         return this.#getProdcutList()
     }
 
-    getProductById = async (id) => {
+    getProductById = async (_id) => {
+        const id = parseInt(_id)
         let x = new Array
         let all_products = await this.#getProdcutList()
         return all_products.filter((element) => element.id === id)
     }
 
-    updateProductById = async ({id, title, description, price, thumbnail, code, stock, status, category}) => {
+    updateProductById = async ({id: _id, title, description, price, thumbnail, code, stock, status, category}) => {
+        const id = parseInt(_id)
         let all_products = await this.#getProdcutList()
         let found_product = false
         all_products.forEach(element => {
@@ -99,8 +101,8 @@ class ProductManager {
     }
 
 
-    deleteProduct = async (id) => {
-
+    deleteProduct = async (_id) => {
+        const id = parseInt(_id)
         let product_was_deleted = false
         let all_products = await this.#getProdcutList()
         if (!all_products.length > 0) return product_was_deleted // no hay productos por ende imposible eliminar ningun caso
