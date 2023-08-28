@@ -10,7 +10,6 @@ import __dirname from './common/utils/utils.js';
 
 // connecion a db mongo
 import "./services/mongo/db.js";
-import ProductManager from "./services/filesystem/db.products.js";
 
 // carga de variables de entorno
 dotenv.config();

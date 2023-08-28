@@ -1,4 +1,4 @@
-import ProductManager from "../services/filesystem/db.products.js";
+import ProductManager from "../services/filesystem/productManager.js";
 // INSTANCIA DE CLASE GLOBAL PRODUCTS
 const productManager = new ProductManager()
 

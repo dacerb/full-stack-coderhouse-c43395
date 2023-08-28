@@ -1,29 +1,17 @@
 [
     {
         "id": 1,
-        "title": "Sonor AQX",
-        "description": "Bateria ",
-        "code": "RD1s",
-        "price": 2500,
+        "title": "Sonor AQX Promo",
+        "description": "Bateria sonor aqx super jazz",
+        "code": "ZSPAS123",
+        "price": 1500,
         "status": true,
-        "stock": 99,
+        "stock": 1020,
         "thumbnail": [
             "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693184656854-1691460882567-1691119580864-sq2.jpg",
             "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693184656856-1691122887763-1691119597286-aqx.jpg"
-        ]
-    },
-    {
-        "id": 3,
-        "title": "Sonor AQX",
-        "description": "Bateria ",
-        "code": "RD1s",
-        "price": 2500,
-        "status": true,
-        "stock": 99,
-        "thumbnail": [
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693184753119-1691460882567-1691119580864-sq2.jpg",
-            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693184753120-1691122887763-1691119597286-aqx.jpg"
-        ]
+        ],
+        "category": "drum"
     },
     {
         "id": 4,
@@ -61,6 +49,18 @@
         "stock": 99,
         "thumbnail": [
             "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693186767479-1691119518230-webony-sonor.jpeg"
+        ]
+    },
+    {
+        "id": 5,
+        "title": "Sonor AQX",
+        "description": "Bateria ",
+        "code": "RD1s",
+        "price": 2500,
+        "status": true,
+        "stock": 99,
+        "thumbnail": [
+            "D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1693187095635-1691119518230-webony-sonor.jpeg"
         ]
     }
 ]

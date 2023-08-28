@@ -1,4 +1,4 @@
-import CartManager from "../services/filesystem/db.carts.js";
+import CartManager from "../services/filesystem/cartManager.js";
 // INSTANCIA DE CLASE GLOBAL CARTS
 const cartManager = new CartManager()
 
