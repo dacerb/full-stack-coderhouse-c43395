@@ -7,6 +7,6 @@ export async function getHome(req, res) {
     res.render('home', {
         qty: all_products.length,
         data: all_products,
-        style: 'realTimeProducts.css'
+        style: 'home.css'
     });
 }

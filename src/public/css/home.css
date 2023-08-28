@@ -1,64 +1,46 @@
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-}
-h1 {
-    color: #333;
-    margin-bottom: 20px;
-}
-.api-info {
-    margin-bottom: 30px;
-}
-.api-info p {
-    font-weight: bold;
-}
-.endpoint-list {
-    list-style-type: none;
-    padding: 0;
-}
-.endpoint-list li {
-    margin-bottom: 10px;
-}
-.endpoint-list li strong {
-    color: #333;
-}
-.main {
-    display: flex;
-    font-size: 1.5rem;
-    justify-content: center;
-    margin-top: 200px;
-}
-.container {
-    padding: 50px;
-    background-color: whitesmoke;
-}
-p {
+* {
     padding: 0;
     margin: 0;
+    color: #333;
 }
-.GET {
-    background-color: greenyellow;
-    padding: 4px;
+body {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: whitesmoke;
 }
-.PUT {
-    background-color: skyblue;
-    padding: 4px;
+h1 {
+    text-align: center;
 }
-.DELETE {
-    background-color: deeppink;
-    padding: 4px;
+
+.container {
+    margin-top: 50px;
 }
-.POST {
-    background-color: orange;
-    padding: 4px;
-}
-#texto-a-copiar {
-    font-size: 1rem;
-}
-.content-copy {
+
+.main {
+    margin-top: 50px;
     display: flex;
-    padding: 2px;
+    flex-wrap: wrap;
+    font-size: 1rem;
     align-items: center;
-    justify-content: space-between;
+    justify-items: center;
+    gap: 10px;
+}
+
+.card {
+    border: 1px solid ;
+    padding: 10px;
+    min-width: 300px;
+    max-width: 350px;
+    background-color: white;
+}
+
+p {
+    margin-top: 4px;
+}
+
+.links {
+    overflow: hidden;
+    word-wrap: break-word;
+    font-size: .9rem;
+    margin-top: 10px;
 }

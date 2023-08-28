@@ -59,7 +59,7 @@ app.get('/',  (req, res) => {
     res.render('api', {
         apiName,
         endpoints,
-        style: 'home.css'
+        style: 'main.css'
     });
 });
 
