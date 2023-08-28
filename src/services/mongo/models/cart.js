@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import * as ModelType from "../../../common/utils/schemaModelsType.js"
-import {arrayTypeSchemaNonUniqueRequired} from "../../../common/utils/schemaModelsType.js";
 
 const collectionName = 'carts';
 

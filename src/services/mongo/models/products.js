@@ -4,10 +4,14 @@ import * as ModelType from "../../../common/utils/schemaModelsType.js"
 const collectionName = 'products';
 
 const productSchema = new mongoose.Schema({
-    title: ModelType.stringTypeSchemaNonUniqueRequired,
-    description: ModelType.stringTypeSchemaNonUniqueRequired,
-    teacherId: ModelType.numberTypeSchemaNonUniqueRequired,
-    students: ModelType.arrayTypeSchemaNonUniqueRequired
+    title: String,
+    description: String,
+    code: String,
+    price: Number,
+    status:Boolean,
+    stock: Number,
+    category: String,
+    thumbnail: String
 });
 
 

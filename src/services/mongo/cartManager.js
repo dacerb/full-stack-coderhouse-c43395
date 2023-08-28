@@ -2,30 +2,52 @@ import { cartsModel } from './models/cart.js';
 
 class CartManager {
 
-    constructor() {
-        console.log("hola")
-    }
-
-
     addCart = async () => {
-        try {
-            console.log("creo un carrito")
-        } catch (error) {
-            console.error(error)
-            return null
-        }
+        return cartsModel.create({products:[]})
+            .then( newCart => {
+                    return newCart.toJSON();
+            })
+            .catch(error => {
+            console.error('Error:', error);
+        });
     }
 
     getCartById = async (id) => {
-        console.log("busco x el id")
-        console.log(cartsModel.find({}))
+        return cartsModel.findOne({_id: id})
+            .then(cart => {
+                    return cart
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     addProductInCart = async (cartId, productId) => {
-        console.log("agrego en el carrito")
+        // ME FALTA VALIDAR QUE EL PRODUCTO ID EXISTE ANTES DE AGREGAR AL CARRITO
 
+        return cartsModel.findOne({_id: cartId})
+            .then(cart => {
+
+                if (cart){
+                    const productIndex = cart.products.findIndex(product => product.productId === productId);
+                    if (productIndex >= 0){
+                        cart.products[productIndex].qty ++
+                    } else {
+                        cart.products.push({
+                            productId,
+                            qty: 1
+                        });
+                    }
+                    return cart.save();
+                }
+                return cart;
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
-
 };
 
 export default CartManager;
