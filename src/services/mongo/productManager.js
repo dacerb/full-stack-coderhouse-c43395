@@ -23,7 +23,7 @@ class ProductManager {
     getProducts = async () => {
         return productsModel.find({})
             .then(products => {
-                    return products;
+                    return products?.map(product => product.toJSON());
                 }
             )
             .catch(error => {
