@@ -11,9 +11,11 @@ const cartProductSchema = new mongoose.Schema({
 
 const cartSchema = new mongoose.Schema({
     products: [{
-        type: cartProductSchema,
-    }]
-});
+                type: cartProductSchema,
+            }]
+        },
+        { timestamps: true }
+    );
 
 // exportar
 export const cartsModel = mongoose.model(collectionName, cartSchema);
