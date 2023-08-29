@@ -48,3 +48,45 @@ export async function createACart(req, res) {
         resutl: response
     })
 };
+
+export async function updateCartQtyFromPid(req, res) {
+    const response = "await  cartManager.addCart();"
+    res.send({
+        message: "success",
+        resutl: response
+    })
+};
+
+export async function updateAllCartFromId(req, res) {
+    const response = "await  cartManager.addCart();"
+    res.send({
+        message: "success",
+        resutl: response
+    })
+};
+
+export async function deleteCartProductFromPid(req, res) {
+    const response = "await  cartManager.addCart();"
+    res.send({
+        message: "success",
+        resutl: response
+    })
+};
+
+export async function deleteAllProductFromCartByCartId(req, res) {
+    let { cid } = req.params;
+    const response = await  cartManager.deleteProductFromCartByCartId(cid);
+
+    if (!response) {
+        return res.status(404).send({
+            message: "the cart does not exist.",
+            resutl: {}
+        });
+    }
+
+    res.status(200).send({
+        message: "success",
+        resutl: response
+    });
+};
+

@@ -5,8 +5,6 @@ import handlebars from 'express-handlebars';
 
 import productsRoutes from './routes/productsRoutes.js';
 import homeRoutes from './routes/homeRoutes.js';
-import testImpleCart from './routes/testImplementationCart.js';
-import testImpleProduct from './routes/testImplementationProducts.js';
 import cartRoutes from './routes/cartRoutes.js';
 import __dirname from './common/utils/utils.js';
 
@@ -40,8 +38,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/home', homeRoutes);
-app.use('/test-implementation/cart', testImpleCart);
-app.use('/test-implementation/products', testImpleProduct);
 
 
 // ------------------------ RUN APP

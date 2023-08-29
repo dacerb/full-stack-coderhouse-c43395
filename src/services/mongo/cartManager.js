@@ -10,7 +10,7 @@ class CartManager {
             .catch(error => {
             console.error('Error:', error);
         });
-    }
+    };
 
     getCartById = async (id) => {
         return cartsModel.findOne({_id: id})
@@ -21,7 +21,7 @@ class CartManager {
             .catch(error => {
                 console.error('Error:', error);
             });
-    }
+    };
 
     addProductInCart = async (cartId, productId) => {
         // ME FALTA VALIDAR QUE EL PRODUCTO ID EXISTE ANTES DE AGREGAR AL CARRITO
@@ -47,7 +47,22 @@ class CartManager {
             .catch(error => {
                 console.error('Error:', error);
             });
-    }
+    };
+
+    deleteProductFromCartByCartId = async (cartId) => {
+        return cartsModel.findOne({_id: cartId})
+            .then(cart => {
+                if (cart) {
+                    cart.products = []
+                    return cart.save();
+                }
+                return cart;
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
 };
 
 export default CartManager;
