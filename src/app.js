@@ -6,6 +6,9 @@ import handlebars from 'express-handlebars';
 import productsRoutes from './routes/productsRoutes.js';
 import homeRoutes from './routes/homeRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
+import cartFrontRoutes from "./routes/cartFrontRoutes.js";
+import productsFrontRoutes from "./routes/productsFrontRoutes.js";
+
 import __dirname from './common/utils/utils.js';
 
 // connecion a db mongo
@@ -38,7 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/home', homeRoutes);
-
+app.use('/cart', cartFrontRoutes);
+app.use('/products', productsFrontRoutes);
 
 // ------------------------ RUN APP
 app.get('/',  (req, res) => {

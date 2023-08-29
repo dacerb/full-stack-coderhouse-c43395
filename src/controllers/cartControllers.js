@@ -95,3 +95,14 @@ export async function deleteAllProductFromCartByCartId(req, res) {
     });
 };
 
+
+
+
+export async function getACartByIdWebFront(req, res) {
+    let { cid } = req.params;
+    const response = await  cartManager.getCartById(cid);
+    res.send({
+        message: response ? "success" : "It is not possible to retrieve the cart by id." ,
+        response: response ? response : {}
+    })
+};

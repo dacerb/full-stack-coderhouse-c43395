@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { uploaderThumbnails } from "../common/utils/utils.js";
 import * as ProductController from "../controllers/productControllers.js";
-import {getProductsQuery} from "../controllers/productControllers.js";
 
 const router = Router();
 

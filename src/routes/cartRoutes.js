@@ -1,9 +1,5 @@
 import { Router } from 'express';
 import * as CartController from "../controllers/cartControllers.js";
-import {
-    deleteAllProductFromCartByCartId,
-    updateProductQtyFromCartByCartIdAndProductId
-} from "../controllers/cartControllers.js";
 
 const router = Router();
 
