@@ -5,18 +5,17 @@ import * as ModelType from "../../../common/utils/schemaModelsType.js"
 const collectionName = 'products';
 
 const productSchema = new mongoose.Schema({
-        title: String,
-        description: String,
-        code: String,
-        price: Number,
-        status:Boolean,
-        stock: Number,
-        category: String,
-        thumbnail: Array
+        title: ModelType.stringTypeSchemaNonUniqueRequired,
+        description: ModelType.stringTypeSchemaNonUniqueRequired,
+        code: ModelType.stringTypeSchemaUniqueRequired,
+        price: ModelType.numberTypeSchemaNonUniqueRequired,
+        status: ModelType.booleanTypeSchemaNonUniqueRequired,
+        stock: ModelType.numberTypeSchemaNonUniqueRequired,
+        category: ModelType.stringTypeSchemaNonUniqueRequired,
+        thumbnail: ModelType.arrayTypeSchemaNonUniqueRequired
     },
     { timestamps: true }
 );
 
 productSchema.plugin(mongoosePaginate);
-
 export const productsModel = mongoose.model(collectionName, productSchema);

@@ -14,6 +14,12 @@ const numberTypeSchemaNonUniqueRequired = {
     required: true
 };
 
+const booleanTypeSchemaNonUniqueRequired = {
+    type: Boolean,
+    required: true
+};
+
+
 const arrayTypeSchemaNonUniqueRequired = {
     type: Array,
     required: true
@@ -24,5 +30,6 @@ export {
     arrayTypeSchemaNonUniqueRequired,
     numberTypeSchemaNonUniqueRequired,
     stringTypeSchemaNonUniqueRequired,
-    stringTypeSchemaUniqueRequired
+    stringTypeSchemaUniqueRequired,
+    booleanTypeSchemaNonUniqueRequired
 };
