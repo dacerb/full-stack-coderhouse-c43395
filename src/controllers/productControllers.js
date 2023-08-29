@@ -268,8 +268,8 @@ export async function getProductsQuery(req, res) {
         page: parseInt(query.page ?? 1),
         limit: parseInt(query.limit ?? 10),
     };
-    if (query.sort === "desc") options.sort = { createdAt: -1 };
-    if (query.sort === "asc") options.sort = { createdAt: 1 };
+    if (query.sort === "desc") options.sort = { price: -1 };
+    if (query.sort === "asc") options.sort = { price: 1 };
 
     delete query.page
     delete query.limit
@@ -282,7 +282,8 @@ export async function getProductsQuery(req, res) {
     delete keys.docs
 
     res.status(200).send({
-        documents: documents,
+        status: data_paginate ? 'success': 'error',
+        payload: documents,
         ...keys
     })
 };
