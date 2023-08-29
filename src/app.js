@@ -3,11 +3,11 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import handlebars from 'express-handlebars';
 
-import productsRoutes from './routes/productsRoutes.js';
-import homeRoutes from './routes/homeRoutes.js';
-import cartRoutes from './routes/cartRoutes.js';
-import cartFrontRoutes from "./routes/cartFrontRoutes.js";
-import productsFrontRoutes from "./routes/productsFrontRoutes.js";
+import productsRoutes from './routes/back.productsRoutes.js';
+import homeRoutes from './routes/front.homeRoutes.js';
+import cartRoutes from './routes/back.cartRoutes.js';
+import cartFrontRoutes from "./routes/front.cartRoutes.js";
+import productsFrontRoutes from "./routes/front.productsRoutes.js";
 
 import __dirname from './common/utils/utils.js';
 

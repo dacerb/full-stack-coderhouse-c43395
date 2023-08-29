@@ -1,5 +1,7 @@
 import cartManager from "../dao/selectedCartDb.js";
 
+
+// API BACK
 export async function getACartById(req, res) {
     let { cid } = req.params;
     const response = await  cartManager.getCartById(cid);
@@ -97,12 +99,16 @@ export async function deleteAllProductFromCartByCartId(req, res) {
 
 
 
-
+// RENDER VIEW FRONT
 export async function getACartByIdWebFront(req, res) {
     let { cid } = req.params;
     const response = await  cartManager.getCartById(cid);
-    res.send({
-        message: response ? "success" : "It is not possible to retrieve the cart by id." ,
-        response: response ? response : {}
-    })
+
+    const products = response.products.map( product => product['productId'].toJSON());
+
+    res.render('cart_products', {
+        data: products,
+        cart_id: cid,
+       style: 'home.css'
+    });
 };

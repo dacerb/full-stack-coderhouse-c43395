@@ -1,0 +1,28 @@
+<div class="container">
+    <h1> List of products by cart ID: {{ cart_id }} </h1>
+    <div class="main">
+        {{#each data}}
+            <div class="card">
+                <h2>{{ title }}</h2>
+                <p><strong>Id</strong>: {{_id}}</p>
+                <p><strong>description: </strong> {{ description }}</p>
+                <p><strong>code:</strong> {{ code }}</p>
+                <p class="price"><strong>price: $</strong>{{ price }}</p>
+                {{#if status}}
+                    <p class="status-available"><strong>status:</strong> Available</p>
+                {{else}}
+                    <p class="status-not-available"><strong>status:</strong> Not Available</p>
+                {{/if}}
+                <p class="stock"><strong>stock:</strong> {{ stock }}</p>
+                <div>
+                    <p><strong>thumbnail:</strong></p>
+                    <ul>
+                        {{#each thumbnail}}
+                            <li class="links"><a href="{{ this }}">{{ this }}</a></li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>

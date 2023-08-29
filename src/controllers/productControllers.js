@@ -148,6 +148,9 @@ export async function getProductById(req, res) {
 
  */
 
+
+// API BACK
+
 export async function createNewProduct(req, res) {
 
     if (!req.files.length > 0) {
@@ -314,4 +317,37 @@ export async function getProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
+};
+
+
+// RENDER VIEW FRONT
+export async function getProductsQueryWebFront(req, res) {
+    const query = req.query;
+
+    const options = {
+        page: parseInt(query.page ?? 1),
+        limit: parseInt(query.limit ?? 2)
+    };
+    if (query.sort === "desc") options.sort = { price: -1 };
+    if (query.sort === "asc") options.sort = { price: 1 };
+
+    delete query.page
+    delete query.limit
+    delete query.sort
+
+    const data_paginate = await productManager.getProductsByPaginateQueryOptions(query, options);
+    const documents = data_paginate.docs?.map(document => document.toJSON())
+
+    let  keys = data_paginate;
+    delete keys.docs
+
+    keys.prevLink = keys.hasPrevPage ? `http://localhost:8080/products?page=${keys.prevPage}` : '';
+    keys.nextLink = keys.hasNextPage ? `http://localhost:8080/products?page=${keys.nextPage}` : '';
+    keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
+
+    res.render('products_paginate', {
+        data: documents,
+        ...keys,
+        style: 'home.css'
+    });
 };
