@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { uploaderThumbnails } from "../common/utils/utils.js";
 import * as TestImple from "../controllers/testImplementationProductsControllers.js";
+import {getProductsQuery} from "../controllers/testImplementationProductsControllers.js";
 
 const router = Router();
 
 // GET all products by filters
-router.get("/", TestImple.getProducts);
+router.get("/", TestImple.getProductsQuery);
 
 // GET product by ID
 router.get("/:pid", TestImple.getProductById);

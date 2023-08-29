@@ -31,6 +31,17 @@ class ProductManager {
             });
     }
 
+    getProductsByPaginateQueryOptions = async (query, options) => {
+        return productsModel.paginate(query, options)
+            .then(products => {
+                    return products;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
     getProductById = async (id) => {
 
         return productsModel.findOne({_id: id})

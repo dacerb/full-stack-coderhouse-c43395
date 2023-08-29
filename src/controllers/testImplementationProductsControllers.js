@@ -116,6 +116,33 @@ export async function getProducts(req, res) {
     );
 };
 
+export async function getProductsQuery(req, res) {
+    const query = req.query;
+
+    const options = {
+        page: parseInt(query.page ?? 1),
+        limit: parseInt(query.limit ?? 10),
+    };
+    if (query.sort === "desc") options.sort = { createdAt: -1 };
+    if (query.sort === "asc") options.sort = { createdAt: 1 };
+
+    delete query.page
+    delete query.limit
+    delete query.sort
+
+    const data_paginate = await productManager.getProductsByPaginateQueryOptions(query, options);
+    const documents = data_paginate.docs?.map(document => document.toJSON())
+
+    let  keys = data_paginate;
+    delete keys.docs
+
+    res.status(200).send({
+        documents: documents,
+        ...keys
+    })
+};
+
+
 export async function getProductById(req, res) {
 
     let { pid } = req.params;
