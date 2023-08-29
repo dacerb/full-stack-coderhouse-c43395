@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import * as CartController from "../controllers/cartControllers.js";
-import {deleteAllProductFromCartByCartId} from "../controllers/cartControllers.js";
+import {
+    deleteAllProductFromCartByCartId,
+    updateProductQtyFromCartByCartIdAndProductId
+} from "../controllers/cartControllers.js";
 
 const router = Router();
 
@@ -14,13 +17,13 @@ router.post("/:cid/product/:pid", CartController.addProductInACart);
 router.post("/", CartController.createACart);
 
 // PUT update qty selected from pid
-router.put("/:cid/products/:pid", CartController.updateCartQtyFromPid);
+router.put("/:cid/products/:pid", CartController.updateProductQtyFromCartByCartIdAndProductId);
 
 // PUT update all cart with the new array
-router.put("/:cid", CartController.updateAllCartFromId);
+router.put("/:cid", CartController.updateAllProductsFromCartByCartId);
 
 // DELETE delete pid from the cart
-router.delete("/:cid/products/:pid", CartController.deleteCartProductFromPid);
+router.delete("/:cid/products/:pid", CartController.deleteProductFromCartByPIdAndCartId);
 
 // DELETE delete elements from the cart by cart id
 router.delete("/:cid", CartController.deleteAllProductFromCartByCartId);

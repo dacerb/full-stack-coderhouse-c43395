@@ -49,7 +49,7 @@ class CartManager {
             });
     };
 
-    deleteProductFromCartByCartId = async (cartId) => {
+    deleteAllProductFromCartByCartId = async (cartId) => {
         return cartsModel.findOne({_id: cartId})
             .then(cart => {
                 if (cart) {
@@ -63,6 +63,65 @@ class CartManager {
                 console.error('Error:', error);
             });
     };
+
+    deleteProductFromCartByPIdAndCartId = async (cartId, productId) => {
+        return cartsModel.findOne({_id: cartId})
+            .then(cart => {
+                if (cart) {
+                    const update_cart = cart.products.filter(product => product.productId !== productId);
+                    cart.products = update_cart
+                    return cart.save();
+                }
+                return cart;
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
+
+    updateProductQtyFromCartByCartIdAndProductId = async (cartId, productId, qty) => {
+
+        console.log(cartId, productId, qty)
+
+        return cartsModel.findOneAndUpdate(
+            {
+                _id: cartId,
+                'products.productId': productId
+            },
+            {
+                $set: {
+                    'products.$.qty': qty
+                }
+            },
+            { new: true })
+            .then(cart => {
+                return cart;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
+
+    updateAllProductsFromCartByCartId = async (cartId, products) => {
+        return cartsModel.findOneAndUpdate(
+            {
+                _id: cartId
+            },
+            {
+                $set: {
+                    'products': products
+                }
+            },
+            { new: true })
+            .then(cart => {
+                return cart;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    };
+
 };
 
 export default CartManager;

@@ -49,24 +49,29 @@ export async function createACart(req, res) {
     })
 };
 
-export async function updateCartQtyFromPid(req, res) {
-    const response = "await  cartManager.addCart();"
+export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
+    let { cid, pid } = req.params;
+    let { qty } = req.body;
+    const response = await  cartManager.updateProductQtyFromCartByCartIdAndProductId(cid, pid, qty);
     res.send({
         message: "success",
         resutl: response
     })
 };
 
-export async function updateAllCartFromId(req, res) {
-    const response = "await  cartManager.addCart();"
+export async function updateAllProductsFromCartByCartId(req, res) {
+    let { cid } = req.params;
+    let products = req.body;
+    const response = await  cartManager.updateAllProductsFromCartByCartId(cid, products);
     res.send({
         message: "success",
         resutl: response
     })
 };
 
-export async function deleteCartProductFromPid(req, res) {
-    const response = "await  cartManager.addCart();"
+export async function deleteProductFromCartByPIdAndCartId(req, res) {
+    let { cid, pid } = req.params;
+    const response = await  cartManager.deleteProductFromCartByPIdAndCartId(cid, pid);
     res.send({
         message: "success",
         resutl: response
@@ -75,7 +80,7 @@ export async function deleteCartProductFromPid(req, res) {
 
 export async function deleteAllProductFromCartByCartId(req, res) {
     let { cid } = req.params;
-    const response = await  cartManager.deleteProductFromCartByCartId(cid);
+    const response = await  cartManager.deleteAllProductFromCartByCartId(cid);
 
     if (!response) {
         return res.status(404).send({
