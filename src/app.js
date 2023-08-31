@@ -56,8 +56,15 @@ app.get('/',  (req, res) => {
         { path: '/api/carts/', verbo: 'POST',description: 'deberá crear un nuevo carrito', curl: 'xxx' },
         { path: '/api/carts/:cid', verbo: 'GET',description: 'deberá listar los productos que pertenezcan al carrito con el parámetro cid', curl: "curl --location --request GET 'http://localhost:8080/api/cart/1'" },
         { path: '/api/carts/:cid/product/:pid ', verbo: 'POST',description: 'deberá agregar el producto al arreglo “products” del carrito seleccionado, agregándose como un objeto'},
-        { path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'},
-        { path: '/home/ ', verbo: 'GET',description: 'Deberá listar todos los productos que hay almacenados al momento de hacer el request'}
+        { path: '/api/cart/cid', verbo: 'PUT',description: 'deberá poder actualizar la totalidad de los productos almacenados pasando la estructura completa de productId y qty'},
+        { path: '/api/carts/:cid/product/:pid ', verbo: 'PUT',description: 'deberá poder actualizar la cantidad del productId proporcionado'},
+        { path: '/api/carts/:cid/product/:pid ', verbo: 'POST',description: 'deberá agregar el producto al arreglo “products” del carrito seleccionado, agregándose como un objeto'},
+        { path: '/api/cart/cid', verbo: 'DELETE',description: 'deberá eliminar todos los productos del carrito'},
+        { path: '/api/carts/:cid/product/:pid ', verbo: 'DELETE',description: 'deberá poder eliminar el producto del cartito'},
+        //{ path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'},
+        { path: '/home/ ', verbo: 'GET',description: 'deberá listar todos los productos que hay almacenados al momento de hacer el request'},
+        { path: '/api/cart/cid ', verbo: 'GET',description: 'deberá listar todos los productos del cartId'},
+        { path: '/api/products ', verbo: 'GET',description: 'deberá listar todos los productos existentes de forma paginada'}
     ];
 
     res.render('api', {
@@ -66,6 +73,8 @@ app.get('/',  (req, res) => {
         style: 'main.css'
     });
 });
+
+
 
 const httpServer = app.listen(PORT, () => {
     console.log(`server run on port: ${PORT}`);
