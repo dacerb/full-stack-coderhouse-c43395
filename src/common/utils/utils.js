@@ -6,8 +6,14 @@ import multer from 'multer';
 const __filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(__filename)
 
-const removeString = '\\\\common\\\\utils';
-const __dirname = _dirname.replace(new RegExp(removeString), '');
+const removeStringForWindows = '\\\\common\\\\utils';
+const removeStringForMacOS = '/common/utils';
+let __dirnameCleanPath
+
+__dirnameCleanPath = _dirname.replace(new RegExp(removeStringForWindows), '');
+__dirnameCleanPath = _dirname.replace(new RegExp(removeStringForMacOS), '');
+
+const __dirname = __dirnameCleanPath
 
 export default __dirname;
 
