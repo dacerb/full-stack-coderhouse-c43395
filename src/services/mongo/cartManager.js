@@ -1,5 +1,6 @@
 import { cartsModel } from './models/cart.js';
 import * as tty from "tty";
+import {productsModel} from "./models/products.js";
 
 class CartManager {
 
@@ -33,7 +34,14 @@ class CartManager {
     addProductInCart = async (cartId, productId) => {
         // ME FALTA VALIDAR QUE EL PRODUCTO ID EXISTE ANTES DE AGREGAR AL CARRITO
 
-        console.log(`"${cartId}" "${productId}"`)
+        const existProduct = await  productsModel.findOne({_id: productId});
+        if (!existProduct) {
+            let error = new Error()
+            error.name = 'productNotExit'
+            error.message = 'cannot find the product in the database'
+            throw error;
+        }
+
         return cartsModel.findOne({_id: cartId})
             .then(cart => {
 
@@ -123,13 +131,23 @@ class CartManager {
     };
 
     updateAllProductsFromCartByCartId = async (cartId, products) => {
+
+        const availableProducts = await Promise.all(products.map(async product => {
+            const existProduct = await productsModel.findOne({ _id: product.productId });
+            if (existProduct) {
+                return product;
+            }
+            return null; // Si el producto no existe, retornamos null
+        }));
+        const filteredProducts = availableProducts.filter(product => product !== null);
+
         return cartsModel.findOneAndUpdate(
             {
                 _id: cartId
             },
             {
                 $set: {
-                    'products': products
+                    'products': filteredProducts
                 }
             },
             { new: true })

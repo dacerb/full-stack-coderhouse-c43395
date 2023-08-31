@@ -31,31 +31,46 @@ export async function addProductInACart(req, res) {
     let { cid, pid } = req.params;
     const cartId = cid;
     const productId = pid;
+    try {
 
-    if (productId &&  cartId){
+        if (productId &&  cartId){
 
-        const  cart_updated = await cartManager.addProductInCart(cartId, productId)
-        if (cart_updated) {
-            return res.status(200).send(
+            const  cart_updated = await cartManager.addProductInCart(cartId, productId)
+            if (cart_updated) {
+                return res.status(200).send(
+                    JSON.stringify({
+                        message: `the product with id ${productId} was update in the cart id ${cartId}`
+                    }, null, 4)
+                );
+            }
+
+            return res.status(404).send(
                 JSON.stringify({
-                    message: `the product with id ${productId} was update in the cart id ${cartId}`
+                    message: "the product was not added to the cart because the cart id was not found"
                 }, null, 4)
             );
+
         }
 
-        return res.status(404).send(
+        res.status(400).send(
             JSON.stringify({
-                message: "the product was not added to the cart because the cart id was not found"
+                "message": "the id parameter must be a positive integer."
             }, null, 4)
         );
+    }catch (error) {
+        if (error.name ==='productNotExit') {
+            return  res.status(404).send({
+                message: "the product must be exist",
+                error: error.message
+            });
+        }
 
+
+        return  res.status(500).send({
+                message: "internal server error.",
+                error: error
+        });
     }
-
-    res.status(400).send(
-        JSON.stringify({
-            "message": "the id parameter must be a positive integer."
-        }, null, 4)
-    );
 }
 
 export async function createACart(req, res) {
@@ -178,7 +193,6 @@ export async function getACartByIdWebFront(req, res) {
     let { cid } = req.params;
     try {
         const response = await  cartManager.getCartById(cid);
-        console.log(response)
         const products = response?.products.map( product =>{
                 return {
                     ...product['productId'].toJSON(),
