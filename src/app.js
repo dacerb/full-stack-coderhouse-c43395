@@ -64,7 +64,7 @@ app.get('/',  (req, res) => {
         //{ path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'},
         { path: '/home/ ', verbo: 'GET',description: 'deberá listar todos los productos que hay almacenados al momento de hacer el request'},
         { path: '/api/cart/cid ', verbo: 'GET',description: 'deberá listar todos los productos del cartId'},
-        { path: '/api/products ', verbo: 'GET',description: 'deberá listar todos los productos existentes de forma paginada'}
+        { path: '/products ', verbo: 'GET',description: 'deberá listar todos los productos existentes de forma paginada'}
     ];
 
     res.render('api', {
