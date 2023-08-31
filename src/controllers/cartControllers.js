@@ -178,8 +178,15 @@ export async function getACartByIdWebFront(req, res) {
     let { cid } = req.params;
     try {
         const response = await  cartManager.getCartById(cid);
+        console.log(response)
+        const products = response?.products.map( product =>{
+                return {
+                    ...product['productId'].toJSON(),
+                    qty: product['qty']
+                }
+            }
+        );
 
-        const products = response?.products.map( product => product['productId'].toJSON());
 
         res.render('cart_products', {
             data: products,

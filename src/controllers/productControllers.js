@@ -1,4 +1,5 @@
 import productManager from "../dao/selectedProductDb.js";
+import cartManager from "../dao/selectedCartDb.js";
 
 /*
 export async function createNewProduct(req, res) {
@@ -354,6 +355,20 @@ export async function getProductsQueryWebFront(req, res) {
     delete query.sort
 
     try {
+        let myCookieCart = req.cookies.myCookieCart;
+        try{
+            const foundCart = await  cartManager.getCartById(myCookieCart);
+        } catch (error) {
+            if (error.name === 'cartNotFound') {
+                const newCart = await  cartManager.addCart();
+                const newCartID = newCart._id.toString();
+                res.cookie('myCookieCart', newCartID, { maxAge: 900000, httpOnly: true });
+                myCookieCart = newCartID;
+            }
+        }
+
+
+
         const data_paginate = await productManager.getProductsByPaginateQueryOptions(query, options);
         const documents = data_paginate.docs?.map(document => document.toJSON())
 
@@ -363,6 +378,8 @@ export async function getProductsQueryWebFront(req, res) {
         keys.prevLink = keys.hasPrevPage ? `http://localhost:8080/products?page=${keys.prevPage}` : '';
         keys.nextLink = keys.hasNextPage ? `http://localhost:8080/products?page=${keys.nextPage}` : '';
         keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
+
+        keys.cartId = myCookieCart
 
         res.render('products_paginate', {
             data: documents,
@@ -376,3 +393,5 @@ export async function getProductsQueryWebFront(req, res) {
             });
     }
 };
+
+

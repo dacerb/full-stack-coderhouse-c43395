@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from "morgan";
 import dotenv from "dotenv";
 import handlebars from 'express-handlebars';
+import cookieParser from 'cookie-parser';
 
 import productsRoutes from './routes/back.productsRoutes.js';
 import homeRoutes from './routes/front.homeRoutes.js';
@@ -19,6 +20,10 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT;
+
+
+// configuracion de cookies
+app.use(cookieParser());
 
 // configuracion de handlebars
 app.engine('handlebars', handlebars.engine());

@@ -33,11 +33,14 @@ class CartManager {
     addProductInCart = async (cartId, productId) => {
         // ME FALTA VALIDAR QUE EL PRODUCTO ID EXISTE ANTES DE AGREGAR AL CARRITO
 
+        console.log(`"${cartId}" "${productId}"`)
         return cartsModel.findOne({_id: cartId})
             .then(cart => {
 
                 if (cart){
-                    const productIndex = cart.products.findIndex(product => product.productId === productId);
+                    const productIndex = cart.products.findIndex(product => product.productId._id.toString() === productId);
+
+
                     if (productIndex >= 0){
                         cart.products[productIndex].qty ++
                     } else {
