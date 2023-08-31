@@ -1,4 +1,5 @@
 import { cartsModel } from './models/cart.js';
+import * as tty from "tty";
 
 class CartManager {
 
@@ -15,11 +16,17 @@ class CartManager {
     getCartById = async (id) => {
         return cartsModel.findOne({_id: id})
             .then(cart => {
+                    if (!cart) {
+                    let error=  Error();
+                    error.name = "cartNotFound"
+                    error.message = "it was not possible to recover the cart"
+                    throw error;
+                }
                     return cart
                 }
             )
             .catch(error => {
-                console.error('Error:', error);
+                throw error
             });
     };
 
@@ -52,38 +59,41 @@ class CartManager {
     deleteAllProductFromCartByCartId = async (cartId) => {
         return cartsModel.findOne({_id: cartId})
             .then(cart => {
-                if (cart) {
-                    cart.products = []
-                    return cart.save();
+                if (!cart) {
+                    let error = new Error();
+                    error.name = "cartNotFound"
+                    error.message = "it was not possible to delete all products in the cart"
+                    throw error;
                 }
-                return cart;
+                cart.products = []
+                return cart.save();
 
             })
             .catch(error => {
-                console.error('Error:', error);
+                throw error
             });
     };
 
     deleteProductFromCartByPIdAndCartId = async (cartId, productId) => {
         return cartsModel.findOne({_id: cartId})
             .then(cart => {
-                if (cart) {
-                    const update_cart = cart.products.filter(product => product.productId !== productId);
-                    cart.products = update_cart
-                    return cart.save();
+                if (!cart) {
+                    let error = new Error();
+                    error.name = "cartNotFound"
+                    error.message = "it was not possible delete products id in the cart"
+                    throw error;
                 }
-                return cart;
+                const update_cart = cart.products.filter(product => product.productId !== productId);
+                cart.products = update_cart
+                return cart.save();
 
             })
             .catch(error => {
-                console.error('Error:', error);
+                throw error
             });
     };
 
     updateProductQtyFromCartByCartIdAndProductId = async (cartId, productId, qty) => {
-
-        console.log(cartId, productId, qty)
-
         return cartsModel.findOneAndUpdate(
             {
                 _id: cartId,
@@ -96,10 +106,16 @@ class CartManager {
             },
             { new: true })
             .then(cart => {
+                if (!cart) {
+                    let error = new Error();
+                    error.name = "cartNotFound"
+                    error.message = "it was not possible to update the cart"
+                    throw error;
+                }
                 return cart;
             })
             .catch(error => {
-                console.error('Error:', error);
+                throw error
             });
     };
 
@@ -115,10 +131,16 @@ class CartManager {
             },
             { new: true })
             .then(cart => {
+                if (!cart) {
+                    let error = new Error();
+                    error.name = "cartNotFound"
+                    error.message = "it was not possible to update the cart"
+                    throw error;
+                }
                 return cart;
             })
             .catch(error => {
-                console.error('Error:', error);
+                throw error
             });
     };
 

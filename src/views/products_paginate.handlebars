@@ -22,25 +22,25 @@
                         {{/each}}
                     </ul>
                 </div>
+                <button class="add-to-cart" data-product="{{_id}}" data-cart="{{_id}}">Agregar al Carrito</button>
             </div>
         {{/each}}
     </div>
 </div>
 
-<div>
-    {{#if hasPrevPage}}
-        <a href={{this.prevLink}}>
-            << Anterior </a>
-    {{/if}}
+<div class="box-paginate">
 
-    {{!-- numero de pagina --}}
-    &nbsp;
-    {{this.page}}
-    &nbsp;
+    <div class="box-paginate-controls">
+        {{#if hasPrevPage}}
+            <a href={{this.prevLink}}> <span> <<  </span> </a>
+        {{/if}}
+        {{!-- numero de pagina --}}
+        <div class="box-paginate-current-page"><strong> pagina: {{this.page}} </strong></div>
 
-    {{#if hasNextPage}}
-        <a href={{this.nextLink}}>
-            Siguiente >> </a>
-    {{/if}}
+        {{#if hasNextPage}}
+            <a href={{this.nextLink}}>
+                <span> >></span> </a>
+        {{/if}}
+    </div>
 
 </div>

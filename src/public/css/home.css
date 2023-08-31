@@ -44,3 +44,27 @@ p {
     font-size: .9rem;
     margin-top: 10px;
 }
+
+.box-paginate {
+
+
+}
+.paginate-current-page {
+
+}
+.box-paginate-controls {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.box-paginate-controls a {
+    text-decoration: none;
+    font-weight: 800;
+    line-height: 18px;
+    padding: 2px;
+    border-radius: 50%;
+}
+.box-paginate-controls a:hover {
+    background-color: darkgray;
+}

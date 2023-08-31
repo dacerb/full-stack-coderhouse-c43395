@@ -18,6 +18,6 @@ router.put("/:pid", uploaderThumbnails.array('thumbnails'), ProductController.up
 router.delete("/:pid", ProductController.deleteProductById);
 
 // POST create new product
-router.post("/", uploaderThumbnails.array('thumbnails'), ProductController.createNewProduct);
+router.post("/", uploaderThumbnails.array('thumbnails'), ProductController.addNewProduct);
 
 export default router;

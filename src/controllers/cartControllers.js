@@ -1,15 +1,30 @@
 import cartManager from "../dao/selectedCartDb.js";
+import {json} from "express";
 
 
 // API BACK
 export async function getACartById(req, res) {
     let { cid } = req.params;
-    const response = await  cartManager.getCartById(cid);
-    res.send({
-        message: response ? "success" : "It is not possible to retrieve the cart by id." ,
-        response: response ? response : {}
-    })
-};
+    try {
+        const response = await  cartManager.getCartById(cid);
+        res.send({
+            message: response ? "success" : "It is not possible to retrieve the cart by id." ,
+            response: response ? response : {}
+        })
+    }
+    catch (error) {
+            if (error.name === 'cartNotFound') {
+                const {message} = error
+                return res.status(404).send({
+                    message: message
+                })
+            }
+            return res.status(500).send({
+                message: "Internal server error",
+                error: error
+            })
+        }
+}
 
 export async function addProductInACart(req, res) {
 
@@ -41,7 +56,7 @@ export async function addProductInACart(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-};
+}
 
 export async function createACart(req, res) {
     const response = await  cartManager.addCart();
@@ -49,66 +64,132 @@ export async function createACart(req, res) {
         message: "success",
         resutl: response
     })
-};
+}
 
 export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
     let { cid, pid } = req.params;
     let { qty } = req.body;
-    const response = await  cartManager.updateProductQtyFromCartByCartIdAndProductId(cid, pid, qty);
-    res.send({
-        message: "success",
-        resutl: response
-    })
-};
+
+    const qty_of_products = parseInt(qty);
+
+    try {
+        if (isNaN(qty_of_products) && (qty_of_products >= 0)) {
+            let error =  Error();
+            error.name = "qtyError"
+            error.message = "The qty must be a positive integer"
+            throw error
+        }
+        const response = await  cartManager.updateProductQtyFromCartByCartIdAndProductId(cid, pid, qty_of_products);
+        return res.send({
+            message: "success",
+            resutl: response
+        })
+
+    }catch (error) {
+        if (error.name === 'cartNotFound') {
+            const {message} = error
+            return res.status(404).send({
+                message: message
+            })
+        }
+        if (error.name === 'qtyError') {
+            const {message} = error
+            return res.status(404).send({
+                message: message
+            })
+        }
+        return res.status(500).send({
+            message: "Internal server error",
+            error: error
+        })
+    }
+}
 
 export async function updateAllProductsFromCartByCartId(req, res) {
     let { cid } = req.params;
     let products = req.body;
-    const response = await  cartManager.updateAllProductsFromCartByCartId(cid, products);
-    res.send({
-        message: "success",
-        resutl: response
-    })
-};
+    try {
+        const response = await  cartManager.updateAllProductsFromCartByCartId(cid, products);
+        return res.status(200).send({
+            message: "success",
+            resutl: response
+        })
+    }catch (error) {
+        if (error.name === 'cartNotFound') {
+            const {message} = error
+            return  res.status(404).send({
+                message: message
+            })
+        }
+        return res.status(500).send({
+            message: "Internal server error",
+            error: error
+        })
+    }
+}
 
 export async function deleteProductFromCartByPIdAndCartId(req, res) {
     let { cid, pid } = req.params;
-    const response = await  cartManager.deleteProductFromCartByPIdAndCartId(cid, pid);
-    res.send({
-        message: "success",
-        resutl: response
-    })
-};
+    try {
+        const response = await  cartManager.deleteProductFromCartByPIdAndCartId(cid, pid);
+        res.send({
+            message: "success",
+            resutl: response
+        })
+    }catch (error) {
+        if (error.name === 'cartNotFound') {
+            const {message} = error
+            return  res.status(404).send({
+                message: message
+            })
+        }
+        return res.status(500).send({
+            message: "Internal server error",
+            error: error
+        })
+    }
+}
 
 export async function deleteAllProductFromCartByCartId(req, res) {
     let { cid } = req.params;
-    const response = await  cartManager.deleteAllProductFromCartByCartId(cid);
-
-    if (!response) {
-        return res.status(404).send({
-            message: "the cart does not exist.",
-            resutl: {}
+    try {
+        const response = await  cartManager.deleteAllProductFromCartByCartId(cid);
+        res.status(200).send({
+            message: "success",
+            resutl: response
         });
+    }catch (error) {
+        if (error.name === 'cartNotFound') {
+            const {message} = error
+            return  res.status(404).send({
+                message: message
+            })
+        }
+        return res.status(500).send({
+            message: "Internal server error",
+            error: error
+        })
     }
-
-    res.status(200).send({
-        message: "success",
-        resutl: response
-    });
-};
-
+}
 
 
 // RENDER VIEW FRONT
 export async function getACartByIdWebFront(req, res) {
     let { cid } = req.params;
-    const response = await  cartManager.getCartById(cid);
+    try {
+        const response = await  cartManager.getCartById(cid);
 
-    const products = response.products.map( product => product['productId'].toJSON());
+        const products = response?.products.map( product => product['productId'].toJSON());
 
-    res.render('cart_products', {
-        data: products,
-        cart_id: cid,
-       style: 'home.css'
-    });
-};
+        res.render('cart_products', {
+            data: products,
+            cart_id: cid,
+            style: 'home.css'
+        });
+    }catch (error) {
+        res.render('error',
+            {
+                error: JSON.stringify(error)
+            });
+    }
+}

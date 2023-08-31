@@ -2,21 +2,23 @@ import { productsModel } from './models/products.js';
 
 class ProductManager {
 
-    addProduct = async ({title, description, price, thumbnail, code, stock}) => {
+    addProduct = async ({title, description, price, thumbnail, code, stock, category, status}) => {
          return productsModel.create({
                 title,
                 description,
                 price,
                 thumbnail,
+                status,
+                category,
                 code,
                 stock
             })
              .then( newProduct => {
-                    console.log("Add new product: ", newProduct);
-                    return newProduct.toJSON();
+                    return newProduct;
                 })
              .catch(error => {
-                 console.error('Error:', error);
+                 // console.error('Error:', error);
+                 throw error;
              });
     }
 

@@ -151,7 +151,7 @@ export async function getProductById(req, res) {
 
 // API BACK
 
-export async function createNewProduct(req, res) {
+export async function addNewProduct(req, res) {
 
     if (!req.files.length > 0) {
         return res.status(400).send(JSON.stringify({ status: "error", mensaje: "you must attach image files." }, null, 4));
@@ -160,16 +160,34 @@ export async function createNewProduct(req, res) {
         return file.path
     })
 
-    let new_product = await productManager.addProduct({
-        thumbnail: filesPath,
-        ...req.body
-    });
+    try {
 
-    res.status(200).send({
-        message: "a new product was added",
-        result: new_product
-    });
-};
+        let new_product = await productManager.addProduct({
+            thumbnail: filesPath,
+            ...req.body
+        });
+
+        res.status(200).send({
+            message: "a new product was added",
+            result: new_product
+        });
+
+
+    } catch (error) {
+        if (error.name === "MongoServerError") {
+            res.status(400).send({
+                    message:"schema error ",
+                    error: error
+                });
+        } else {
+            res.status(500).send({
+                    message: "internal server error",
+                    error: error
+                });
+        }
+
+    }
+}
 
 export async function deleteProductById(req, res) {
 
@@ -335,19 +353,26 @@ export async function getProductsQueryWebFront(req, res) {
     delete query.limit
     delete query.sort
 
-    const data_paginate = await productManager.getProductsByPaginateQueryOptions(query, options);
-    const documents = data_paginate.docs?.map(document => document.toJSON())
+    try {
+        const data_paginate = await productManager.getProductsByPaginateQueryOptions(query, options);
+        const documents = data_paginate.docs?.map(document => document.toJSON())
 
-    let  keys = data_paginate;
-    delete keys.docs
+        let  keys = data_paginate;
+        delete keys.docs
 
-    keys.prevLink = keys.hasPrevPage ? `http://localhost:8080/products?page=${keys.prevPage}` : '';
-    keys.nextLink = keys.hasNextPage ? `http://localhost:8080/products?page=${keys.nextPage}` : '';
-    keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
+        keys.prevLink = keys.hasPrevPage ? `http://localhost:8080/products?page=${keys.prevPage}` : '';
+        keys.nextLink = keys.hasNextPage ? `http://localhost:8080/products?page=${keys.nextPage}` : '';
+        keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
 
-    res.render('products_paginate', {
-        data: documents,
-        ...keys,
-        style: 'home.css'
-    });
+        res.render('products_paginate', {
+            data: documents,
+            ...keys,
+            style: 'home.css'
+        });
+    }catch (error) {
+        res.render('error',
+            {
+                error: JSON.stringify(error)
+            });
+    }
 };
