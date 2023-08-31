@@ -1,6 +1,11 @@
 <div class="container">
+    <div class="alert_container">
+        <lu id="ALERT">
+
+        </lu>
+    </div>
     <h1> Home List Of Products </h1>
-    <h3> Your cartID: <span id="cartId">{{cartId}}</span> </h3>
+    <p> Your cartID: <span id="cartId">{{cartId}}</span> <a href="http://localhost:8080/cart/{{cartId}}"> <strong class="WOOP">ir al carrito</strong></a></p>
     <div class="main">
         {{#each data}}
             <div class="card">
@@ -23,6 +28,7 @@
                         {{/each}}
                     </ul>
                 </div>
+
                 <button  id={{_id}} class="addToCart"  data_cart="{{_id}}" >Agregar al Carrito</button>
             </div>
         {{/each}}
@@ -32,16 +38,20 @@
 <div class="box-paginate">
 
     <div class="box-paginate-controls">
-        {{#if hasPrevPage}}
-            <a href={{this.prevLink}}> <span> <<  </span> </a>
-        {{/if}}
+        <div>
+            {{#if hasPrevPage}}
+                <a href={{this.prevLink}}> <span> <<  </span> </a>
+            {{/if}}
+        </div>
         {{!-- numero de pagina --}}
-        <div class="box-paginate-current-page"><strong> pagina: {{this.page}} </strong></div>
+        <div class="box-paginate-current-page"><p><strong>pagina: {{this.page}}</strong></p></div>
 
-        {{#if hasNextPage}}
+        <div>
+            {{#if hasNextPage}}
             <a href={{this.nextLink}}>
                 <span> >></span> </a>
-        {{/if}}
+            {{/if}}
+        </div>
     </div>
 
 </div>
