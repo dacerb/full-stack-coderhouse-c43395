@@ -141,3 +141,12 @@ p {
     padding: .1%;
     border: solid 1px deeppink;
 }
+
+.thumbnails {
+    margin-top: 25px;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    object-fit: contain;
+
+}

@@ -25,6 +25,7 @@
                     <ul>
                         {{#each thumbnail}}
                             <li class="links"><a href="{{ this }}">{{ this }}</a></li>
+                            <img class="thumbnails" src="{{formatThumbnailPath this}}" alt="Mi Imagen">
                         {{/each}}
                     </ul>
                 </div>

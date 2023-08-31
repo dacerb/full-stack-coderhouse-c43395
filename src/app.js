@@ -32,6 +32,18 @@ app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
+// Configura Handlebars y registra el ayudante personalizado
+const hbs = handlebars.create({
+    helpers: {
+        formatThumbnailPath: function(filePath) {
+            const prefixToRemove = 'D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\';
+            return '/thumbnails/' + filePath.replace(prefixToRemove, '');
+        }
+    }
+});
+// Usa el objeto 'hbs' para configurar el motor de plantillas
+app.engine('handlebars', hbs.engine);
+
 // Middelwares de aplicacion
 app.use(express.static(__dirname + '/public'))
 
