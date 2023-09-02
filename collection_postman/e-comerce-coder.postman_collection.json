@@ -15,7 +15,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products?limit=1",
+							"raw": "http://localhost:8080/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/:pid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products?limit=1&page=3",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -29,28 +49,11 @@
 								{
 									"key": "limit",
 									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "3"
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/products/:pid",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/products/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"products",
-								"1"
 							]
 						}
 					},
@@ -66,12 +69,12 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Sonor sq1",
+									"value": "OOAK MAngo",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Bateria sonor aqx super jazz",
+									"value": "redoblante",
 									"type": "text"
 								},
 								{
@@ -81,7 +84,7 @@
 								},
 								{
 									"key": "price",
-									"value": "1500",
+									"value": "2000",
 									"type": "text"
 								},
 								{
@@ -91,7 +94,7 @@
 								},
 								{
 									"key": "stock",
-									"value": "1020",
+									"value": "10",
 									"type": "text"
 								},
 								{
@@ -102,17 +105,18 @@
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/webony-sonor.jpeg"
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43395/desafios/Motores de plantilla y socket/src/public/thumbnails/1691119634193-mango-sonor.png"
 								},
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": []
+									"src": [],
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/products/2",
+							"raw": "http://localhost:8080/api/products/64efd63124ea540a6277a920",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -121,7 +125,7 @@
 							"path": [
 								"api",
 								"products",
-								"2"
+								"64efd63124ea540a6277a920"
 							]
 						}
 					},
@@ -142,12 +146,12 @@
 								},
 								{
 									"key": "description",
-									"value": "Bateria ",
+									"value": "Bateria aqx",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "RD1s",
+									"value": "ZSPAS123",
 									"type": "text"
 								},
 								{
@@ -157,7 +161,7 @@
 								},
 								{
 									"key": "status",
-									"value": "True",
+									"value": "true",
 									"type": "text"
 								},
 								{
@@ -173,12 +177,13 @@
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43205/app/store/public/img/aqx.jpg"
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43395/desafios/Motores de plantilla y socket/src/public/thumbnails/1691119597286-aqx.jpg"
 								},
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": []
+									"src": [],
+									"disabled": true
 								}
 							]
 						},
@@ -204,7 +209,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products/2",
+							"raw": "http://localhost:8080/api/products/64efd65b24ea540a6277a930",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -213,7 +218,7 @@
 							"path": [
 								"api",
 								"products",
-								"2"
+								"64efd65b24ea540a6277a930"
 							]
 						}
 					},
@@ -230,7 +235,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/1",
+							"raw": "http://localhost:8080/api/cart/64ee69b7a7b8bd040c5d0d72",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -239,7 +244,7 @@
 							"path": [
 								"api",
 								"cart",
-								"1"
+								"64ee69b7a7b8bd040c5d0d72"
 							]
 						}
 					},
@@ -260,7 +265,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/2/product/4",
+							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e/product/64ed52c91512379e5ee3ea68",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -269,9 +274,9 @@
 							"path": [
 								"api",
 								"cart",
-								"2",
+								"64ed574dd5c974a80521118e",
 								"product",
-								"4"
+								"64ed52c91512379e5ee3ea68"
 							]
 						}
 					},
@@ -302,6 +307,175 @@
 								"api",
 								"cart",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"productId\": \"64ed52841512379e5ee3ea59\",\r\n        \"qty\": 100\r\n    },\r\n    {\r\n        \"productId\": \"64ed52c91512379e5ee3ea68\",\r\n        \"qty\": 2200\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cart/64ed76085b3d38bba453be95",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"64ed76085b3d38bba453be95"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid/products/:pid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qty\": 19\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e/products/64ed52c91512379e5ee3ea68",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"64ed574dd5c974a80521118e",
+								"products",
+								"64ed52c91512379e5ee3ea68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid/products/:pid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e/products/64ed52831512379e5ee3ea53",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"64ed574dd5c974a80521118e",
+								"products",
+								"64ed52831512379e5ee3ea53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"64ed574dd5c974a80521118e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "views",
+			"item": [
+				{
+					"name": "/home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/home",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"home"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cart/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cart/64ee69b7a7b8bd040c5d0d72",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cart",
+								"64ee69b7a7b8bd040c5d0d72"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
 							]
 						}
 					},
