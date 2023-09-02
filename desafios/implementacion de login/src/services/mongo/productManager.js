@@ -1,9 +1,9 @@
-import { productsModel } from './models/products.js';
+import { productModel } from './models/product.model.js';
 
 class ProductManager {
 
     addProduct = async ({title, description, price, thumbnail, code, stock, category, status}) => {
-         return productsModel.create({
+         return productModel.create({
                 title,
                 description,
                 price,
@@ -23,7 +23,7 @@ class ProductManager {
     }
 
     getProducts = async () => {
-        return productsModel.find({})
+        return productModel.find({})
             .then(products => {
                     return products?.map(product => product.toJSON());
                 }
@@ -34,7 +34,7 @@ class ProductManager {
     }
 
     getProductsByPaginateQueryOptions = async (query, options) => {
-        return productsModel.paginate(query, options)
+        return productModel.paginate(query, options)
             .then(products => {
                     return products;
                 }
@@ -46,7 +46,7 @@ class ProductManager {
 
     getProductById = async (id) => {
 
-        return productsModel.findOne({_id: id})
+        return productModel.findOne({_id: id})
             .then(product => {
                     if (product) return product.toJSON();
                     return product;
@@ -58,7 +58,7 @@ class ProductManager {
     }
 
     updateProductById = async ({id, title, description, price, thumbnail, code, stock, status, category}) => {
-        return productsModel.findByIdAndUpdate(id, {
+        return productModel.findByIdAndUpdate(id, {
             title,
             description,
             price,
@@ -79,7 +79,7 @@ class ProductManager {
     }
 
     deleteProduct = async (id) => {
-        return productsModel.deleteOne({_id: id})
+        return productModel.deleteOne({_id: id})
             .then(productDeleted => {
                     return Boolean(productDeleted.deletedCount)
                 }

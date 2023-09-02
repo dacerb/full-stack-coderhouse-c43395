@@ -1,6 +1,6 @@
-import { cartsModel } from './models/cart.js';
+import { cartsModel } from './models/cart.model.js';
 import * as tty from "tty";
-import {productsModel} from "./models/products.js";
+import {productModel} from "./models/product.model.js";
 
 class CartManager {
 
@@ -34,7 +34,7 @@ class CartManager {
     addProductInCart = async (cartId, productId) => {
         // ME FALTA VALIDAR QUE EL PRODUCTO ID EXISTE ANTES DE AGREGAR AL CARRITO
 
-        const existProduct = await  productsModel.findOne({_id: productId});
+        const existProduct = await  productModel.findOne({_id: productId});
         if (!existProduct) {
             let error = new Error()
             error.name = 'productNotExit'
@@ -133,7 +133,7 @@ class CartManager {
     updateAllProductsFromCartByCartId = async (cartId, products) => {
 
         const availableProducts = await Promise.all(products.map(async product => {
-            const existProduct = await productsModel.findOne({ _id: product.productId });
+            const existProduct = await productModel.findOne({ _id: product.productId });
             if (existProduct) {
                 return product;
             }
