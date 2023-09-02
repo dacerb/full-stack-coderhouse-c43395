@@ -26,6 +26,7 @@ dotenv.config();
 // Constantes
 const app = express();
 const PORT = process.env.PORT;
+const MONGO_URL = process.env.MONGO_URL;
 const SECRET = process.env.SECRET_PHRASE;
 
 // configuracion de cookies
@@ -64,7 +65,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // Configuracion de sessiones
 app.use(session({
-
+    store: MongoStore.create(
+        {
+            mongoUrl: MONGO_URL,
+            mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+            ttl: 10
+        }
+    ),
     secret: SECRET,
     resave: false,
     saveUninitialized: true,
