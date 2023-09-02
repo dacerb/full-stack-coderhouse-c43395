@@ -17,10 +17,10 @@ import cartFrontRoutes from "./routes/front.cartRoutes.js";
 import productsFrontRoutes from "./routes/front.productsRoutes.js";
 import apiFrontRoutes from "./routes/front.apiRoutes.js";
 
-// connecion a db mongo
+// Connecion a db mongo
 import "./services/mongo/db_connection.js";
 
-// carga de variables de entorno
+// Carga de variables de entorno
 dotenv.config();
 
 // Constantes
@@ -29,13 +29,13 @@ const PORT = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const SECRET = process.env.SECRET_PHRASE;
 
-// configuracion de cookies
+// Configuracion de cookies
 app.use(cookieParser());
 
-// configuracion de handlebars
+// Configuracion de handlebars
 app.engine('handlebars', handlebars.engine());
 
-// configuracion de applicacion
+// Configuracion de applicacion
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
@@ -55,13 +55,12 @@ app.engine('handlebars', hbs.engine);
 // Middelwares de aplicacion
 app.use(express.static(__dirname + '/public'))
 
-// logs de las consultas a los endpoints
+// Logs de las consultas a los endpoints
 app.use(morgan("dev"));
 
-// preparar la configuracion del servidor para recibir objetos JSON.
+// Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 
 // Configuracion de sessiones
 app.use(session({
@@ -77,8 +76,7 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-
-// configuracion de rutas de acceso
+// Configuracion de rutas de acceso
 app.use('/api/products', productsRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/home', homeRoutes);
