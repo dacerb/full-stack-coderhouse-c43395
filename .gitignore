@@ -12,5 +12,6 @@ node_modules/*
 files/products/*
 src/public/thumbnail/*
 src/public/thumbnails*
-
+.env
+*.env
 .idea/*
