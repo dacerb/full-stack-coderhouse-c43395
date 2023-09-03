@@ -1,5 +1,5 @@
 import * as APIController from "../controllers/apiControllers.js";
-import router from "./front.cartRoutes.js";
+import router from "./view.cartRoutes.js";
 
 
 // router.get("/", ProductController.getProducts); old

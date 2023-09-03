@@ -11,11 +11,11 @@ import __dirname from './common/utils/utils.js';
 
 // Import rutas
 import productsRoutes from './routes/back.productsRoutes.js';
-import homeRoutes from './routes/front.homeRoutes.js';
+import homeRoutes from './routes/view.homeRoutes.js';
 import cartRoutes from './routes/back.cartRoutes.js';
-import cartFrontRoutes from "./routes/front.cartRoutes.js";
-import productsFrontRoutes from "./routes/front.productsRoutes.js";
-import apiFrontRoutes from "./routes/front.apiRoutes.js";
+import cartFrontRoutes from "./routes/view.cartRoutes.js";
+import productsFrontRoutes from "./routes/view.productsRoutes.js";
+import apiFrontRoutes from "./routes/view.apiRoutes.js";
 
 // Connecion a db mongo
 import "./services/mongo/db_connection.js";
