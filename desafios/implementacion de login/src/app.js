@@ -44,7 +44,8 @@ const hbs = handlebars.create({
     helpers: {
         formatThumbnailPath: function(filePath) {
             const prefixToRemove = 'D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\';
-            return '/thumbnails/' + filePath.replace(prefixToRemove, '');
+            const removePath = '/thumbnails/' + filePath.replace(prefixToRemove, '');
+            return removePath
         }
     }
 });

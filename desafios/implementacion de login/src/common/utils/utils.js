@@ -11,7 +11,7 @@ const removeStringForMacOS = '/common/utils';
 let __dirnameCleanPath
 
 __dirnameCleanPath = _dirname.replace(new RegExp(removeStringForWindows), '');
-__dirnameCleanPath = _dirname.replace(new RegExp(removeStringForMacOS), '');
+__dirnameCleanPath = __dirnameCleanPath.replace(new RegExp(removeStringForMacOS), '');
 
 const __dirname = __dirnameCleanPath
 
