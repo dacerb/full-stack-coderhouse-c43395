@@ -10,13 +10,14 @@ import session from 'express-session';
 import __dirname from './common/utils/utils.js';
 
 // Import rutas
-import productsRoutes from './routes/back.productsRoutes.js';
-import homeRoutes from './routes/view.homeRoutes.js';
-import cartRoutes from './routes/back.cartRoutes.js';
-import cartFrontRoutes from "./routes/view.cartRoutes.js";
-import productsFrontRoutes from "./routes/view.productsRoutes.js";
-import apiFrontRoutes from "./routes/view.apiRoutes.js";
-
+import productsRoutes from './routes/back.products.routes.js';
+import homeRoutes from './routes/view.home.routes.js';
+import cartRoutes from './routes/back.cart.routes.js';
+import cartViewRoutes from "./routes/view.cart.routes.js";
+import productsViewRoutes from "./routes/view.products.routes.js";
+import apiViewRoutes from "./routes/view.api.routes.js";
+import userViewRoutes from "./routes/view.users.routers.js";
+import sessionsRouter from "./routes/back.session.routers.js";
 // Connecion a db mongo
 import "./services/mongo/db_connection.js";
 
@@ -79,11 +80,13 @@ app.use(session({
 
 // Configuracion de rutas de acceso
 app.use('/api/products', productsRoutes);
+app.use("/api/sessions", sessionsRouter);
 app.use('/api/cart', cartRoutes);
 app.use('/home', homeRoutes);
-app.use('/cart', cartFrontRoutes);
-app.use('/products', productsFrontRoutes);
-app.use('/', apiFrontRoutes);
+app.use('/cart', cartViewRoutes);
+app.use('/products', productsViewRoutes);
+app.use('/users', userViewRoutes);
+app.use('/', apiViewRoutes);
 
 // ------------------------ RUN APP
 const httpServer = app.listen(PORT, () => {
