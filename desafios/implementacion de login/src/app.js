@@ -19,7 +19,7 @@ import apiViewRoutes from "./routes/view.api.routes.js";
 import userViewRoutes from "./routes/view.users.routers.js";
 import sessionsRouter from "./routes/back.session.routers.js";
 // Connecion a db mongo
-import "./services/mongo/db_connection.js";
+import "./services/mongo/db.connection.js";
 
 // Carga de variables de entorno
 dotenv.config();

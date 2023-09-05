@@ -1,6 +1,6 @@
-import { productModel } from './models/product.model.js';
+import { productModel } from '../models/product.model.js';
 
-class ProductManager {
+class ManagerProduct {
 
     addProduct = async ({title, description, price, thumbnail, code, stock, category, status}) => {
          return productModel.create({
@@ -91,4 +91,4 @@ class ProductManager {
 
 }
 
-export default ProductManager;
+export default ManagerProduct;

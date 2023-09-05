@@ -6,7 +6,8 @@ const stringTypeSchemaUniqueRequired = {
 
 const stringEmailTypeSchemaUniqueRequired = {
     type: String,
-    required: true
+    required: true,
+    unique: true,
 };
 
 const stringTypeSchemaNonUniqueRequired = {

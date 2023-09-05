@@ -1,7 +1,7 @@
-//import ProductManager from "../services/filesystem/productManager.js";
-import ProductManager from "../services/mongo/productManager.js";
+//import ManagerProduct from "../services/filesystem/manager.product.js";
+import ManagerProduct from "../services/mongo/managers/manager.product.js";
 
 // INSTANCIA DE CLASE GLOBAL PRODUCTS
-const productManager = new ProductManager();
+const productManager = new ManagerProduct();
 
 export default  productManager;

@@ -1,8 +1,8 @@
-import { cartsModel } from './models/cart.model.js';
+import { cartsModel } from '../models/cart.model.js';
 import * as tty from "tty";
-import {productModel} from "./models/product.model.js";
+import {productModel} from "../models/product.model.js";
 
-class CartManager {
+class ManagerCart {
 
     addCart = async () => {
         return cartsModel.create({products:[]})
@@ -165,6 +165,6 @@ class CartManager {
             });
     };
 
-};
+}
 
-export default CartManager;
+export default ManagerCart;

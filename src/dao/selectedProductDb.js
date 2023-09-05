@@ -1,4 +1,4 @@
-//import ProductManager from "../services/filesystem/productManager.js";
+//import ManagerProduct from "../services/filesystem/manager.product.js";
 import ProductManager from "../services/mongo/productManager.js";
 
 // INSTANCIA DE CLASE GLOBAL PRODUCTS
