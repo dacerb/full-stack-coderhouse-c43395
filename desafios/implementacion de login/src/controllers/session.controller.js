@@ -39,14 +39,16 @@ export async function login(req, res) {
     try {
         const foundUser = await  sessionManager.getUserByEmail(email);
         if (foundUser) {
-            const {first_name, last_name, email, age, password} = foundUser
+            const {first_name, last_name, email, age, password, rol} = foundUser
             if (!(password === inputPassword))  return res.status(401).send({message: "incorrect login"})
             req.session.user = {
                 first_name,
                 last_name,
                 email,
-                age
+                age,
+                rol
             }
+
             return res.status(200).send({
                 status: "succeed",
                 payload: req.session.user
@@ -63,7 +65,10 @@ export async function login(req, res) {
 }
 
 export async function logout(req, res) {
-    return res.send({
-        message: "cosis logout"
+    req.session.destroy(error => {
+        if (error){
+            res.status(500).send({error: "error logout", message: "Error al cerrar la sesion"});
+        }
+        res.send({message: "Sesion cerrada correctamente."});
     });
 }

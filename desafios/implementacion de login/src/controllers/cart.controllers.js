@@ -187,29 +187,3 @@ export async function deleteAllProductFromCartByCartId(req, res) {
 }
 
 
-// RENDER VIEW FRONT
-export async function getACartByIdWebFront(req, res) {
-    let { cid } = req.params;
-    try {
-        const response = await  cartManager.getCartById(cid);
-        const products = response?.products.map( product =>{
-                return {
-                    ...product['productId'].toJSON(),
-                    qty: product['qty']
-                }
-            }
-        );
-
-
-        res.render('cart_products', {
-            data: products,
-            cart_id: cid,
-            style: 'home.css'
-        });
-    }catch (error) {
-        res.render('error',
-            {
-                error: JSON.stringify(error)
-            });
-    }
-}

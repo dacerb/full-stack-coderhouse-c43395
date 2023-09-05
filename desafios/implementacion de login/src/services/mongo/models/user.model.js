@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
         last_name: ModelType.stringTypeSchemaNonUniqueRequired,
         email: ModelType.stringEmailTypeSchemaUniqueRequired,
         age: ModelType.numberTypeSchemaNonUniqueRequired,
-        password: ModelType.stringTypeSchemaNonUniqueRequired
+        password: ModelType.stringTypeSchemaNonUniqueRequired,
+        rol: ModelType.stringTypeSchemaNonUniqueRequiredRoleDefaultUser
     },
     { timestamps: true }
 );

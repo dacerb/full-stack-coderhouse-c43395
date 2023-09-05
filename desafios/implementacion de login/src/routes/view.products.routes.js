@@ -1,11 +1,11 @@
-import { Router } from 'express';
-import * as ProductController from "../controllers/product.controllers.js";
-import {getProductsQueryWebFront} from "../controllers/product.controllers.js";
+import {Router} from 'express';
+import {requiredLoginSession} from "./utils/utils.js"
+import {getProductsQueryWebFront as getProductsQueryWebFront1} from "../controllers/view.product.controller.js";
 
 const router = Router();
 
 // router.get("/", ProductController.getProducts); old
-router.get("/", ProductController.getProductsQueryWebFront);
+router.get("/", requiredLoginSession, getProductsQueryWebFront1);
 
 
 export default router;

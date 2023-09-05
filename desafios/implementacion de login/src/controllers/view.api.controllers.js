@@ -1,4 +1,5 @@
 export async function getHome(req, res){
+    const user =  req.session.user;
     const apiName = 'Desafio Motores de Plantilla y Socket';
     const endpoints = [
         { path: '/api/products?limit=10', verbo: 'GET', description: 'listar todos los productos de la base' },
@@ -17,12 +18,18 @@ export async function getHome(req, res){
         //{ path: '/api/realtimeproducts/ ', verbo: 'GET',description: 'deberá listar en tiempo real los productos que hay disponibles, implementando socket, y renderizando con handlebars'},
         { path: '/home/ ', verbo: 'GET',description: 'deberá listar todos los productos que hay almacenados al momento de hacer el request'},
         { path: '/api/cart/cid ', verbo: 'GET',description: 'deberá listar todos los productos del cartId'},
-        { path: '/products ', verbo: 'GET',description: 'deberá listar todos los productos existentes de forma paginada'}
+        { path: '/products ', verbo: 'GET',description: 'deberá listar todos los productos existentes de forma paginada'},
+        { path: '/users/ ', verbo: 'GET',description: 'deberá listar informacion del perfil del usuario'},
+        { path: '/users/login/ ', verbo: 'GET',description: 'deberá permitir acceder al usuario una vez autenticado'},
+        { path: '/users/register/ ', verbo: 'GET',description: 'deberá permitir registrar neuvos usuarios'},
+        { path: '/users/logout/ ', verbo: 'GET',description: 'deberá permitir deslogear al usuario'}
     ];
 
     return res.render('api', {
         apiName,
         endpoints,
+        user,
+        sessionActive: req.session.user,
         style: 'main.css'
     });
 }

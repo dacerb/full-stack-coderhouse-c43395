@@ -13,7 +13,10 @@ export async function login(req, res) {
 }
 
 export async function profile(req, res) {
+    const user =  req.session.user;
     return res.render('profile', {
-        style: 'main.css'
+        style: 'main.css',
+        sessionActive: req.session.user ? true : false,
+        user
     });
 }

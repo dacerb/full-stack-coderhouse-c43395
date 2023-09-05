@@ -70,7 +70,7 @@ app.use(session({
         {
             mongoUrl: MONGO_URL,
             mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
-            ttl: 10
+            ttl: 3600
         }
     ),
     secret: SECRET,
