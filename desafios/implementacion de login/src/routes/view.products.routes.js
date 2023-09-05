@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import * as ProductController from "../controllers/productControllers.js";
-import {getProductsQueryWebFront} from "../controllers/productControllers.js";
+import * as ProductController from "../controllers/product.controllers.js";
+import {getProductsQueryWebFront} from "../controllers/product.controllers.js";
 
 const router = Router();
 

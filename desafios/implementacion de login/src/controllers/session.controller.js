@@ -35,22 +35,21 @@ export async function register(req, res) {
 }
 
 export async function login(req, res) {
-    const { email, password } = req.body;
+    const { email, password: inputPassword } = req.body;
     try {
         const foundUser = await  sessionManager.getUserByEmail(email);
         if (foundUser) {
             const {first_name, last_name, email, age, password} = foundUser
-
-            console.log(password)
-
+            if (!(password === inputPassword))  return res.status(401).send({message: "incorrect login"})
+            req.session.user = {
+                first_name,
+                last_name,
+                email,
+                age
+            }
             return res.status(200).send({
-                message: "login succeed",
-                user_data: {
-                    first_name,
-                    last_name,
-                    email,
-                    age
-                }
+                status: "succeed",
+                payload: req.session.user
             })
         }
         return res.status(404).send({
@@ -66,11 +65,5 @@ export async function login(req, res) {
 export async function logout(req, res) {
     return res.send({
         message: "cosis logout"
-    });
-}
-
-export async function profile(req, res) {
-    return res.send({
-        message: "cosis profile"
     });
 }
