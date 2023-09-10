@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as UsersController from "../controllers/view.user.controller.js";
-import {requiredLoginSession} from "./utils/utils.js"
+import {requiredLoginSession, authToken} from "./utils/utils.js"
 
 const router = Router();
 
