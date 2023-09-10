@@ -13,6 +13,18 @@ class ManagerSession {
             });
     }
 
+    getUserByValue = async (value) => {
+        return userModel.findOne(value)
+            .then(user => {
+                    return user;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+                throw error;
+            });
+    }
+
     registerNewUser = async (newUser) => {
         return userModel.create({...newUser})
             .then(newUser => {

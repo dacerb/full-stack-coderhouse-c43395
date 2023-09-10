@@ -6,6 +6,12 @@ import cookieParser from 'cookie-parser';
 import MongoStore from "connect-mongo";
 import session from 'express-session';
 
+// Carga de variables de entorno
+dotenv.config();
+
+// Import config
+import initializePassport from "./config/passport.config.js";
+
 // Import utilidades
 import __dirname from './common/utils/utils.js';
 
@@ -18,11 +24,10 @@ import productsViewRoutes from "./routes/view.products.routes.js";
 import apiViewRoutes from "./routes/view.api.routes.js";
 import userViewRoutes from "./routes/view.users.routers.js";
 import sessionsRouter from "./routes/back.session.routers.js";
-// Connecion a db mongo
-import "./services/mongo/db.connection.js";
 
-// Carga de variables de entorno
-dotenv.config();
+// conexion a db mongo
+import "./services/mongo/db.connection.js";
+import passport from "passport";
 
 // Constantes
 const app = express();
@@ -54,16 +59,6 @@ const hbs = handlebars.create({
 // Usa el objeto 'hbs' para configurar el motor de plantillas
 app.engine('handlebars', hbs.engine);
 
-// Middelwares de aplicacion
-app.use(express.static(__dirname + '/public'))
-
-// Logs de las consultas a los endpoints
-app.use(morgan("dev"));
-
-// Preparar la configuracion del servidor para recibir objetos JSON.
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 // Configuracion de sessiones
 app.use(session({
     store: MongoStore.create(
@@ -77,6 +72,22 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
 }));
+
+
+// Middelwares de aplicacion
+app.use(express.static(__dirname + '/public'))
+
+// Middleware Passport
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Logs de las consultas a los endpoints
+app.use(morgan("dev"));
+
+// Preparar la configuracion del servidor para recibir objetos JSON.
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Configuracion de rutas de acceso
 app.use('/api/products', productsRoutes);

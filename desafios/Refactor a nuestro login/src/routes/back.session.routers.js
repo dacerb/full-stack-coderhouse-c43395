@@ -1,12 +1,43 @@
 import { Router } from 'express';
 import * as SessionController from "../controllers/session.controller.js";
+import passport from "passport";
 
 const router = Router();
 
-router.post("/register/", SessionController.register);
+router.post(
+    "/register/",
+    passport.authenticate('register', {failureRedirect: '/api/sessions/fail-register'}),
+    async (req, res) => {
 
-router.post("/login/", SessionController.login);
+    res.status(201).send({
+            status: "success",
+            message: "Usuario creado con exito."
+        });
+});
+
+
+router.post(
+    "/login/",
+    passport.authenticate('login', {failureRedirect: '/api/sessions/fail-login'}),
+    async (req, res) => {
+        const user = req.user;
+
+        if (!user) return res.status(401).send({status: "error", message: "Autenticacion Invalida."});
+        req.session.user = {
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+            age: user.age,
+            rol: user.rol
+        }
+        res.status(200).send({status: "success", payload: req.session.user, message: "¡Primer login!"});
+});
+
 
 router.post("/logout/", SessionController.logout);
+
+router.get("/fail-register/", SessionController.fail_register);
+
+router.get("/fail-login/", SessionController.fail_login);
 
 export default router;
