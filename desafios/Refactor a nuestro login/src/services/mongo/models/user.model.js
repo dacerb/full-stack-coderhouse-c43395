@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
         email: ModelType.stringEmailTypeSchemaUniqueRequired,
         age: ModelType.numberTypeSchemaNonUniqueRequired,
         password: ModelType.stringTypeSchemaNonUniqueRequired,
-        rol: ModelType.stringTypeSchemaNonUniqueRequiredRoleDefaultUser
+        rol: ModelType.stringTypeSchemaNonUniqueRequiredRoleDefaultUser,
+        registerBy: ModelType.stringTypeSchemaNonUniqueRequired,
     },
     { timestamps: true }
 );

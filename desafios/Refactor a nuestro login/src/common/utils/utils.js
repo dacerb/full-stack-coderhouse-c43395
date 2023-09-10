@@ -48,3 +48,14 @@ export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSy
 export const isValidPassword = (user, password) => {
         return bcrypt.compareSync(password, user.password);
     };
+
+export const  radomString = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
+}

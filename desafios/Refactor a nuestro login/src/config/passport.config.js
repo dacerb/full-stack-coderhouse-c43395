@@ -1,14 +1,59 @@
+import dotenv from "dotenv";
 import passport from 'passport';
 import passportLocal from 'passport-local';
-import userModel from '../dao/selectedSessionDb.js'
-import {createHash, isValidPassword} from "../common/utils/utils.js";
+import GitHubStrategy from 'passport-github2';
+import {createHash, isValidPassword, radomString} from "../common/utils/utils.js";
 import sessionManager from "../dao/selectedSessionDb.js";
+
+// Carga de variables de entorno
+dotenv.config();
+
+const GH_CLIENT_ID = process.env.GH_CLIENT_ID;
+const GH_CLIENT_SECRET = process.env.GH_CLIENT_SECRET;
+const GH_CALLBACK_UL = process.env.GH_CALLBACK_UL;
 
 const localStrategy = passportLocal.Strategy
 
 const initializePassport = () => {
-    // ESTRATEGIAS //
 
+    // GITHUB ESTRATEGIA //
+    passport.use('github', new GitHubStrategy(
+        {
+            clientID: GH_CLIENT_ID,
+            clientSecret: GH_CLIENT_SECRET,
+            callbackUrl: GH_CALLBACK_UL
+        },
+        async (accessToken, refreshToken, profile, done) => {
+
+            try {
+                const foundUser = await  sessionManager.getUserByEmail(profile._json.email);
+                if(!foundUser) {
+                    console.warn("usuario in existente: ", profile._json.email)
+                    const passwordRamdom = radomString(20);
+                    const newUser = {
+                        first_name: profile._json.name,
+                        last_name: 'incomplete',
+                        email: profile._json.email,
+                        age: 0,
+                        password: createHash(passwordRamdom),
+                        registerBy: 'GitHub'
+                    }
+
+                    const result = await sessionManager.registerNewUser(newUser);
+                    done(null, result)
+                } else {
+                    done(null, foundUser)
+                }
+
+
+            }catch (error) {
+                console.error(error)
+                return done(error)
+            }
+        }));
+
+
+    // LOCAL ESTRATEGIA //
     // register
     passport.use('register', new localStrategy(
         {passReqToCallback: true, usernameField: 'email'},
@@ -23,7 +68,8 @@ const initializePassport = () => {
                     last_name,
                     email,
                     age,
-                    password: createHash(inputPassword)
+                    password: createHash(inputPassword),
+                    registerBy: 'local'
                 }
 
                 const newUserRegistered =  await sessionManager.registerNewUser(newUser)
@@ -65,10 +111,9 @@ const initializePassport = () => {
     passport.deserializeUser( async (id, done) => {
         try {
             let user = await sessionManager.getUserByValue(id)
-            return done(null, user)
+            done(null, user)
         }catch (error) {
             console.error(error)
-            throw error;
         }
     });
 

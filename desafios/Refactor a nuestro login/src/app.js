@@ -24,6 +24,7 @@ import productsViewRoutes from "./routes/view.products.routes.js";
 import apiViewRoutes from "./routes/view.api.routes.js";
 import userViewRoutes from "./routes/view.users.routers.js";
 import sessionsRouter from "./routes/back.session.routers.js";
+import githubRouter from "./routes/view.github.routers.js";
 
 // conexion a db mongo
 import "./services/mongo/db.connection.js";
@@ -97,6 +98,7 @@ app.use('/home', homeRoutes);
 app.use('/cart', cartViewRoutes);
 app.use('/products', productsViewRoutes);
 app.use('/users', userViewRoutes);
+app.use('/github', githubRouter)
 app.use('/', apiViewRoutes);
 
 // ------------------------ RUN APP
