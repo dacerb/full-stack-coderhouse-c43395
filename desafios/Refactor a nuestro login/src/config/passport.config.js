@@ -42,7 +42,7 @@ const initializePassport = () => {
                     const result = await sessionManager.registerNewUser(newUser);
                     done(null, result)
                 } else {
-                    done(null, foundUser)
+                    return done(null, foundUser)
                 }
 
 

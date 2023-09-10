@@ -62,6 +62,8 @@ router.get(
         };
 
         req.session.admin = true;
+
+        console.log(req.session.user)
         res.redirect('/users')
     });
 

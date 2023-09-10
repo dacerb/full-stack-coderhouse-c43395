@@ -22,7 +22,11 @@ export async function getHome(req, res){
         { path: '/users/ ', verbo: 'GET',description: 'deberá listar informacion del perfil del usuario'},
         { path: '/users/login/ ', verbo: 'GET',description: 'deberá permitir acceder al usuario una vez autenticado'},
         { path: '/users/register/ ', verbo: 'GET',description: 'deberá permitir registrar neuvos usuarios'},
-        { path: '/users/logout/ ', verbo: 'GET',description: 'deberá permitir deslogear al usuario'}
+        { path: '/users/logout/ ', verbo: 'GET',description: 'deberá permitir deslogear al usuario'},
+        { path: '/api/sessions/fail-register/ ', verbo: 'GET',description: 'deberá mostrar un mensaje de error'},
+        { path: '/api/sessions/fail-login/ ', verbo: 'GET',description: 'deberá mostrar un mensaje de error'},
+        { path: '/github/error/ ', verbo: 'GET',description: 'deberá mostrar un mensaje de error'},
+        { path: '/github/login/ ', verbo: 'GET',description: 'deberá mostrar el form para logear con github'}
     ];
 
     return res.render('api', {
