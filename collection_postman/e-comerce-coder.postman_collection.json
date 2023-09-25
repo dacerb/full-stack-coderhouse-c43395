@@ -141,22 +141,22 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Sonor AQX",
+									"value": "Sonor select force",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Bateria aqx",
+									"value": "gama media",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "ZSPAS123",
+									"value": "ssqes1",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "2500",
+									"value": "1980",
 									"type": "text"
 								},
 								{
@@ -177,7 +177,7 @@
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/D:/CURSOS/full-stack-coderhouse-c43395/desafios/Motores de plantilla y socket/src/public/thumbnails/1691119597286-aqx.jpg"
+									"src": "/C:/Users/user/Desktop/descarga.jpg"
 								},
 								{
 									"key": "thumbnails",
@@ -235,7 +235,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/64ee69b7a7b8bd040c5d0d72",
+							"raw": "http://localhost:8080/api/cart/64efff9bc23108d2ec48b4f6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -244,7 +244,7 @@
 							"path": [
 								"api",
 								"cart",
-								"64ee69b7a7b8bd040c5d0d72"
+								"64efff9bc23108d2ec48b4f6"
 							]
 						}
 					},
@@ -265,7 +265,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e/product/64ed52c91512379e5ee3ea68",
+							"raw": "http://localhost:8080/api/cart/64efff9bc23108d2ec48b4f6/product/64efffb6c23108d2ec48b500",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -274,9 +274,9 @@
 							"path": [
 								"api",
 								"cart",
-								"64ed574dd5c974a80521118e",
+								"64efff9bc23108d2ec48b4f6",
 								"product",
-								"64ed52c91512379e5ee3ea68"
+								"64efffb6c23108d2ec48b500"
 							]
 						}
 					},
@@ -319,7 +319,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"productId\": \"64ed52841512379e5ee3ea59\",\r\n        \"qty\": 100\r\n    },\r\n    {\r\n        \"productId\": \"64ed52c91512379e5ee3ea68\",\r\n        \"qty\": 2200\r\n    }\r\n]",
+							"raw": "[\r\n    {\r\n        \"productId\": \"64efffb6c23108d2ec48b500\",\r\n        \"qty\": 100\r\n    },\r\n    {\r\n        \"productId\": \"64ed52c91512379e5ee3ea68\",\r\n        \"qty\": 2200\r\n    }\r\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -327,7 +327,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/64ed76085b3d38bba453be95",
+							"raw": "http://localhost:8080/api/cart/64efff9bc23108d2ec48b4f6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -336,7 +336,7 @@
 							"path": [
 								"api",
 								"cart",
-								"64ed76085b3d38bba453be95"
+								"64efff9bc23108d2ec48b4f6"
 							]
 						}
 					},
@@ -357,7 +357,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e/products/64ed52c91512379e5ee3ea68",
+							"raw": "http://localhost:8080/api/cart/64effb6843acebb9fc45cd15/products/64ed52c91512379e5ee3ea68",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -366,7 +366,7 @@
 							"path": [
 								"api",
 								"cart",
-								"64ed574dd5c974a80521118e",
+								"64effb6843acebb9fc45cd15",
 								"products",
 								"64ed52c91512379e5ee3ea68"
 							]
@@ -476,6 +476,254 @@
 							"port": "8080",
 							"path": [
 								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "github/error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/github/error",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"github",
+								"error"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "github/login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/github/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"github",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/sessions",
+			"item": [
+				{
+					"name": "/api/sessions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sessions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sessions/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"dda\", \r\n    \"last_name\": \"ACE\", \r\n    \"email\": \"dac.123123asd12vb3@gmail.com\", \r\n    \"age\": 30, \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sessions/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dac.123123asd12vb3@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sessions/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/fail-register",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dac.ace@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sessions/fail-register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"fail-register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/fail-login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dac.ace@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sessions/fail-login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"fail-login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/fail-login Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dac.ace@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/sessions/fail-login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sessions",
+								"fail-login",
+								""
 							]
 						}
 					},
