@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 //Passport imports
 import passport from 'passport';
 //TODO: Add your passport config path file.
+import initializePassport from './config/passport.config.js';
 
 
 //Routers a importar:
@@ -32,9 +33,10 @@ app.set('view engine','handlebars');
 app.use(express.static(__dirname+'/public'))
 
 //TODO (Solo si usar Cookies): inicializar el cookie parser.
-
+app.use(cookieParser("CoderS3cr3tC0d3"));
 //TODO: Inicializar passport:
-
+initializePassport();
+app.use(passport.initialize());
 
 //Declaración de Routers:
 app.use('/',viewsRouter);
@@ -50,7 +52,7 @@ app.listen(SERVER_PORT, () => {
 
 const connectMongoDB = async ()=>{
     try {
-        await mongoose.connect('mongodb://localhost:27017/colegio?retryWrites=true&w=majority');
+        await mongoose.connect('mongodb://127.0.0.1:27017/colegio?retryWrites=true&w=majority');
         console.log("Conectado con exito a MongoDB usando Moongose.");
     } catch (error) {
         console.error("No se pudo conectar a la BD usando Moongose: " + error);
