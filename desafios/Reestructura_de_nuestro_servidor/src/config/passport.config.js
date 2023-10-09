@@ -3,7 +3,7 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import {createHash, isValidPassword, radomString} from "../common/utils/utils.js";
-import sessionManager from "../dao/selectedSessionDb.js";
+import sessionManager from "../services/dao/session.dao.js";
 
 // Carga de variables de entorno
 dotenv.config();

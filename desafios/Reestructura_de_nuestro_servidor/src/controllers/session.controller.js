@@ -1,5 +1,3 @@
-import sessionManager from "../dao/selectedSessionDb.js";
-import {createHash, isValidPassword} from "../common/utils/utils.js";
 
 // Session Controller
 export async function fail_register(req, res) {
