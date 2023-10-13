@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import * as ModelType from "../../../common/utils/schemaModelsType.js"
+import * as ModelType from "../../../../common/utils/schemaModelsType.js"
 import {
         stringEmailTypeSchemaUniqueRequired,
         stringTypeSchemaNonUniqueRequired
-} from "../../../common/utils/schemaModelsType.js";
+} from "../../../../common/utils/schemaModelsType.js";
 
 const collectionName = 'users';
 

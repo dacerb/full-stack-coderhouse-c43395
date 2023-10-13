@@ -1,4 +1,5 @@
-import productManager from "../services/dao/product.dao.js";
+import { productManager } from "../services/factory.js";
+
 
 // API BACK
 export async function addNewProduct(req, res) {

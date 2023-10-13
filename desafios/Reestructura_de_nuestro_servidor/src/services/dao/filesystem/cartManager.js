@@ -1,5 +1,5 @@
 import { CartProduct, Cart } from './models/cart.js';
-import __dirname from "../../common/utils/utils.js";
+import __dirname from "../../../common/utils/utils.js";
 import fileSystem from "fs";
 
 class CartManager {

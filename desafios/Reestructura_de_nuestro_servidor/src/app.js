@@ -1,21 +1,25 @@
 import express from 'express';
 import morgan from "morgan";
-import dotenv from "dotenv";
 import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';
 import MongoStore from "connect-mongo";
 import session from 'express-session';
+import default_config from './config/config.js'
+// CONSTANTES
+const app = express();
+const PORT = default_config.port;
+const MONGO_URL = default_config.mongoUrl;
+const SECRET = default_config.secret;
 
-// Carga de variables de entorno
-dotenv.config();
+// IMPORT CONFIG
+import initializePassport from "./config/services/passport.config.js";
+import MongoSingleton from './config/services/mongodb-singleton.js';
 
-// Import config
-import initializePassport from "./config/passport.config.js";
 
-// Import utilidades
+// IMPORT UTILS
 import __dirname from './common/utils/utils.js';
 
-// Import rutas
+// IMPORT ROUTES
 import productsRoutes from './routes/back.products.routes.js';
 import homeRoutes from './routes/view.home.routes.js';
 import cartRoutes from './routes/back.cart.routes.js';
@@ -26,23 +30,17 @@ import userViewRoutes from "./routes/view.users.routers.js";
 import sessionsRouter from "./routes/back.session.routers.js";
 import githubRouter from "./routes/view.github.routers.js";
 
-// conexion a db mongo
-import "./services/mongo/db.connection.js";
+// SERVICIOS
 import passport from "passport";
 
-// Constantes
-const app = express();
-const PORT = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
-const SECRET = process.env.SECRET_PHRASE;
 
-// Configuracion de cookies
+// CONFIGURACION DE COOKIES
 app.use(cookieParser());
 
-// Configuracion de handlebars
+// CONFIGURACION DE HANDLEVARS
 app.engine('handlebars', handlebars.engine());
 
-// Configuracion de applicacion
+// CONFIGURACION DE APPLICACION
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
@@ -74,9 +72,8 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-
 // Middelwares de aplicacion
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
 
 // Middleware Passport
 initializePassport();
@@ -98,10 +95,20 @@ app.use('/home', homeRoutes);
 app.use('/cart', cartViewRoutes);
 app.use('/products', productsViewRoutes);
 app.use('/users', userViewRoutes);
-app.use('/github', githubRouter)
+app.use('/github', githubRouter);
 app.use('/', apiViewRoutes);
 
 // ------------------------ RUN APP
 const httpServer = app.listen(PORT, () => {
     console.log(`server run on port: ${PORT}`);
 })
+
+// ------------------------ CONEXION CON MONGO
+const mongoInstance = async () => {
+    try {
+        await MongoSingleton.getInstance();
+    } catch (error) {
+        console.error(error);
+    }
+};
+mongoInstance();

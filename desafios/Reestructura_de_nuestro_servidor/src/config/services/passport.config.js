@@ -1,20 +1,16 @@
-import dotenv from "dotenv";
 import passport from 'passport';
 import passportLocal from 'passport-local';
 import GitHubStrategy from 'passport-github2';
-import {createHash, isValidPassword, radomString} from "../common/utils/utils.js";
-import sessionManager from "../services/dao/session.dao.js";
-
-// Carga de variables de entorno
-dotenv.config();
-
-const GH_CLIENT_ID = process.env.GH_CLIENT_ID;
-const GH_CLIENT_SECRET = process.env.GH_CLIENT_SECRET;
-const GH_CALLBACK_UL = process.env.GH_CALLBACK_UL;
+import {createHash, isValidPassword, radomString} from "../../common/utils/utils.js";
+import { userManager } from "../../services/factory.js";
 
 const localStrategy = passportLocal.Strategy
 
 const initializePassport = () => {
+
+    const GH_CLIENT_ID = process.env.GH_CLIENT_ID;
+    const GH_CLIENT_SECRET = process.env.GH_CLIENT_SECRET;
+    const GH_CALLBACK_UL = process.env.GH_CALLBACK_UL;
 
     // GITHUB ESTRATEGIA //
     passport.use('github', new GitHubStrategy(
@@ -26,7 +22,7 @@ const initializePassport = () => {
         async (accessToken, refreshToken, profile, done) => {
 
             try {
-                const foundUser = await  sessionManager.getUserByEmail(profile._json.email);
+                const foundUser = await  userManager.getUserByEmail(profile._json.email);
                 if(!foundUser) {
                     console.warn("usuario in existente: ", profile._json.email)
                     const passwordRamdom = radomString(20);
@@ -39,7 +35,7 @@ const initializePassport = () => {
                         registerBy: 'GitHub'
                     }
 
-                    const result = await sessionManager.registerNewUser(newUser);
+                    const result = await userManager.registerNewUser(newUser);
                     done(null, result)
                 } else {
                     return done(null, foundUser)
@@ -61,7 +57,7 @@ const initializePassport = () => {
             // logica...
             const { first_name, last_name, email, age, password: inputPassword } = req.body;
             try {
-                const userExist = await  sessionManager.getUserByEmail(email);
+                const userExist = await  userManager.getUserByEmail(email);
                 if (userExist) return done(null, false, { message: "User already exists" });
                 const newUser = {
                     first_name,
@@ -72,7 +68,7 @@ const initializePassport = () => {
                     registerBy: 'local'
                 }
 
-                const newUserRegistered =  await sessionManager.registerNewUser(newUser)
+                const newUserRegistered =  await userManager.registerNewUser(newUser)
                 return done(null, newUserRegistered)
 
             } catch (error) {
@@ -90,7 +86,7 @@ const initializePassport = () => {
             try {
                 const email = username;
                 const inputPassword = password;
-                const foundUser = await  sessionManager.getUserByEmail(email);
+                const foundUser = await  userManager.getUserByEmail(email);
 
                 if (!foundUser) return done(null, false);
                 if (!isValidPassword(foundUser, inputPassword))  return done(null, false, { message: "incorrect login" });
@@ -110,7 +106,7 @@ const initializePassport = () => {
 
     passport.deserializeUser( async (id, done) => {
         try {
-            let user = await sessionManager.getUserByValue(id)
+            let user = await userManager.getUserByValue(id)
             done(null, user)
         }catch (error) {
             console.error(error)

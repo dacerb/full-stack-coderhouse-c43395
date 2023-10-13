@@ -1,7 +1,6 @@
 import {Router} from 'express';
 import {requiredLoginSession} from "./utils/utils.js"
-import cartManager from "../services/dao/cart.dao.js";
-import productManager from "../services/dao/product.dao.js";
+import { productManager, cartManager } from "../services/factory.js";
 
 const router = Router();
 

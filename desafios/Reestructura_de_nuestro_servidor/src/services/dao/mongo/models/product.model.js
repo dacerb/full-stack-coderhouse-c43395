@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import mongoosePaginate from 'mongoose-paginate-v2';
-import * as ModelType from "../../../common/utils/schemaModelsType.js"
+import * as ModelType from "../../../../common/utils/schemaModelsType.js"
 
 const collectionName = 'products';
 

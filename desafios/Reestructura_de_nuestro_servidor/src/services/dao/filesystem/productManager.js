@@ -1,4 +1,4 @@
-import __dirname from "../../common/utils/utils.js";
+import __dirname from "../../../common/utils/utils.js";
 import Product from "./models/products.js"
 import fileSystem from "fs";
 

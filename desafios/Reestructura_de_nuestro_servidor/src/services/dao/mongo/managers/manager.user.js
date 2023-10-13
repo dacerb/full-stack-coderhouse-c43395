@@ -1,6 +1,6 @@
 import { userModel } from '../models/user.model.js';
 
-class ManagerSession {
+class ManagerUser {
     getUserByEmail = async (email) => {
         return userModel.findOne({email: email})
             .then(user => {
@@ -39,4 +39,4 @@ class ManagerSession {
 
 }
 
-export default ManagerSession;
+export default ManagerUser;

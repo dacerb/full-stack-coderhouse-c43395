@@ -1,4 +1,4 @@
-import cartManager from "../services/dao/cart.dao.js";
+import { cartManager } from "../services/factory.js";
 
 
 // API BACK
