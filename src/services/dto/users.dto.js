@@ -6,6 +6,7 @@ export default class UsersDto {
         this.age = user.age;
         this.email = user.email;
         this.rol = user.rol;
+        this.registerBy = user.registerBy;
         this.fullName = `${this.first_name}  ${this.last_name}`;
         this.cartId = user.cartId.toString();
         this.rol = user.rol;
