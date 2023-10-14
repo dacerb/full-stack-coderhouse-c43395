@@ -161,3 +161,18 @@ p {
 .welcome-container .welcome-container_text {
     margin-right: 5px;
 }
+
+
+.file-input-container {
+    display: flex;
+    align-items: center;
+}
+
+
+.productEditForm {
+    width: 100%;
+}
+
+.productEditForm input {
+    width: 99%;
+}

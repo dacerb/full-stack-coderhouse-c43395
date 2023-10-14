@@ -50,7 +50,12 @@ const hbs = handlebars.create({
         formatThumbnailPath: function(filePath) {
             const prefixToRemove = 'D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\';
             const removePath = '/thumbnails/' + filePath.replace(prefixToRemove, '');
-            return removePath
+            return removePath;
+        },
+        isAdminHelper: function(rol) {
+            const is_admin = rol === 'admin';
+            console.log(is_admin)
+            return is_admin
         }
     }
 });
