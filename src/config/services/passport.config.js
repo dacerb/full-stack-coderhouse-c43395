@@ -2,7 +2,7 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 import GitHubStrategy from 'passport-github2';
 import {createHash, isValidPassword, radomString} from "../../common/utils/utils.js";
-import { userManager } from "../../services/factory.js";
+import { userManager, cartManager  } from "../../services/factory.js";
 
 const localStrategy = passportLocal.Strategy
 

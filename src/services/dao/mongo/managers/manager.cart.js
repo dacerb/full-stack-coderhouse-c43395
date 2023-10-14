@@ -4,7 +4,7 @@ import {productModel} from "../models/product.model.js";
 
 class ManagerCart {
 
-    addCart = async () => {
+    createCart = async () => {
         return cartsModel.create({products:[]})
             .then( newCart => {
                     return newCart.toJSON();

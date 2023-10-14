@@ -73,7 +73,7 @@ export async function addProductInACart(req, res) {
 }
 
 export async function createACart(req, res) {
-    const response = await  cartManager.addCart();
+    const response = await  cartManager.createCart();
     res.send({
         message: "success",
         resutl: response
