@@ -150,3 +150,14 @@ p {
     object-fit: contain;
 
 }
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 50px;
+}
+
+.welcome-container .welcome-container_text {
+    margin-right: 5px;
+}

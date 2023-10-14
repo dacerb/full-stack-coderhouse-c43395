@@ -7,17 +7,16 @@
     <link rel="stylesheet" href="/css/{{{style}}}">
 </head>
 <body>
+
 {{#if sessionActive}}
+    <h4>sesion de ( {{user.first_name}} )</h4>
     <div class="welcome-container {{user.rol}}">
+
         <div class="welcome-container_text">
-            <h3>Welcome! Your user information is:</h3>
-            <p><strong>First name:</strong> {{user.first_name}}</p>
-            <p><strong>Last name:</strong> {{user.last_name}}</p>
-            <p><strong>Email:</strong> {{user.email}}</p>
-            <p><strong>Age:</strong> {{user.age}}</p>
-            <p><strong>Role:</strong> {{user.rol}}</p>
             <div class="welcome-container_btn">
-                <button id="logout-btn">Logout Session</button>
+                <button id=""><a href="/products">productos</a></button>
+                <button id=""><a href="/users">mi perfil</a></button>
+                <button id="logout-btn">cerrar sesion {{user.first_name}} </button>
             </div>
         </div>
     </div>

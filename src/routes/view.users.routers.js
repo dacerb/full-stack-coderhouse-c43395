@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import {requiredLoginSession, authToken} from "./utils/utils.js"
-
+import { requiredLoginSession, authToken} from "./utils/utils.js"
+import { userManager } from '../services/factory.js'
+import UsersDto from '../services/dto/users.dto.js'
 const router = Router();
 
 router.get("/register/", async (req, res)=> {
@@ -16,11 +17,14 @@ router.get("/login/",  async (req, res) => {
 });
 
 router.get("/", requiredLoginSession, async (req, res) => {
-    const user =  req.session.user;
+    const sessionUser =  req.session.user;
+    const user = await userManager.getUserByEmail(sessionUser.email)
+    const userDto = new UsersDto(user)
+
     return res.render('profile', {
         style: 'main.css',
         sessionActive: req.session.user ? true : false,
-        user
+        user: userDto
     });
 });
 
