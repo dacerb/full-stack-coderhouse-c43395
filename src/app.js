@@ -56,7 +56,6 @@ const hbs = handlebars.create({
         },
         isAdminHelper: function(rol) {
             const is_admin = rol === 'admin';
-            console.log(is_admin)
             return is_admin
         }
     }

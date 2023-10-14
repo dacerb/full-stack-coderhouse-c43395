@@ -58,7 +58,6 @@ class ManagerProduct {
     }
 
     updateProductById = async ({id, title, description, price, thumbnail, code, stock, status, category}) => {
-        console.log({id, title, description, price, thumbnail, code, stock, status, category})
 
 
         return productModel.findByIdAndUpdate(id, {

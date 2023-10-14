@@ -3,7 +3,6 @@ import { ticketModel } from '../models/ticket.model.js';
 class ManagerTicket {
     newPurchase = async (purchase) => {
 
-        console.log(purchase)
         return "KC"
 
         /*return userModel.findOne({email: email})
