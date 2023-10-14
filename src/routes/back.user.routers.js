@@ -22,6 +22,8 @@ router.post(
     async (req, res) => {
         const user = req.user;
 
+        console.log(user)
+
         if (!user) return res.status(401).send({status: "error", message: "Autenticacion Invalida."});
         req.session.user = {
             first_name: user.first_name,
@@ -59,12 +61,13 @@ router.get(
             last_name: user.last_name,
             email: user.email,
             age: user.age,
-            rol: user.rol
+            rol: user.rol,
+            cartId: user.cartId
         };
 
         req.session.admin = true;
 
-        res.redirect('/')
+        res.redirect('/products')
     });
 
 export default router;
