@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import * as ModelType from "../../../../common/utils/schemaModelsType.js"
 
 const collectionName = 'carts';
-
 const cartProductSchema = new mongoose.Schema({
     productId:  {
         type: mongoose.Schema.Types.ObjectId,

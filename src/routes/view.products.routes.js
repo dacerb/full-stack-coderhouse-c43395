@@ -20,17 +20,6 @@ router.get("/", requiredLoginSession, async (req, res) => {
     delete query.sort
 
     try {
-        let myCookieCart = req.cookies.myCookieCart;
-        try {
-            const foundCart = await cartManager.getCartById(myCookieCart);
-        } catch (error) {
-            if (error.name === 'cartNotFound') {
-                const newCart = await cartManager.addCart();
-                const newCartID = newCart._id.toString();
-                res.cookie('myCookieCart', newCartID, {maxAge: 900000, httpOnly: true});
-                myCookieCart = newCartID;
-            }
-        }
 
         const data_paginate = await productManager.getProductsByPaginateQueryOptions(query, options);
         const documents = data_paginate.docs?.map(document => document.toJSON())
@@ -42,7 +31,7 @@ router.get("/", requiredLoginSession, async (req, res) => {
         keys.nextLink = keys.hasNextPage ? `http://localhost:8080/products?page=${keys.nextPage}` : '';
         keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
 
-        keys.cartId = myCookieCart
+        keys.cartId = user.cartId
         res.render('products_paginate', {
             data: documents,
             user,

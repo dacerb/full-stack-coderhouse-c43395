@@ -57,15 +57,21 @@ const initializePassport = () => {
             // logica...
             const { first_name, last_name, email, age, password: inputPassword } = req.body;
             try {
+
                 const userExist = await  userManager.getUserByEmail(email);
                 if (userExist) return done(null, false, { message: "User already exists" });
+
+                const newCart = await cartManager.createCart();
+                console.log(newCart)
+                console.log(newCart._id)
                 const newUser = {
                     first_name,
                     last_name,
                     email,
                     age,
                     password: createHash(inputPassword),
-                    registerBy: 'local'
+                    registerBy: 'local',
+                    cartId: newCart._id
                 }
 
                 const newUserRegistered =  await userManager.registerNewUser(newUser)
