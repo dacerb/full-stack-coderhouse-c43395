@@ -25,6 +25,7 @@ const initializePassport = () => {
                 const foundUser = await  userManager.getUserByEmail(profile._json.email);
                 if(!foundUser) {
                     console.warn("usuario in existente: ", profile._json.email)
+                    const newCart = await cartManager.createCart();
                     const passwordRamdom = radomString(20);
                     const newUser = {
                         first_name: profile._json.name,
@@ -32,7 +33,8 @@ const initializePassport = () => {
                         email: profile._json.email,
                         age: 0,
                         password: createHash(passwordRamdom),
-                        registerBy: 'GitHub'
+                        registerBy: 'GitHub',
+                        cartId: newCart._id
                     }
 
                     const result = await userManager.registerNewUser(newUser);
@@ -62,8 +64,6 @@ const initializePassport = () => {
                 if (userExist) return done(null, false, { message: "User already exists" });
 
                 const newCart = await cartManager.createCart();
-                console.log(newCart)
-                console.log(newCart._id)
                 const newUser = {
                     first_name,
                     last_name,
