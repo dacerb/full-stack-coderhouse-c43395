@@ -10,6 +10,11 @@ const stringEmailTypeSchemaUniqueRequired = {
     unique: true,
 };
 
+const stringEmailTypeSchemaRequired = {
+    type: String,
+    required: true,
+};
+
 const stringTypeSchemaNonUniqueRequired = {
     type: String,
     required: true
@@ -38,6 +43,12 @@ const arrayTypeSchemaNonUniqueRequired = {
     required: true
 };
 
+const datetimeRequiredDefaultNow = {
+        type: Date,
+        required: true,
+        default: Date.now
+};
+
 
 export {
     arrayTypeSchemaNonUniqueRequired,
@@ -46,5 +57,7 @@ export {
     stringTypeSchemaUniqueRequired,
     booleanTypeSchemaNonUniqueRequired,
     stringEmailTypeSchemaUniqueRequired,
+    stringEmailTypeSchemaRequired,
+    datetimeRequiredDefaultNow,
     stringTypeSchemaNonUniqueRequiredRoleDefaultUser
 };

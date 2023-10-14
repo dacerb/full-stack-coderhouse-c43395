@@ -21,13 +21,15 @@ import __dirname from './common/utils/utils.js';
 
 // IMPORT ROUTES
 import productsRoutes from './routes/back.products.routes.js';
-import homeRoutes from './routes/view.home.routes.js';
 import cartRoutes from './routes/back.cart.routes.js';
+import userRouter from "./routes/back.user.routers.js";
+import ticketRouter from "./routes/back.ticket.routers.js";
+
+import homeRoutes from './routes/view.home.routes.js';
 import cartViewRoutes from "./routes/view.cart.routes.js";
 import productsViewRoutes from "./routes/view.products.routes.js";
 import apiViewRoutes from "./routes/view.api.routes.js";
 import userViewRoutes from "./routes/view.users.routers.js";
-import userRouter from "./routes/back.user.routers.js";
 import githubRouter from "./routes/view.github.routers.js";
 
 // SERVICIOS
@@ -96,6 +98,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/products', productsRoutes);
 app.use("/api/sessions", userRouter);
 app.use('/api/cart', cartRoutes);
+app.use('/api/purchase', ticketRouter);
 app.use('/home', homeRoutes);
 app.use('/cart', cartViewRoutes);
 app.use('/products', productsViewRoutes);

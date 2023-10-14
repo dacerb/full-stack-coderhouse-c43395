@@ -1,9 +1,11 @@
 import config from "../config/config.js";
 import MongoSingleton from '../config/services/mongodb-singleton.js'
+import ManagerTicket from "./dao/mongo/managers/manager.ticket.js";
 
 let cartManager
 let productManager
 let userManager
+let ticketManager
 
 async function initializeMongoService() {
     console.log("Iniciando servicio para MongoDB");
@@ -26,6 +28,11 @@ async function initializeMongoService() {
         userManager = new ManagerUser();
         console.log("Servicio de ManagerSession cargado:");
         console.log(userManager);
+
+        const { default: ManagerTicket } = await import('./dao/mongo/managers/manager.ticket.js');
+        ticketManager = new ManagerTicket();
+        console.log("Servicio de ManagerSession cargado:");
+        console.log(ticketManager);
 
 
     } catch (error) {
@@ -64,5 +71,6 @@ switch (config.persistence) {
 export {
     cartManager,
     productManager,
-    userManager
+    userManager,
+    ticketManager
 }
