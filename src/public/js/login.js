@@ -1,5 +1,7 @@
 const form = document.getElementById('login-form');
 const messageLogin = document.getElementById('message-login');
+import {ToasteMessag} from "./messageFlash.js";
+
 
 form.addEventListener('submit', event => {
     messageLogin.innerHTML = '';
@@ -18,7 +20,10 @@ form.addEventListener('submit', event => {
             window.location.replace('/products');
         }
 
-        if (result.status !== 200) messageLogin.innerHTML = 'invalid credentials';
+        if (result.status !== 200) {
+            // ToasteMessag('invalid credentials')
+            messageLogin.innerHTML = 'invalid credentials';
+        }
 
     })
 })

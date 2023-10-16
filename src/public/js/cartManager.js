@@ -1,3 +1,4 @@
+import {ToasteMessag} from "./messageFlash.js";
 
 var raw = "";
 
@@ -10,7 +11,7 @@ var requestOptions = {
 
 const cartID = document.getElementById("cartId");
 const addToCartButtons = document.querySelectorAll(".addToCart");
-const ALERT = document.getElementById("ALERT");
+// const ALERT = document.getElementById("ALERT");
 
 // Agrega un evento de clic a cada botón
 addToCartButtons.forEach(button => {
@@ -26,19 +27,7 @@ addToCartButtons.forEach(button => {
         fetch(url, requestOptions)
             .then(response => response.text())
             .then(result => {
-
-                const elemento = document.createElement("li");
-                elemento.textContent = "added: "+ productid
-                elemento.id = productid
-                ALERT.appendChild(elemento)
-
-                setTimeout(() => {
-                    const elementoAEliminar = document.getElementById(productid);
-                    if (elementoAEliminar) {
-                        ALERT.removeChild(elementoAEliminar);
-                    }
-                }, 3000); // 5000 ms = 5 segundos
-
+                ToasteMessag("added: "+ productid)
             })
             .catch(error => console.error('error', error));
 
