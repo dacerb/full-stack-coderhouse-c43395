@@ -24,7 +24,8 @@ router.get("/", requiredLoginSession, async (req, res) => {
     return res.render('profile', {
         style: 'main.css',
         sessionActive: req.session.user ? true : false,
-        user: userDto
+        user: userDto,
+        cartId: userDto.cartId
     });
 });
 

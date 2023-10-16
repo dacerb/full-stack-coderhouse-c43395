@@ -259,3 +259,10 @@ button#confirmar-compra:hover {
 button#cancelar-compra:hover {
     background-color: #999;
 }
+
+.estilo-eliminado {
+    padding: 2px;
+    border: none;
+    outline: none; /* Elimina el contorno al enfocar */
+    text-decoration: none; /* Elimina subrayado */
+}

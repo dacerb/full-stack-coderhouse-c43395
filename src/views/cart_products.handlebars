@@ -1,6 +1,6 @@
 <div class="container">
+    <button id="buy-button">Comprar</button>
     <h1> List of products by cart ID: <span id="cart_id">{{ cart_id }}</span></h1>
-    <h3><a href="http://localhost:8080/products?page=1"> <strong class="WOOP"> Volver a productos </strong></a></h3>
     <div class="main">
         {{#each data}}
             <div class="card">
@@ -30,7 +30,7 @@
             </div>
         {{/each}}
     </div>
-    <button id="buy-button">Comprar</button>
+
 </div>
 
 
