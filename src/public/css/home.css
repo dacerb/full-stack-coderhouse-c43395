@@ -266,3 +266,13 @@ button#cancelar-compra:hover {
     outline: none; /* Elimina el contorno al enfocar */
     text-decoration: none; /* Elimina subrayado */
 }
+
+
+.buy-button {
+{
+    background-color: rgba(127, 255, 0, 0.5);
+    color: deeppink;
+    padding: .1%;
+    border: solid 1px deeppink;
+}
+}

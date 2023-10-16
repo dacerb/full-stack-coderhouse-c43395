@@ -114,3 +114,10 @@ input[type="number"] {
 .welcome-container .welcome-container_text {
     margin-right: 5px;
 }
+
+.estilo-eliminado {
+    padding: 2px;
+    border: none;
+    outline: none; /* Elimina el contorno al enfocar */
+    text-decoration: none; /* Elimina subrayado */
+}
