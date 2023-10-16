@@ -18,15 +18,15 @@ addToCartButtons.forEach(button => {
         // Este código se ejecutará cuando se haga clic en un botón "addToCart"
         const productid = button.id;
         const cartId = cartID.textContent
-        console.log(cartId)
+
 
         const url = "http://localhost:8080/api/cart/"+cartId+"/product/"+productid
 
-        console.log(url)
+
         fetch(url, requestOptions)
             .then(response => response.text())
             .then(result => {
-                console.log(result)
+
                 const elemento = document.createElement("li");
                 elemento.textContent = "added: "+ productid
                 elemento.id = productid
@@ -40,7 +40,7 @@ addToCartButtons.forEach(button => {
                 }, 3000); // 5000 ms = 5 segundos
 
             })
-            .catch(error => console.log('error', error));
+            .catch(error => console.error('error', error));
 
 
 
