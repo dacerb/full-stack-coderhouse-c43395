@@ -24,6 +24,8 @@ router.delete("/:cid/products/:pid", CartController.deleteProductFromCartByPIdAn
 // DELETE delete elements from the cart by cart id
 router.delete("/:cid", CartController.deleteAllProductFromCartByCartId);
 
+// POST ticket purchase
+router.post("/:cid/purchase", CartController.registerPurchase);
 
 
 

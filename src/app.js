@@ -23,7 +23,6 @@ import __dirname from './common/utils/utils.js';
 import productsRoutes from './routes/back.products.routes.js';
 import cartRoutes from './routes/back.cart.routes.js';
 import userRouter from "./routes/back.user.routers.js";
-import ticketRouter from "./routes/back.ticket.routers.js";
 
 import homeRoutes from './routes/view.home.routes.js';
 import cartViewRoutes from "./routes/view.cart.routes.js";
@@ -97,7 +96,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/products', productsRoutes);
 app.use("/api/sessions", userRouter);
 app.use('/api/cart', cartRoutes);
-app.use('/api/purchase', ticketRouter);
 app.use('/home', homeRoutes);
 app.use('/cart', cartViewRoutes);
 app.use('/products', productsViewRoutes);
