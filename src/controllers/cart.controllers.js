@@ -195,7 +195,7 @@ export async function registerPurchase(req, res) {
         const userWithCartId = await userManager.getUserByValue({ cartId: cid });
         const cart = await cartManager.getCartById(cid);
 
-        if (!cart.products) return res.status(404).send({ message: "there are no products in the cart"});
+        if (!Boolean(cart.products.length)) return res.status(404).send({ message: "there are no products in the cart"});
         if (!userWithCartId) return res.status(404).send({ message: "the cartId does not have a user assigned"});
 
         const newTicket = {
