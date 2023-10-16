@@ -165,6 +165,7 @@ class ManagerCart {
             });
     };
 
+
 }
 
 export default ManagerCart;

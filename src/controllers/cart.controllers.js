@@ -1,4 +1,5 @@
 import { ticketManager, cartManager, userManager, productManager } from "../services/factory.js";
+import { codeGenerator } from "../common/utils/utils.js";
 
 
 // API BACK
@@ -187,56 +188,77 @@ export async function deleteAllProductFromCartByCartId(req, res) {
 }
 
 export async function registerPurchase(req, res) {
-    let userSession = req.session;
+    let response = null
+    let userSession = req.session;  // Me sirve para validar el usuario que genero el Request y validar la accion como primara opcion
     let { cid } = req.params;
-    console.log('TAMO ACA 47')
     try {
+        const userWithCartId = await userManager.getUserByValue({ cartId: cid });
+        const cart = await cartManager.getCartById(cid);
 
-        const userWithCartId = await  userManager.getUserByValue({cartId:cid})
-        const cart = await  cartManager.getCartById(cid)
+        if (!userWithCartId) return res.status(404).send({ message: "the cartId does not have a user assigned"});
 
-        cart.products.map(async (product)=> {
+        const newTicket = {
+            description: "",
+            code: "",
+            amount: 0,
+            purchaser: userWithCartId.email,
+            // purchase_datetime: "..."
+        };
+
+        const filterCartToUpdate = await Promise.all(cart.products.map(async (product) => {
 
             const productQty = product.qty;
-            const productId = product.productId._id.toString()
+            const productId = product.productId._id.toString();
             const foundProduct = await productManager.getProductById(productId);
 
-            // valido disponibilidad
             const currentProductStock = foundProduct.stock;
+
+            // valida disponibilidad de stock
             if (currentProductStock >= productQty) {
+                foundProduct.stock = foundProduct.stock - productQty;
 
-                foundProduct.stock = foundProduct.stock - productQty
+                // Actualiza el stock del producto quitando los del proceso de compra
                 const productUpdated = await productManager.updateProductById({
-                    id:foundProduct._id,
+                    id: foundProduct._id,
                     ...foundProduct
-                })
+                });
 
-                if (productUpdated.stock < currentProductStock){
-                    product['purchase_processed'] = true
+                // verifica que el stock se haya descontado
+                if (productUpdated.stock < currentProductStock) {
+                    newTicket.description += (`${product.productId.title} ($ ${product.productId.price} x ${productQty}) `);
+                    newTicket.amount = newTicket.amount + (product.productId.price * productQty);
+                    return null; // Retorna null para quitar el elemento de la lista porque ya se descontó
                 }
             }
-        })
-        console.log('cart: ', cart)
 
+            return product;
+        }));
 
-        const response = await  ticketManager.newPurchase(cid);
+        newTicket.code = codeGenerator()
+
+        // Actualiza el carrito del usuario con los objectos filtrados
+        const cartUpdated = await cartManager.updateAllProducts(cid, filterCartToUpdate.filter(Boolean));
+        if (cartUpdated) {
+            // Si se actualiza el carrito descontando los productos procesado del carrito del usuario generamos el ticket de compra
+            response = await ticketManager.newPurchase(newTicket);
+        }
+
         res.send({
-            message: response ? "success" : "It is not possible to retrieve the cart by id." ,
+            message: response ? "Éxito" : "No se puede recuperar el carrito por ID.",
             response: response ? response : {}
-        })
-    }
-    catch (error) {
+        });
+
+    } catch (error) {
+        console.log(error)
         if (error.name === 'cartNotFound') {
-            const {message} = error
+            const { message } = error;
             return res.status(404).send({
                 message: message
-            })
+            });
         }
         return res.status(500).send({
-            message: "Internal server error",
+            message: "Error interno del servidor",
             error: error
-        })
+        });
     }
 }
-
-

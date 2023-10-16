@@ -59,3 +59,10 @@ export const  radomString = (length) => {
     }
     return result;
 }
+
+export const codeGenerator = () => {
+    const timestamp = new Date().getTime();
+    const code = `CODE_${timestamp}`;
+
+    return code;
+}

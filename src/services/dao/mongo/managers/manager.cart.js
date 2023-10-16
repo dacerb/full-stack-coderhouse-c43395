@@ -33,7 +33,6 @@ class ManagerCart {
 
     addProductInCart = async (cartId, productId) => {
         // ME FALTA VALIDAR QUE EL PRODUCTO ID EXISTE ANTES DE AGREGAR AL CARRITO
-
         const existProduct = await  productModel.findOne({_id: productId});
         if (!existProduct) {
             let error = new Error()
@@ -164,6 +163,26 @@ class ManagerCart {
                 throw error
             });
     };
+
+    updateAllProducts = async (cartId, productList) => {
+        return cartsModel.findOneAndUpdate(
+            { _id: cartId},
+            { products: productList},
+            { new: true }, // Para obtener el documento actualizado
+        )
+        .then(cart => {
+            if (!cart) {
+                let error = new Error();
+                error.name = "cartNotFound"
+                error.message = "it was not possible to update the cart"
+                throw error;
+            }
+            return cart;
+        })
+        .catch(error => {
+            throw error
+        });
+    }
 
 }
 
