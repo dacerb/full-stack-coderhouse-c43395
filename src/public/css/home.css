@@ -383,3 +383,53 @@ a {
     height: 20vh;
     border-radius: 5px;
 }
+
+.new-product button{
+    margin-top: 10px;
+    padding: 5px;
+    background-color: chartreuse; /* Color de fondo rojo */
+
+}
+
+.new-product button:hover {
+    background-color: #ff6347; /* Color de fondo rojo */
+}
+
+
+/* Estilos del modal */
+
+
+#container {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 150px;
+    height: 65vh;
+    background-color: whitesmoke;
+    padding: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#curlForm div {
+    border: #007BFF;
+    padding: 10px;
+}
+
+#curlForm div input {
+    width: 90%;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+#attachmentContainer {
+    margin-top: 10px;
+}
+
+.menu-btn {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.menu-btn button {
+    padding: 5px;
+}

@@ -12,7 +12,8 @@ export async function addNewProduct(req, res) {
     })
 
     try {
-
+        console.log(req.body)
+        console.log(filesPath)
         let new_product = await productManager.addProduct({
             thumbnail: filesPath,
             ...req.body
@@ -25,6 +26,7 @@ export async function addNewProduct(req, res) {
 
 
     } catch (error) {
+        console.log(error)
         if (error.name === "MongoServerError") {
             res.status(400).send({
                     message:"schema error ",
