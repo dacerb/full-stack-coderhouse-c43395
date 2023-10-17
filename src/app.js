@@ -33,6 +33,7 @@ import githubRouter from "./routes/view.github.routers.js";
 
 // SERVICIOS
 import passport from "passport";
+import {Server} from "socket.io";
 
 
 // CONFIGURACION DE COOKIES
@@ -117,3 +118,27 @@ const mongoInstance = async () => {
     }
 };
 mongoInstance();
+
+// WEB Socket Server CHAT
+let messages = []
+const socketServer = new Server(httpServer);
+
+socketServer.on('connection', socket => {
+
+    socket.on('message', data => {
+        messages.push(data);
+        socketServer.emit('messageLogs', messages);
+    })
+
+    socket.on('userConnected', data => {
+        socket.broadcast.emit('userConnected', data.user);
+        socketServer.emit('messageLogs', messages);
+    })
+
+    // socket.disconnect()
+    socket.on('closeChat', data => {
+        if (data.close === 'close')
+            socket.disconnect();
+    })
+
+})

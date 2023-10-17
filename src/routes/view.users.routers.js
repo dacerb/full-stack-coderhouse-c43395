@@ -29,4 +29,17 @@ router.get("/", requiredLoginSession, async (req, res) => {
     });
 });
 
+router.get("/chat", requiredLoginSession, async (req, res) => {
+    const sessionUser =  req.session.user;
+    const user = await userManager.getUserByEmail(sessionUser.email)
+    const userDto = new UsersDto(user)
+
+    return res.render('chat_all_user', {
+        style: 'main.css',
+        sessionActive: req.session.user ? true : false,
+        user: userDto,
+        cartId: userDto.cartId
+    });
+});
+
 export default router;
