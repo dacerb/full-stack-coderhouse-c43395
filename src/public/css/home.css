@@ -269,10 +269,97 @@ button#cancelar-compra:hover {
 
 
 .buy-button {
-{
+
     background-color: rgba(127, 255, 0, 0.5);
     color: deeppink;
     padding: .1%;
     border: solid 1px deeppink;
 }
+
+.chat-box {
+    display: flex;
+    margin-top: 50px;
+    margin-left: 10%;
+    width: 80%;
+    height: 50vh;
+    padding: 2%;
+    letter-spacing: 1px;
+    background-color: white;
+    border: solid 1px deeppink;
+}
+
+.chat-box p {
+    color: #333333;
+    font-weight: 200;
+}
+
+
+.chatBox {
+    width: 90%;
+    margin-top: 10px;
+    padding: 5px;
+    font-weight: 900;
+}
+
+
+/* Estilos para centrar el formulario */
+#login-form {
+    text-align: center;
+    margin: 300px auto;
+    max-width: 300px; /* Ajusta el ancho máximo según tus necesidades */
+}
+
+/* Estilos para los elementos del formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para los mensajes y enlaces */
+.message-login {
+    color: #ff0000; /* Color de los mensajes de error, ajusta según tus preferencias */
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+a {
+   text-decoration: none;
+   color: inherit;
 }

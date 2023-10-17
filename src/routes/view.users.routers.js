@@ -12,7 +12,7 @@ router.get("/register/", async (req, res)=> {
 
 router.get("/login/",  async (req, res) => {
     return res.render('login', {
-        style: 'main.css'
+        style: 'home.css'
     });
 });
 
@@ -35,7 +35,7 @@ router.get("/chat", requiredLoginSession, async (req, res) => {
     const userDto = new UsersDto(user)
 
     return res.render('chat_all_user', {
-        style: 'main.css',
+        style: 'home.css',
         sessionActive: req.session.user ? true : false,
         user: userDto,
         cartId: userDto.cartId
