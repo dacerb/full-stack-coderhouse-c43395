@@ -1,6 +1,7 @@
 
 const editButtons = document.querySelectorAll('.editProduct');
 const saveButtons = document.querySelectorAll('.saveProduct');
+const deleteButtons = document.querySelectorAll('.deleteProduct');
 const cancelButtons = document.querySelectorAll('.cancelEdit');
 
 editButtons.forEach(button => {
@@ -36,6 +37,25 @@ saveButtons.forEach(button => {
     });
 });
 
+deleteButtons.forEach(button => {
+    button.addEventListener('click', async (event) => {
+        event.preventDefault();
+        const productId = event.currentTarget.getAttribute('data-product-id');
+        try {
+            const response = await fetch(`http://localhost:8080/api/products/${productId}`, {
+                method: 'DELETE',
+                headers: {}
+            });
+            if (response.ok) {
+                location.reload();
+            } else {
+                console.error('No fue posible eliminar el producto.');
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
+        }
+    });
+});
 
 cancelButtons.forEach(button => {
 button.addEventListener('click', (event) => {
