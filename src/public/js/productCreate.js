@@ -1,6 +1,4 @@
-// script.js
-
-import {ToasteMessag} from "./messageFlash.js";
+const mensajeCreate = document.getElementById("message-create");
 
 function openModal() {
     var modal = document.getElementById("modal-create-product");
@@ -45,16 +43,13 @@ document.getElementById('curlForm').addEventListener('submit', function (event) 
         },
         body: formData
     }).then(response => {
+        console.log(response)
         if (response.ok) {
-            // Procesar la respuesta si es necesario
-            console.log('Solicitud enviada con éxito');
-            ToasteMessag("Se creo el producto!")
-            setTimeout(function() {
-                location.reload();
-            }, 3000);
+            mensajeCreate.textContent = "Solicitud enviada con éxito";
+            location.reload();
         } else {
             console.error('Error al enviar la solicitud');
-            ToasteMessag("No fue posible crear un nuevo producto")
+            mensajeCreate.textContent = "No fue posible crear un nuevo producto, status code:  "+ response.status;
         }
     }).catch(error => {
         console.error('Error al enviar la solicitud CURL', error);
