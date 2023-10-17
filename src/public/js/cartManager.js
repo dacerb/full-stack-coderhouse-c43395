@@ -25,7 +25,18 @@ addToCartButtons.forEach(button => {
 
 
         fetch(url, requestOptions)
-            .then(response => response.text())
+            .then(response => {
+                if ([200].includes(response.status)){
+                    return response.text()
+                }
+                else {
+                    if ([403].includes(response.status)){
+                        ToasteMessag("Tu rol no permite agregar productos al carrito")
+                        throw Error("Tu rol no permite agregar productos al carrito")
+                    }
+                    ToasteMessag("Problemas para agregar al carrito "+ productid)
+                }
+            })
             .then(result => {
                 ToasteMessag("added: "+ productid)
             })

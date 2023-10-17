@@ -16,6 +16,29 @@ export async function  requiredLoginSession(req, res, next){
     }
 }
 
+// requiredRole(['admin'])
+export function requiredRole(allowedRoles, redirectTo) {
+    return (req, res, next) => {
+        const session = req.session.user;
+        console.log("validando session ", session);
+        if (session && session.rol && allowedRoles.includes(session.rol)) {
+            // El rol del usuario tiene acceso permitido
+            return next();
+        } else {
+            // El rol del usuario no tiene acceso permitido, redirigir a la URL especificada
+            if (redirectTo) {
+                return res.redirect(redirectTo);
+            } else {
+                console.log('DENEGADO')
+                return res.status(403).render('access_denied', {
+                    style: 'home.css',
+                    sessionActive: req.session.user ? true : false,
+                    user: req.session.user
+                });
+            }
+        }
+    };
+}
 
 export const generateJWToken = (data, exp_time) => {
     return jwt.sign({data}, PRIVATE_KEY, {expireIn: exp_time})

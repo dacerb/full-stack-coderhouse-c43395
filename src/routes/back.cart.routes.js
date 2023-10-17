@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as CartController from "../controllers/cart.controllers.js";
+import {requiredRole} from "./utils/utils.js";
 
 const router = Router();
 
@@ -7,7 +8,7 @@ const router = Router();
 router.get("/:cid", CartController.getACartById);
 
 // POST add products in a cart
-router.post("/:cid/product/:pid", CartController.addProductInACart);
+router.post("/:cid/product/:pid", requiredRole(['user'], null), CartController.addProductInACart);
 
 // POST create a cart
 router.post("/", CartController.createACart);

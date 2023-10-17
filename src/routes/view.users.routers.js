@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { requiredLoginSession, authToken} from "./utils/utils.js"
+import { requiredLoginSession, authToken, requiredRole } from "./utils/utils.js"
 import { userManager } from '../services/factory.js'
 import UsersDto from '../services/dto/users.dto.js'
 const router = Router();
@@ -29,7 +29,7 @@ router.get("/", requiredLoginSession, async (req, res) => {
     });
 });
 
-router.get("/chat", requiredLoginSession, async (req, res) => {
+router.get("/chat", requiredLoginSession, requiredRole(['user'], null), async (req, res) => {
     const sessionUser =  req.session.user;
     const user = await userManager.getUserByEmail(sessionUser.email)
     const userDto = new UsersDto(user)
