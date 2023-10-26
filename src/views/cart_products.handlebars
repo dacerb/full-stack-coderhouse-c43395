@@ -1,6 +1,10 @@
 <div class="container">
-    <h1> List of products by cart ID: {{ cart_id }} </h1>
-    <h3><a href="http://localhost:8080/products?page=1"> <strong class="WOOP"> Volver a productos </strong></a></h3>
+
+    <div id="buy-main">
+            <h1> List of products by cart ID: <span id="cart_id">{{ cart_id }} </span> <button id="buy-button" class="WOOP buy-button">Comprar</button></h1>
+
+
+    </div>
     <div class="main">
         {{#each data}}
             <div class="card">
@@ -30,4 +34,32 @@
             </div>
         {{/each}}
     </div>
+
 </div>
+
+
+<!-- Modal para mostrar la confirmación de compra -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h2>Compra Exitosa</h2>
+        <p><strong>Descripción:</strong> <span id="modal-description"></span></p>
+        <p><strong>Código:</strong> <span id="modal-code"></span></p>
+        <p><strong>Monto:</strong> <span id="modal-amount"></span></p>
+        <p><strong>Comprador:</strong> <span id="modal-purchaser"></span></p>
+        <p><strong>Fecha de Compra:</strong> <span id="modal-purchase-datetime"></span></p>
+        <button id="ir-a-productos">Ir a Productos</button>
+    </div>
+</div>
+
+<!-- Modal de confirmación de compra -->
+<div id="modal-confirmacion" class="modal">
+    <div class="modal-content">
+        <h2>Confirmación de Compra</h2>
+        <p>¿Deseas realizar la compra?</p>
+        <button id="confirmar-compra">Confirmar</button>
+        <button id="cancelar-compra">Cancelar</button>
+    </div>
+</div>
+
+
+<script src="/js/buyManager.js"></script>

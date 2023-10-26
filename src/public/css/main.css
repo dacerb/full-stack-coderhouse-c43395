@@ -65,3 +65,59 @@ p {
     justify-content: space-between;
 }
 
+
+
+/*
+ profile
+*/
+.profile-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-container {
+    width: 50%;
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.form-field {
+    margin: 10px 0;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    height: 50px;
+}
+
+.welcome-container .welcome-container_text {
+    margin-right: 5px;
+}
+
+.estilo-eliminado {
+    padding: 2px;
+    border: none;
+    outline: none; /* Elimina el contorno al enfocar */
+    text-decoration: none; /* Elimina subrayado */
+}

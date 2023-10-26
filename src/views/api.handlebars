@@ -10,8 +10,8 @@
         {{#each endpoints}}
         <li>
             <p>
-            <strong>{{ path }}</strong>
-            <strong class="{{ verbo }}">{{ verbo }}</strong> - <i>{{ description }}</i>
+                <a href="http://localhost:8080{{path}}" Target="_blank"><strong>{{ path }}</strong></a>
+                <strong class="{{ verbo }}">{{ verbo }}</strong> - <i>{{ description }}</i>
             </p>
             <hr>
         </li>

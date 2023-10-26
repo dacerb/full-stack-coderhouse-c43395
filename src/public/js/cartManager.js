@@ -1,4 +1,4 @@
-console.log('Hola mono')
+import {ToasteMessag} from "./messageFlash.js";
 
 var raw = "";
 
@@ -11,7 +11,7 @@ var requestOptions = {
 
 const cartID = document.getElementById("cartId");
 const addToCartButtons = document.querySelectorAll(".addToCart");
-const ALERT = document.getElementById("ALERT");
+// const ALERT = document.getElementById("ALERT");
 
 // Agrega un evento de clic a cada botón
 addToCartButtons.forEach(button => {
@@ -19,29 +19,28 @@ addToCartButtons.forEach(button => {
         // Este código se ejecutará cuando se haga clic en un botón "addToCart"
         const productid = button.id;
         const cartId = cartID.textContent
-        console.log(cartId)
+
 
         const url = "http://localhost:8080/api/cart/"+cartId+"/product/"+productid
 
-        console.log(url)
+
         fetch(url, requestOptions)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result)
-                const elemento = document.createElement("li");
-                elemento.textContent = "added: "+ productid
-                elemento.id = productid
-                ALERT.appendChild(elemento)
-
-                setTimeout(() => {
-                    const elementoAEliminar = document.getElementById(productid);
-                    if (elementoAEliminar) {
-                        ALERT.removeChild(elementoAEliminar);
+            .then(response => {
+                if ([200].includes(response.status)){
+                    return response.text()
+                }
+                else {
+                    if ([403].includes(response.status)){
+                        ToasteMessag("Tu rol no permite agregar productos al carrito")
+                        throw Error("Tu rol no permite agregar productos al carrito")
                     }
-                }, 3000); // 5000 ms = 5 segundos
-
+                    ToasteMessag("Problemas para agregar al carrito "+ productid)
+                }
             })
-            .catch(error => console.log('error', error));
+            .then(result => {
+                ToasteMessag("added: "+ productid)
+            })
+            .catch(error => console.error('error', error));
 
 
 

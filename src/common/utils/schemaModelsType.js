@@ -4,15 +4,33 @@ const stringTypeSchemaUniqueRequired = {
     required: true
 };
 
+const stringEmailTypeSchemaUniqueRequired = {
+    type: String,
+    required: true,
+    unique: true,
+};
+
+const stringEmailTypeSchemaRequired = {
+    type: String,
+    required: true,
+};
+
 const stringTypeSchemaNonUniqueRequired = {
     type: String,
     required: true
+};
+
+const stringTypeSchemaNonUniqueRequiredRoleDefaultUser = {
+    type: String,
+    enum: ['user', 'admin'],
+    default: 'user',
 };
 
 const numberTypeSchemaNonUniqueRequired = {
     type: Number,
     required: true
 };
+
 
 const booleanTypeSchemaNonUniqueRequired = {
     type: Boolean,
@@ -25,11 +43,21 @@ const arrayTypeSchemaNonUniqueRequired = {
     required: true
 };
 
+const datetimeRequiredDefaultNow = {
+        type: Date,
+        required: true,
+        default: Date.now
+};
+
 
 export {
     arrayTypeSchemaNonUniqueRequired,
     numberTypeSchemaNonUniqueRequired,
     stringTypeSchemaNonUniqueRequired,
     stringTypeSchemaUniqueRequired,
-    booleanTypeSchemaNonUniqueRequired
+    booleanTypeSchemaNonUniqueRequired,
+    stringEmailTypeSchemaUniqueRequired,
+    stringEmailTypeSchemaRequired,
+    datetimeRequiredDefaultNow,
+    stringTypeSchemaNonUniqueRequiredRoleDefaultUser
 };

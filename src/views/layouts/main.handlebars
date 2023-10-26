@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>API Documentation</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/{{{style}}}">
+    <title>API Documentation</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/{{{style}}}">
 </head>
 <body>
-      {{{body}}}
+
+{{#if sessionActive}}
+
+    <div class="welcome-container {{user.rol}}">
+
+        <div class="welcome-container_text">
+            <div class="welcome-container_btn">
+                <button id="user_identity" disabled class="estilo-eliminado">Iniciado con: {{user.first_name}}</button>
+                <button id=""><a href="/users/chat">chat</a></button>
+                <button id=""><a href="/products">productos</a></button>
+                <button id=""><a href="http://localhost:8080/cart/{{cartId}}">carrito</a></button>
+                <button id=""><a href="/users">mi perfil</a></button>
+                <button id="logout-btn">cerrar sesion {{user.first_name}} </button>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+<div class="alert_container">
+    <lu id="ALERT"></lu>
+</div>
+
+{{{body}}}
+<script src="/js/logout.js"></script>
 </body>
 </html>

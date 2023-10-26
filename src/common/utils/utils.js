@@ -2,6 +2,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { copyFileSync } from 'fs';
 import multer from 'multer';
+import bcrypt from 'bcrypt'
 
 const __filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(__filename)
@@ -11,7 +12,7 @@ const removeStringForMacOS = '/common/utils';
 let __dirnameCleanPath
 
 __dirnameCleanPath = _dirname.replace(new RegExp(removeStringForWindows), '');
-__dirnameCleanPath = _dirname.replace(new RegExp(removeStringForMacOS), '');
+__dirnameCleanPath = __dirnameCleanPath.replace(new RegExp(removeStringForMacOS), '');
 
 const __dirname = __dirnameCleanPath
 
@@ -41,3 +42,27 @@ export const uploaderThumbnails = multer({
         next();
     }
 });
+
+export const createHash = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+
+export const isValidPassword = (user, password) => {
+        return bcrypt.compareSync(password, user.password);
+    };
+
+export const  radomString = (length) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+    }
+    return result;
+}
+
+export const codeGenerator = () => {
+    const timestamp = new Date().getTime();
+    const code = `CODE_${timestamp}`;
+
+    return code;
+}
