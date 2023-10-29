@@ -43,7 +43,7 @@ export async function addNewProduct(req, res, next) {
     }
 }
 
-export async function deleteProductById(req, res) {
+export async function deleteProductById(req, res, next) {
 
     let { pid } = req.params;
     const id = pid;
@@ -75,7 +75,7 @@ export async function deleteProductById(req, res) {
     );
 }
 
-export async function updateProductById(req, res) {
+export async function updateProductById(req, res, next) {
 
     let { pid } = req.params;
     const id = pid;
@@ -112,7 +112,7 @@ export async function updateProductById(req, res) {
     );
 }
 
-export async function getProducts(req, res) {
+export async function getProducts(req, res, next) {
 
     const { limit } = req.query;
     const all_products = await productManager.getProducts();
@@ -136,7 +136,7 @@ export async function getProducts(req, res) {
     );
 }
 
-export async function getProductsQuery(req, res) {
+export async function getProductsQuery(req, res, next) {
     const query = req.query;
 
     const options = {
@@ -163,7 +163,7 @@ export async function getProductsQuery(req, res) {
     })
 }
 
-export async function getProductById(req, res) {
+export async function getProductById(req, res, next) {
 
     let { pid } = req.params;
     const id = pid;
