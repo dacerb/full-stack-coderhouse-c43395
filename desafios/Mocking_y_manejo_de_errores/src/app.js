@@ -23,6 +23,7 @@ import __dirname from './common/utils/utils.js';
 import productsRoutes from './routes/back.products.routes.js';
 import cartRoutes from './routes/back.cart.routes.js';
 import userRouter from "./routes/back.user.routers.js";
+import mockingProductsRouter from "./routes/back.mocking.products.router.js";
 
 import homeRoutes from './routes/view.home.routes.js';
 import cartViewRoutes from "./routes/view.cart.routes.js";
@@ -102,6 +103,7 @@ app.use('/cart', cartViewRoutes);
 app.use('/products', productsViewRoutes);
 app.use('/users', userViewRoutes);
 app.use('/github', githubRouter);
+app.use('/mockingproducts', mockingProductsRouter);
 app.use('/', apiViewRoutes);
 
 // ------------------------ RUN APP
