@@ -1,8 +1,11 @@
 import { productManager } from "../services/factory.js";
+import CustomError from "../services/errors/custom.error.js";
+import EErrors from "../services/errors/errors.enum.js";
+import {ProductsErrMessage} from "../services/errors/messages/products.error.message.js";
 
 
 // API BACK
-export async function addNewProduct(req, res) {
+export async function addNewProduct(req, res, next) {
 
     if (!req.files.length > 0) {
         return res.status(400).send(JSON.stringify({ status: "error", mensaje: "you must attach image files." }, null, 4));
@@ -12,8 +15,7 @@ export async function addNewProduct(req, res) {
     })
 
     try {
-        console.log(req.body)
-        console.log(filesPath)
+
         let new_product = await productManager.addProduct({
             thumbnail: filesPath,
             ...req.body
@@ -26,17 +28,16 @@ export async function addNewProduct(req, res) {
 
 
     } catch (error) {
-        console.log(error)
         if (error.name === "MongoServerError") {
-            res.status(400).send({
-                    message:"schema error ",
-                    error: error
-                });
+            CustomError.create({
+                name: "MongoServerError",
+                cause: ProductsErrMessage.schemmaError({thumbnail: filesPath, ...req.body}),
+                message: "Problems with the schema data",
+                code: EErrors.INVALID_TYPES_ERROR,
+            }, next)
+
         } else {
-            res.status(500).send({
-                    message: "internal server error",
-                    error: error
-                });
+            next(error)
         }
 
     }
@@ -72,7 +73,7 @@ export async function deleteProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-};
+}
 
 export async function updateProductById(req, res) {
 
@@ -109,7 +110,7 @@ export async function updateProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-};
+}
 
 export async function getProducts(req, res) {
 
@@ -133,7 +134,7 @@ export async function getProducts(req, res) {
             data: all_products
         }, null, 4)
     );
-};
+}
 
 export async function getProductsQuery(req, res) {
     const query = req.query;
@@ -160,7 +161,7 @@ export async function getProductsQuery(req, res) {
         payload: documents,
         ...keys
     })
-};
+}
 
 export async function getProductById(req, res) {
 
@@ -188,6 +189,4 @@ export async function getProductById(req, res) {
             "message": "the id parameter must be a positive integer."
         }, null, 4)
     );
-};
-
-
+}
