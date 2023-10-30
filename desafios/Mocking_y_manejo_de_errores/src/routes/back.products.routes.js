@@ -20,7 +20,7 @@ router.put("/:pid", uploaderThumbnails.array('thumbnails'), requiredRole(['admin
 router.delete("/:pid", requiredRole(['admin'], null), ProductController.deleteProductById);
 
 // POST create new product
-router.post("/", uploaderThumbnails.array('thumbnails'),  ProductController.addNewProduct);
+router.post("/", uploaderThumbnails.array('thumbnails'),  requiredRole(['admin'], null),  ProductController.addNewProduct);
 
 router.use(errorHandler)
 

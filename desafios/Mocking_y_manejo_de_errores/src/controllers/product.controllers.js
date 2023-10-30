@@ -32,7 +32,7 @@ export async function addNewProduct(req, res, next) {
             CustomError.create({
                 name: "MongoServerError",
                 cause: ProductsErrMessage.schemmaError({thumbnail: filesPath, ...req.body}),
-                message: "Problems with the schema data",
+                message: error.message,
                 code: EErrors.INVALID_TYPES_ERROR,
             }, next)
 
@@ -44,7 +44,6 @@ export async function addNewProduct(req, res, next) {
 }
 
 export async function deleteProductById(req, res, next) {
-
     let { pid } = req.params;
     const id = pid;
 
@@ -68,11 +67,12 @@ export async function deleteProductById(req, res, next) {
 
     }
 
-    res.status(400).send(
-        JSON.stringify({
-            "message": "the id parameter must be a positive integer."
-        }, null, 4)
-    );
+    CustomError.create({
+        name: "deleteProductById Error",
+        cause: "the id parameter must be a positive integer.",
+        message: "Problems with the products ID <pid>",
+        code: EErrors.INVALID_TYPES_ERROR,
+    }, next)
 }
 
 export async function updateProductById(req, res, next) {
@@ -105,11 +105,13 @@ export async function updateProductById(req, res, next) {
         );
     }
 
-    res.status(400).send(
-        JSON.stringify({
-            "message": "the id parameter must be a positive integer."
-        }, null, 4)
-    );
+    CustomError.create({
+        name: "updateProductById",
+        cause: "the id parameter must be a positive integer.",
+        message: "the id parameter must be a positive integer.",
+        code: EErrors.INVALID_TYPES_ERROR,
+    }, next)
+
 }
 
 export async function getProducts(req, res, next) {
@@ -184,9 +186,11 @@ export async function getProductById(req, res, next) {
         });
     }
 
-    return res.status(400).send(
-        JSON.stringify({
-            "message": "the id parameter must be a positive integer."
-        }, null, 4)
-    );
+    CustomError.create({
+        name: "updateProductById",
+        cause: "the id parameter must be a positive integer.",
+        message: "the id parameter must be a positive integer.",
+        code: EErrors.INVALID_TYPES_ERROR,
+    }, next)
+
 }

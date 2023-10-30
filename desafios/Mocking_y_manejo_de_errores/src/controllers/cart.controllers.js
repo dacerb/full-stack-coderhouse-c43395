@@ -1,9 +1,12 @@
 import { ticketManager, cartManager, userManager, productManager } from "../services/factory.js";
 import { codeGenerator } from "../common/utils/utils.js";
+import CustomError from "../services/errors/custom.error.js";
+import {ProductsErrMessage} from "../services/errors/messages/products.error.message.js";
+import EErrors from "../services/errors/errors.enum.js";
 
 
 // API BACK
-export async function getACartById(req, res) {
+export async function getACartById(req, res, next) {
     let { cid } = req.params;
     try {
         const response = await  cartManager.getCartById(cid);
@@ -26,7 +29,7 @@ export async function getACartById(req, res) {
         }
 }
 
-export async function addProductInACart(req, res) {
+export async function addProductInACart(req, res, next) {
 
     let { cid, pid } = req.params;
     const cartId = cid;
@@ -64,16 +67,16 @@ export async function addProductInACart(req, res) {
                 error: error.message
             });
         }
-
-
-        return  res.status(500).send({
-                message: "internal server error.",
-                error: error
-        });
+        CustomError.create({
+            name: "addProductInACart Error",
+            cause: "unknow",
+            message: error.message,
+            code: EErrors.INTERNAL_ERROR,
+        }, next)
     }
 }
 
-export async function createACart(req, res) {
+export async function createACart(req, res, next) {
     const response = await  cartManager.createCart();
     res.send({
         message: "success",
@@ -81,7 +84,7 @@ export async function createACart(req, res) {
     })
 }
 
-export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
+export async function updateProductQtyFromCartByCartIdAndProductId(req, res, next) {
     let { cid, pid } = req.params;
     let { qty } = req.body;
 
@@ -113,14 +116,16 @@ export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
                 message: message
             })
         }
-        return res.status(500).send({
-            message: "Internal server error",
-            error: error
-        })
+        CustomError.create({
+            name: "updateProductQtyFromCartByCartIdAndProductId Error",
+            cause: "unknow",
+            message: error.message,
+            code: EErrors.INTERNAL_ERROR,
+        }, next)
     }
 }
 
-export async function updateAllProductsFromCartByCartId(req, res) {
+export async function updateAllProductsFromCartByCartId(req, res, next) {
     let { cid } = req.params;
     let products = req.body;
     try {
@@ -136,14 +141,16 @@ export async function updateAllProductsFromCartByCartId(req, res) {
                 message: message
             })
         }
-        return res.status(500).send({
-            message: "Internal server error",
-            error: error
-        })
+        CustomError.create({
+            name: "updateAllProductsFromCartByCartId Error",
+            cause: "unknow",
+            message: error.message,
+            code: EErrors.INTERNAL_ERROR,
+        }, next)
     }
 }
 
-export async function deleteProductFromCartByPIdAndCartId(req, res) {
+export async function deleteProductFromCartByPIdAndCartId(req, res, next) {
     let { cid, pid } = req.params;
     try {
         const response = await  cartManager.deleteProductFromCartByPIdAndCartId(cid, pid);
@@ -158,14 +165,16 @@ export async function deleteProductFromCartByPIdAndCartId(req, res) {
                 message: message
             })
         }
-        return res.status(500).send({
-            message: "Internal server error",
-            error: error
-        })
+        CustomError.create({
+            name: "deleteProductFromCartByPIdAndCartId Error",
+            cause: "unknow",
+            message: error.message,
+            code: EErrors.INTERNAL_ERROR,
+        }, next)
     }
 }
 
-export async function deleteAllProductFromCartByCartId(req, res) {
+export async function deleteAllProductFromCartByCartId(req, res, next) {
     let { cid } = req.params;
     try {
         const response = await  cartManager.deleteAllProductFromCartByCartId(cid);
@@ -180,14 +189,16 @@ export async function deleteAllProductFromCartByCartId(req, res) {
                 message: message
             })
         }
-        return res.status(500).send({
-            message: "Internal server error",
-            error: error
-        })
+        CustomError.create({
+            name: "deleteAllProductFromCartByCartId Error",
+            cause: "unknow",
+            message: error.message,
+            code: EErrors.INTERNAL_ERROR,
+        }, next)
     }
 }
 
-export async function registerPurchase(req, res) {
+export async function registerPurchase(req, res, next) {
     let response = null
     let userSession = req.session;  // Me sirve para validar el usuario que genero el Request y validar la accion como primara opcion
     let { cid } = req.params;
@@ -250,6 +261,7 @@ export async function registerPurchase(req, res) {
         });
 
     } catch (error) {
+        
         console.log(error)
         if (error.name === 'cartNotFound') {
             const { message } = error;
@@ -257,9 +269,13 @@ export async function registerPurchase(req, res) {
                 message: message
             });
         }
-        return res.status(500).send({
-            message: "Error interno del servidor",
-            error: error
-        });
+
+        CustomError.create({
+            name: "registerPurchase Error",
+            cause: "unknow",
+            message: error.message,
+            code: EErrors.INTERNAL_ERROR,
+        }, next)
+        
     }
 }
