@@ -6,7 +6,7 @@ import {ProductsErrMessage} from "../services/errors/messages/products.error.mes
 
 // API BACK
 export async function addNewProduct(req, res, next) {
-
+    const { logger } = req
     if (!req.files.length > 0) {
         return res.status(400).send(JSON.stringify({ status: "error", mensaje: "you must attach image files." }, null, 4));
     }
@@ -29,6 +29,7 @@ export async function addNewProduct(req, res, next) {
 
     } catch (error) {
         if (error.name === "MongoServerError") {
+            logger.warning(error)
             CustomError.create({
                 name: "MongoServerError",
                 cause: ProductsErrMessage.schemmaError({thumbnail: filesPath, ...req.body}),
@@ -37,6 +38,7 @@ export async function addNewProduct(req, res, next) {
             }, next)
 
         } else {
+            logger.error(error)
             next(error)
         }
 

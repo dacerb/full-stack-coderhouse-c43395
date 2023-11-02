@@ -6,6 +6,7 @@ const router = Router();
 
 // GET Render WEB HTML CART
 router.get("/:cid", requiredLoginSession, async(req, res) => {
+    const { logger } = req
     let {cid} = req.params;
     const user = req.session.user;
     try {
@@ -26,6 +27,7 @@ router.get("/:cid", requiredLoginSession, async(req, res) => {
             style: 'home.css'
         });
     } catch (error) {
+        logger.error(error)
         res.render('error',
             {
                 error: JSON.stringify(error)
