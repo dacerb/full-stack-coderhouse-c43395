@@ -91,7 +91,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Logs de las consultas a los endpoints
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 // Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());

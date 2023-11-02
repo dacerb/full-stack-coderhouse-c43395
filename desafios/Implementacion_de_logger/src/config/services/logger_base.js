@@ -14,13 +14,13 @@ const customLevelsOptions = {
         http: 4,
         debug: 5
     },
-    colors: {
-        fatal: 'red',
-        error: 'orange',
-        warning: 'yellow',
+    colors: { // https://michaelheap.com/winston-3-upgrade-colors/
+        fatal: 'bold inverse red',
+        error: 'bold red',
+        warning: 'inverse yellow',
         info: 'blue',
-        http: 'green',
-        debug: 'white'
+        http: 'white',
+        debug: 'rainbow'
     }
 };
 
@@ -42,6 +42,8 @@ const devLogger = winston.createLogger({
     ]
 });
 
+
+devLogger.error({message :'Logger error request: /loggertest'})
 //Creating our logger:
 const prodLogger = winston.createLogger({
     levels: customLevelsOptions.levels,
