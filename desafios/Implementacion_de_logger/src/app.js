@@ -24,6 +24,7 @@ import productsRoutes from './routes/back.products.routes.js';
 import cartRoutes from './routes/back.cart.routes.js';
 import userRouter from "./routes/back.user.routers.js";
 import mockingProductsRouter from "./routes/back.mocking.products.router.js";
+import loggerTestRouter from "./routes/back.logger.test.router.js"
 
 import homeRoutes from './routes/view.home.routes.js';
 import cartViewRoutes from "./routes/view.cart.routes.js";
@@ -104,6 +105,7 @@ app.use('/products', productsViewRoutes);
 app.use('/users', userViewRoutes);
 app.use('/github', githubRouter);
 app.use('/mockingproducts', mockingProductsRouter);
+app.use('/loggerTest', loggerTestRouter);
 app.use('/', apiViewRoutes);
 
 // ------------------------ RUN APP
