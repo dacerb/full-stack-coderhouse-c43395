@@ -3,7 +3,6 @@ import cartManager from "../dao/selectedCartDb.js";
 
 // API BACK
 export async function getACartById(req, res) {
-    const { logger } = req
     let { cid } = req.params;
     try {
         const response = await  cartManager.getCartById(cid);
@@ -14,15 +13,12 @@ export async function getACartById(req, res) {
     }
     catch (error) {
             if (error.name === 'cartNotFound') {
-                logger.warning({getACartById: error})
 
                 const {message} = error
                 return res.status(404).send({
                     message: message
                 })
             }
-            logger.error({getACartById: error})
-            logger.fatal({getACartById: error})
             return res.status(500).send({
                 message: "Internal server error",
                 error: error
@@ -31,7 +27,6 @@ export async function getACartById(req, res) {
 }
 
 export async function addProductInACart(req, res) {
-    const { logger } = req
     let { cid, pid } = req.params;
     const cartId = cid;
     const productId = pid;
@@ -63,16 +58,12 @@ export async function addProductInACart(req, res) {
         );
     }catch (error) {
         if (error.name ==='productNotExit') {
-            logger.warning({addProductInACart: error})
-
             return  res.status(404).send({
                 message: "the product must be exist",
                 error: error.message
             });
         }
 
-        logger.error({addProductInACart: error})
-        logger.fatal({addProductInACart: error})
         return  res.status(500).send({
                 message: "internal server error.",
                 error: error
@@ -89,7 +80,6 @@ export async function createACart(req, res) {
 }
 
 export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
-    const { logger } = req
     let { cid, pid } = req.params;
     let { qty } = req.body;
 
@@ -110,23 +100,18 @@ export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
 
     }catch (error) {
         if (error.name === 'cartNotFound') {
-            logger.warning({updateProductQtyFromCartByCartIdAndProductId: error})
             const {message} = error
             return res.status(404).send({
                 message: message
             })
         }
         if (error.name === 'qtyError') {
-            logger.warning({updateProductQtyFromCartByCartIdAndProductId: error})
-
             const {message} = error
             return res.status(404).send({
                 message: message
             })
         }
 
-        logger.error({updateProductQtyFromCartByCartIdAndProductId: error})
-        logger.fatal({updateProductQtyFromCartByCartIdAndProductId: error})
         return res.status(500).send({
             message: "Internal server error",
             error: error
@@ -135,7 +120,6 @@ export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
 }
 
 export async function updateAllProductsFromCartByCartId(req, res) {
-    const { logger } = req
     let { cid } = req.params;
     let products = req.body;
 
@@ -147,16 +131,12 @@ export async function updateAllProductsFromCartByCartId(req, res) {
         })
     }catch (error) {
         if (error.name === 'cartNotFound') {
-            logger.warning({updateAllProductsFromCartByCartId: error})
-
             const {message} = error
             return  res.status(404).send({
                 message: message
             })
         }
 
-        logger.error({updateAllProductsFromCartByCartId: error})
-        logger.fatal({updateAllProductsFromCartByCartId: error})
         return res.status(500).send({
             message: "Internal server error",
             error: error
@@ -165,7 +145,6 @@ export async function updateAllProductsFromCartByCartId(req, res) {
 }
 
 export async function deleteProductFromCartByPIdAndCartId(req, res) {
-    const { logger } = req
     let { cid, pid } = req.params;
     try {
         const response = await  cartManager.deleteProductFromCartByPIdAndCartId(cid, pid);
@@ -175,15 +154,12 @@ export async function deleteProductFromCartByPIdAndCartId(req, res) {
         })
     }catch (error) {
         if (error.name === 'cartNotFound') {
-            logger.warning({deleteProductFromCartByPIdAndCartId: error})
             const {message} = error
             return  res.status(404).send({
                 message: message
             })
         }
 
-        logger.error({deleteProductFromCartByPIdAndCartId: error})
-        logger.fatal({deleteProductFromCartByPIdAndCartId: error})
         return res.status(500).send({
             message: "Internal server error",
             error: error
@@ -192,7 +168,6 @@ export async function deleteProductFromCartByPIdAndCartId(req, res) {
 }
 
 export async function deleteAllProductFromCartByCartId(req, res) {
-    const { logger } = req
     let { cid } = req.params;
     try {
         const response = await  cartManager.deleteAllProductFromCartByCartId(cid);
@@ -202,15 +177,12 @@ export async function deleteAllProductFromCartByCartId(req, res) {
         });
     }catch (error) {
         if (error.name === 'cartNotFound') {
-            logger.warning({deleteAllProductFromCartByCartId: error})
             const {message} = error
             return  res.status(404).send({
                 message: message
             })
         }
 
-        logger.error({deleteAllProductFromCartByCartId: error})
-        logger.fatal({deleteAllProductFromCartByCartId: error})
         return res.status(500).send({
             message: "Internal server error",
             error: error
