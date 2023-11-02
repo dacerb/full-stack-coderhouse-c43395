@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import MongoStore from "connect-mongo";
 import session from 'express-session';
 import default_config from './config/config.js'
+import { addLogger } from "./config/services/logger_base.js";
+
 // CONSTANTES
 const app = express();
 const PORT = default_config.port;
@@ -89,11 +91,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Logs de las consultas a los endpoints
-app.use(morgan("dev"));
+// app.use(morgan("dev"));
 
 // Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(addLogger)
 
 // Configuracion de rutas de acceso
 app.use('/api/products', productsRoutes);
