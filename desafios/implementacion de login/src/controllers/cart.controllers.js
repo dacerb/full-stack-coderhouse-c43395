@@ -13,6 +13,7 @@ export async function getACartById(req, res) {
     }
     catch (error) {
             if (error.name === 'cartNotFound') {
+
                 const {message} = error
                 return res.status(404).send({
                     message: message
@@ -26,7 +27,6 @@ export async function getACartById(req, res) {
 }
 
 export async function addProductInACart(req, res) {
-
     let { cid, pid } = req.params;
     const cartId = cid;
     const productId = pid;
@@ -63,7 +63,6 @@ export async function addProductInACart(req, res) {
                 error: error.message
             });
         }
-
 
         return  res.status(500).send({
                 message: "internal server error.",
@@ -112,6 +111,7 @@ export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
                 message: message
             })
         }
+
         return res.status(500).send({
             message: "Internal server error",
             error: error
@@ -122,6 +122,7 @@ export async function updateProductQtyFromCartByCartIdAndProductId(req, res) {
 export async function updateAllProductsFromCartByCartId(req, res) {
     let { cid } = req.params;
     let products = req.body;
+
     try {
         const response = await  cartManager.updateAllProductsFromCartByCartId(cid, products);
         return res.status(200).send({
@@ -135,6 +136,7 @@ export async function updateAllProductsFromCartByCartId(req, res) {
                 message: message
             })
         }
+
         return res.status(500).send({
             message: "Internal server error",
             error: error
@@ -157,6 +159,7 @@ export async function deleteProductFromCartByPIdAndCartId(req, res) {
                 message: message
             })
         }
+
         return res.status(500).send({
             message: "Internal server error",
             error: error
@@ -179,6 +182,7 @@ export async function deleteAllProductFromCartByCartId(req, res) {
                 message: message
             })
         }
+
         return res.status(500).send({
             message: "Internal server error",
             error: error
