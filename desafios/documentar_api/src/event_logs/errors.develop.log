@@ -29,3 +29,5 @@
 {"level":"fatal","message":"Logger fatal"}
 {"level":"error","message":"Logger error request: /loggertest"}
 {"level":"fatal","message":"Logger fatal"}
+{"level":"error","message":"Logger error request: /loggertest"}
+{"level":"fatal","message":"Logger fatal"}
