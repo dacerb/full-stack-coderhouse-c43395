@@ -1,0 +1,134 @@
+
+
+tags:
+  - name: "Carts"
+    description: "Operaciones relacionadas con carritos de compras"
+
+paths:
+  /api/cart/{cid}:
+    get:
+      tags:
+        - "Carts"
+      summary: "Obtener detalles del carrito de compras"
+      parameters:
+        - name: "cid"
+          in: "path"
+          description: "ID del carrito de compras"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "success"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                example: "success"
+              response:
+                $ref: "#/definitions/CartResponse"
+        404:
+          description: "not Found"
+        500:
+          description: "Internal server error"
+    delete:
+      tags:
+        - "Carts"
+      summary: "Eliminar productos del carrito"
+      parameters:
+        - name: "cid"
+          in: "path"
+          description: "ID del carrito de compras"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Operación exitosa"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                example: "success"
+              result:
+                $ref: "#/definitions/CartResponse"
+    put:
+      tags:
+        - "Carts"
+      summary: "Actualizar productos en el carrito"
+      parameters:
+        - name: "cid"
+          in: "path"
+          description: "ID del carrito de compras"
+          required: true
+          type: "string"
+      consumes:
+        - "application/json"
+      requestBody:
+        description: "Lista de productos a actualizar en el carrito"
+        required: true
+        content:
+          application/json:
+            schema:
+              type: "array"
+              items:
+                $ref: "#/definitions/CartItem"
+      responses:
+        200:
+          description: "Operación exitosa"
+          schema:
+            $ref: "#/definitions/CartResponse"
+  /api/cart:
+    post:
+      tags:
+        - "Carts"
+      summary: "Crear un nuevo carrito de compras"
+      responses:
+        200:
+          description: "Operación exitosa"
+          schema:
+            type: "object"
+            properties:
+              message:
+                type: "string"
+                example: "success"
+              result:
+                $ref: "#/definitions/CartResponse"
+
+
+
+
+
+## COMPONENTS
+definitions:
+  CartItem:
+    type: "object"
+    properties:
+      productId:
+        type: "string"
+        example: "652d699848399856ada1d63a"
+      qty:
+        type: "integer"
+        example: 100
+
+  CartResponse:
+    type: "object"
+    properties:
+      _id:
+        type: "string"
+        example: "655df2b6026dc5321a8eb7ba"
+      products:
+        type: "array"
+        items: { }
+        example: [ ]
+      createdAt:
+        type: "string"
+        format: "date-time"
+        example: "2023-11-22T12:23:18.222Z"
+      updatedAt:
+        type: "string"
+        format: "date-time"
+        example: "2023-11-22T12:23:18.222Z"
+      __v:
+        type: "integer"
+        example: 0
