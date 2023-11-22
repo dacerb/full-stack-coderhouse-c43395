@@ -18,7 +18,7 @@ paths:
           type: "string"
       responses:
         200:
-          description: "success"
+          description: "Operación exitosa"
           schema:
             type: "object"
             properties:
@@ -28,9 +28,9 @@ paths:
               response:
                 $ref: "#/definitions/CartResponse"
         404:
-          description: "not Found"
+          description: "No encontrado"
         500:
-          description: "Internal server error"
+          description: "Error interno"
     delete:
       tags:
         - "Carts"
@@ -52,6 +52,10 @@ paths:
                 example: "success"
               result:
                 $ref: "#/definitions/CartResponse"
+        404:
+          description: "No encontrado"
+        500:
+          description: "Error interno"
     put:
       tags:
         - "Carts"
@@ -78,6 +82,10 @@ paths:
           description: "Operación exitosa"
           schema:
             $ref: "#/definitions/CartResponse"
+        404:
+          description: "No encontrado"
+        500:
+          description: "Error interno"
   /api/cart:
     post:
       tags:
@@ -94,7 +102,103 @@ paths:
                 example: "success"
               result:
                 $ref: "#/definitions/CartResponse"
-
+        404:
+          description: "No encontrado"
+        500:
+          description: "Error interno"
+  /api/cart/{cid}/purchase:
+    post:
+      tags:
+        - Carts
+      summary: Realizar una compra
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          type: string
+          description: ID del carrito de compras
+      responses:
+        200:
+          description: Respuesta exitosa
+          schema:
+            $ref: '#/definitions/PurchaseResponse'
+        404:
+          description: "No encontrado"
+        500:
+          description: "Error interno"
+  /api/cart/{cid}/product/{pid}:
+    post:
+      tags:
+        - CartProduct
+      summary: Agregar producto al carrito
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          type: string
+          description: ID del carrito de compras
+        - name: pid
+          in: path
+          required: true
+          type: string
+          description: ID del producto
+      responses:
+        200:
+          description: Producto agregado exitosamente al carrito
+          schema:
+            $ref: '#/definitions/CartProductResponse'
+        403:
+          description: Acceso denegado
+          schema:
+            $ref: '#/definitions/AccessDeniedResponse'
+  /api/cart/{cid}/products/{pid}:
+    put:
+      tags:
+        - CartProduct
+      summary: Actualizar cantidad de producto en el carrito
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          type: string
+          description: ID del carrito de compras
+        - name: pid
+          in: path
+          required: true
+          type: string
+          description: ID del producto
+      requestBody:
+        description: Cantidad a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/UpdateProductQuantity'
+      responses:
+        200:
+          description: Cantidad de producto actualizada exitosamente
+          schema:
+            $ref: '#/definitions/UpdateProductQuantityResponse'
+    delete:
+      tags:
+        - CartProduct
+      summary: Eliminar producto del carrito
+      parameters:
+        - name: cid
+          in: path
+          required: true
+          type: string
+          description: ID del carrito de compras
+        - name: pid
+          in: path
+          required: true
+          type: string
+          description: ID del producto
+      responses:
+        200:
+          description: Producto eliminado exitosamente del carrito
+          schema:
+            $ref: '#/definitions/DeleteProductResponse'
 
 
 
@@ -110,7 +214,6 @@ definitions:
       qty:
         type: "integer"
         example: 100
-
   CartResponse:
     type: "object"
     properties:
@@ -132,3 +235,206 @@ definitions:
       __v:
         type: "integer"
         example: 0
+  PurchaseDetails:
+    type: object
+    properties:
+      description:
+        type: string
+        example: 'Sonor SQ2 Chocolate ($ 1980 x 1)'
+      code:
+        type: string
+        example: CODE_1700692629784
+      amount:
+        type: number
+        example: 1980
+      purchaser:
+        type: string
+        example: a@a.com
+      _id:
+        type: string
+        example: '655e8295c40bc239861aec50'
+      purchase_datetime:
+        type: string
+        format: date-time
+        example: '2023-11-22T22:37:09.979Z'
+      createdAt:
+        type: string
+        format: date-time
+        example: '2023-11-22T22:37:09.980Z'
+      updatedAt:
+        type: string
+        format: date-time
+        example: '2023-11-22T22:37:09.980Z'
+      __v:
+        type: integer
+        example: 0
+  PurchaseResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: success
+      response:
+        $ref: '#/definitions/PurchaseDetails'
+  CartProductResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: success
+      response:
+        $ref: '#/definitions/CartProductDetails'
+  CartProductDetails:
+    type: object
+    properties:
+      description:
+        type: string
+        example: 'Producto añadido al carrito'
+      product_id:
+        type: string
+        example: '655e8295c40bc239861aec51'
+      cart_id:
+        type: string
+        example: '655e8295c40bc239861aec50'
+      quantity:
+        type: integer
+        example: 1
+      added_at:
+        type: string
+        format: date-time
+        example: '2023-11-22T22:45:00.000Z'
+  AccessDeniedResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: 'Acceso denegado'
+      error_code:
+        type: string
+        example: 'ACCESS_DENIED'
+  UpdateProductQuantity:
+    type: object
+    properties:
+      qty:
+        type: integer
+        example: 19
+  UpdateProductQuantityResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: success
+      result:
+        $ref: '#/definitions/CartProductDetails'
+
+    CartProductDetails2:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: '652df8458f913d053e35495b'
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: string
+                example: '652d69d748399856ada1d640'
+              qty:
+                type: integer
+                example: 19
+              _id:
+                type: string
+                example: '655e876558f5986930b1eec5'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2023-10-17T02:58:13.527Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2023-11-22T23:03:05.914Z'
+        __v:
+          type: integer
+          example: 6
+  DeleteProductResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: success
+      result:
+        $ref: '#/definitions/CartProductDetails'
+
+    CartProductDetails:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: '652df8458f913d053e35495b'
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: '652d69d748399856ada1d640'
+                  title:
+                    type: string
+                    example: 'Sonor SQ2 Chocolate'
+                  description:
+                    type: string
+                    example: 'Rock pro'
+                  code:
+                    type: string
+                    example: 'CH1213'
+                  price:
+                    type: number
+                    example: 1980
+                  status:
+                    type: boolean
+                    example: true
+                  stock:
+                    type: integer
+                    example: 996
+                  category:
+                    type: string
+                    example: 'drum'
+                  thumbnail:
+                    type: array
+                    items:
+                      type: string
+                      example: 'D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1698636264259-1697241378308-1029905-2-1405-Edit__78918-removebg-preview.png'
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: '2023-10-16T16:50:31.387Z'
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    example: '2023-11-22T22:43:23.228Z'
+                  __v:
+                    type: integer
+                    example: 0
+              qty:
+                type: integer
+                example: 192
+              _id:
+                type: string
+                example: '655e876558f5986930b1eec5'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2023-10-17T02:58:13.527Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2023-11-22T23:10:16.939Z'
+        __v:
+          type: integer
+          example: 6
