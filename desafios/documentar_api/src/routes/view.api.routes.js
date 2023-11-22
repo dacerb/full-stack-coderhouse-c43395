@@ -30,7 +30,8 @@ router.get('/', async(req,res)=>{
         { path: '/github/error/ ', verbo: 'GET',description: 'deberá mostrar un mensaje de error'},
         { path: '/github/login/ ', verbo: 'GET',description: 'deberá mostrar el form para logear con github'},
         { path: '/loggertest ', verbo: 'GET',description: 'Test del logger'},
-        { path: '/mockingproducts ', verbo: 'GET',description: 'Mocking de productos'}
+        { path: '/mockingproducts ', verbo: 'GET',description: 'Mocking de productos'},
+        { path: '/api/docs ', verbo: 'GET',description: 'Swagger API Documentación'}
     ];
 
     return res.render('api', {

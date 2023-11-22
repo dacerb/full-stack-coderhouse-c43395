@@ -1,4 +1,7 @@
 import express from 'express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUIExpress from 'swagger-ui-express';
+
 import morgan from "morgan";
 import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';
@@ -12,6 +15,19 @@ const app = express();
 const PORT = default_config.port;
 const MONGO_URL = default_config.mongoUrl;
 const SECRET = default_config.secret;
+
+const swaggerOption = {
+    definition: {
+        openapi: "3.0.1",
+        info: {
+            title: "Documentacion API Adopme",
+            description: "Documentacion para el uso de swagger!!"
+        }
+    },
+    apis: [`./src/docs/**/*.yaml`]
+}
+
+const specs = swaggerJSDoc(swaggerOption);
 
 // IMPORT CONFIG
 import initializePassport from "./config/services/passport.config.js";
@@ -39,6 +55,8 @@ import githubRouter from "./routes/view.github.routers.js";
 import passport from "passport";
 import {Server} from "socket.io";
 
+// CONFIGURACION DE SWAGGER
+app.use('/api/docs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs))
 
 // CONFIGURACION DE COOKIES
 app.use(cookieParser());
