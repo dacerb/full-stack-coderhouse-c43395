@@ -4,6 +4,9 @@ tags:
   - name: "Carts"
     description: "Operaciones relacionadas con carritos de compras"
 
+  - name: "CartProduct"
+    description: "Operaciones relacionadas con el manejo del carrito y los productos"
+
 paths:
   /api/cart/{cid}:
     get:

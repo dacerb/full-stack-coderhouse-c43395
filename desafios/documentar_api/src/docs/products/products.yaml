@@ -2,7 +2,6 @@ tags:
   - name: "Product"
     description: "Operaciones relacionadas con productos"
 
-
 /api/products:
   get:
     tags:
@@ -12,7 +11,7 @@ tags:
       200:
         description: Lista de productos
         schema:
-          $ref: '#/definitions/ProductListResponse'
+         # $ref: '#/definitions/ProductListResponse'
   post:
     tags:
       - Product
@@ -119,6 +118,50 @@ definitions:
         type: null
       nextPage:
         type: null
+
+    ProductDetails:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: '652d699848399856ada1d63a'
+        title:
+          type: string
+          example: 'Sonor SQ2'
+        description:
+          type: string
+          example: 'Rock pro'
+        code:
+          type: string
+          example: 'sdqwecc'
+        price:
+          type: number
+          example: 1980
+        status:
+          type: boolean
+          example: true
+        stock:
+          type: integer
+          example: 90
+        category:
+          type: string
+          example: 'drum'
+        thumbnail:
+          type: array
+          items:
+            type: string
+            example: 'D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\1697263173794-1697250115527-1693450953712-1690072626956-sq2.jpg'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2023-10-16T16:49:28.642Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2023-10-29T15:24:26.075Z'
+        __v:
+          type: integer
+          example: 0
   ProductDetails:
     type: object
     properties:
