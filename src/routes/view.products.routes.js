@@ -5,6 +5,7 @@ import { productManager, cartManager } from "../services/factory.js";
 const router = Router();
 
 router.get("/", requiredLoginSession, async (req, res) => {
+    const { logger } = req
     const query = req.query;
     const user = req.session.user;
 
@@ -40,6 +41,7 @@ router.get("/", requiredLoginSession, async (req, res) => {
             style: 'home.css'
         });
     } catch (error) {
+        logger.error(error)
         res.render('error',
             {
                 error: JSON.stringify(error)

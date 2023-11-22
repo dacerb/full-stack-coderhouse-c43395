@@ -8,7 +8,7 @@ export default class UsersDto {
         this.rol = user.rol;
         this.registerBy = user.registerBy;
         this.fullName = `${this.first_name}  ${this.last_name}`;
-        this.cartId = user.cartId.toString();
+        this.cartId = user.cartId?.toString() ?? null;
         this.rol = user.rol;
         this.createdAt = user.createdAt;
         this.updatedAt = user.updatedAt;
