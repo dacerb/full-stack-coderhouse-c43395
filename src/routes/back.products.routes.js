@@ -7,7 +7,6 @@ import errorHandler from "../services/errors/middlewares/error.handler.js"
 const router = Router();
 
 // GET all products by filters
-// router.get("/", ProductController.getProducts); old
 router.get("/", ProductController.getProductsQuery);
 
 // GET product by ID
