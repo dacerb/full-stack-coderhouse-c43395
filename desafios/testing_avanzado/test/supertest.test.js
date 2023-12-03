@@ -2,6 +2,8 @@ import chai from "chai";
 import supertest from "supertest";
 
 
+const timestampInSeconds = Math.floor(new Date().getTime() / 1000);
+
 const expect = chai.expect;
 
 const requester = supertest('http://localhost:8080');
@@ -28,10 +30,8 @@ describe("testing e-commerce app:", () => {
 
         });
 
-        // 01 Aumentar el timeout para pruebas específicas
+        // 01
         it("get all products", async function() {
-            this.timeout(1000);
-
             const response = await requester.get("/api/products");
             const { statusCode, _body: data } = response;
 
@@ -40,9 +40,8 @@ describe("testing e-commerce app:", () => {
             expect(data.payload).to.be.an('array');
         });
 
-        // 02 Aumentar el timeout para pruebas específicas
+        // 02
         it("create a new fake product", async function() {
-            this.timeout(1000);
 
             const response = await requester
                 .post("/api/products")
@@ -65,9 +64,8 @@ describe("testing e-commerce app:", () => {
             if (body.result._id) this.new_product_id = body.result._id;
         });
 
-        // 03 Aumentar el timeout para pruebas específicas
+        // 03
         it("delete a new fake product", async function() {
-            this.timeout(1000);
 
             const response = await requester
                 .delete(`/api/products/${this.new_product_id}`)
@@ -89,7 +87,58 @@ describe("testing e-commerce app:", () => {
     });
 
     // TEST BLOCK 3
-    describe("SESSIONS", () => {
-        // Puedes agregar pruebas relacionadas con sesiones aquí
+    describe("* essions", () => {
+
+        before(async function() {
+
+            this.cookie;
+            this.mockUserTest = {
+                "first_name": "test_user_mock",
+                "last_name": "test_last_name_mock",
+                "email": `test_user_mock.${timestampInSeconds}@mock.com`,
+                "age": 9999,
+                "password": "mock_password"
+            }
+
+
+        });
+
+        // 01
+        it("create a mock user", async function() {
+
+            const response = await requester
+                .post("/api/sessions/register")
+                .send(this.mockUserTest);
+
+            const {statusCode, _body: body} = {...response};
+
+            expect(statusCode).is.eqls(201);
+            expect(body).to.have.property('message', `Usuario creado con exito.`);
+        });
+
+        // 02
+        it("login a mock user", async function() {
+
+            const response = await requester
+                .post("/api/sessions/login")
+                .send(this.mockUserTest);
+
+            const {statusCode, _body: body} = {...response};
+
+            expect(statusCode).is.eqls(200);
+            expect(body).to.have.property('status', `success`);
+        });
+
+        // 03
+        it("close session a mock user", async function() {
+
+            const response = await requester
+                .post("/api/sessions/logout");
+
+            const {statusCode, _body: body} = {...response};
+
+            expect(statusCode).is.eqls(200);
+            expect(body).to.have.property('message', `Sesion cerrada correctamente.`);
+        });
     });
 });
