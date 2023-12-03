@@ -153,3 +153,4 @@
 {"kind":"ObjectId","message":"Cast to ObjectId failed for value \"0\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"0\"","value":"0","valueType":"string"}
 {"kind":"ObjectId","message":"Cast to ObjectId failed for value \"0\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"0\"","value":"0","valueType":"string"}
 {"kind":"ObjectId","message":"Cast to ObjectId failed for value \"0\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"0\"","value":"0","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"favicon.ico\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"favicon.ico\"","value":"favicon.ico","valueType":"string"}

@@ -78,8 +78,6 @@ describe("testing e-commerce app:", () => {
             expect(statusCode).is.eqls(200);
             expect(response_message_data).to.have.property('message', `the product with id ${this.new_product_id} was deleted.`);
         });
-
-
     });
 
     // TEST BLOCK 2
@@ -159,7 +157,6 @@ describe("testing e-commerce app:", () => {
         it("delete the new cart", async function() {
             // PENDIENTE IMPLEMENTAR ALGUN METODO PARA HACERLO
         });
-
     });
 
     // TEST BLOCK 3
