@@ -3,10 +3,11 @@ tags:
     description: "cosas que pasan"
 
 paths:
-  tags:
-    - Students
-  /estudiantes:
+
+  /api/students:
     get:
+      tags:
+        - "Students"
       summary: "Obtener todos los estudiantes"
       description: "Endpoint para obtener la lista completa de estudiantes"
       responses:
@@ -19,6 +20,8 @@ paths:
         500:
           description: "Error del servidor"
     post:
+      tags:
+        - "Students"
       summary: "Crear un nuevo estudiante"
       description: "Endpoint para crear un nuevo estudiante"
       parameters:

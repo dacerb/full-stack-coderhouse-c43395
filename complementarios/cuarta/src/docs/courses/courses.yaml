@@ -1,15 +1,15 @@
 
 
-
 tags:
   - name: "Courses"
     description: "cosas que pasan "
 
 paths:
-  /cursos:
-    tags:
-      - Courses
+  /api/courses:
+
     get:
+      tags:
+        - "Courses"
       summary: "Obtener todos los cursos"
       description: "Endpoint para obtener la lista completa de cursos"
       responses:
@@ -22,15 +22,18 @@ paths:
         500:
           description: "Error del servidor"
     post:
+      tags:
+        - "Courses"
       summary: "Guardar un nuevo curso"
       description: "Endpoint para guardar un nuevo curso"
-      parameters:
-        - in: "body"
+      requestBody:
           name: "curso"
           description: "Datos del curso a guardar"
           required: true
-          schema:
-            $ref: "#/definitions/Curso"
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Curso"
       responses:
         201:
           description: "Curso guardado exitosamente"
