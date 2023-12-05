@@ -25,6 +25,7 @@ const app = express();
 //Preparar la configuracion del servidor para recibir objetos JSON.
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(addLogger)
 
 /**
  * Template engine

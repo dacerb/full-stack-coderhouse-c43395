@@ -13,7 +13,7 @@ export default class CoursesDao {
         let course = await coursesModel.findOne({_id:id}).populate('students');
         return course;
     }
-    saveCourse =async course =>{
+    save =async course =>{
         let result = await coursesModel.create(course);
         return result;
     }
