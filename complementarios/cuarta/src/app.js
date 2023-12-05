@@ -1,6 +1,9 @@
 import express from 'express';
 import __dirname from './util.js';
 import handlebars from 'express-handlebars';
+import swaggerJSDoc from 'swagger-jsdoc';
+import swaggerUIExpress from 'swagger-ui-express';
+
 import mongoose from 'mongoose';
 //Cookies si aplica:
 import cookieParser from 'cookie-parser';
@@ -20,6 +23,20 @@ import usersViewRouter from './routes/users.view.router.js'
 import jwtRouter from './routes/jwt.router.js'
 
 //Declarando Express para usar sus funciones.
+
+const swaggerOption = {
+    definition: {
+        openapi: "3.0.1",
+        info: {
+            title: "Documentacion API",
+            description: "Documentacion para el uso de swagger"
+        }
+    },
+    apis: [`./src/docs/**/*.yaml`]
+}
+
+const specs = swaggerJSDoc(swaggerOption);
+
 const app = express();
 
 //Preparar la configuracion del servidor para recibir objetos JSON.
@@ -40,6 +57,10 @@ app.use(cookieParser("CoderS3cr3tC0d3"));
 //Inicializar passport:
 initializePassport();
 app.use(passport.initialize());
+
+
+// CONFIGURACION DE SWAGGER
+app.use('/api/docs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs))
 
 //Declaración de Routers:
 app.use('/',viewsRouter);

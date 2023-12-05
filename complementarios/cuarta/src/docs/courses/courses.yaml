@@ -1,2 +1,55 @@
-#Courses Swagger API Documentation
-#TODO: Agregar documentación del API.
+
+
+
+tags:
+  - name: "Courses"
+    description: "cosas que pasan "
+
+paths:
+  /cursos:
+    tags:
+      - Courses
+    get:
+      summary: "Obtener todos los cursos"
+      description: "Endpoint para obtener la lista completa de cursos"
+      responses:
+        200:
+          description: "Éxito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Curso"
+        500:
+          description: "Error del servidor"
+    post:
+      summary: "Guardar un nuevo curso"
+      description: "Endpoint para guardar un nuevo curso"
+      parameters:
+        - in: "body"
+          name: "curso"
+          description: "Datos del curso a guardar"
+          required: true
+          schema:
+            $ref: "#/definitions/Curso"
+      responses:
+        201:
+          description: "Curso guardado exitosamente"
+          schema:
+            $ref: "#/definitions/Curso"
+        500:
+          description: "Error del servidor"
+
+definitions:
+  Curso:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+      description:
+        type: "string"
+      teacherName:
+        type: "string"
+      students:
+        type: "array"
+        items:
+          type: "string"

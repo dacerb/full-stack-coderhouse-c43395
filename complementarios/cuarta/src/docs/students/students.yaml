@@ -1,2 +1,46 @@
-#Students Swagger API Documentation
-#TODO: Agregar documentación del API.
+tags:
+  - name: "Students"
+    description: "cosas que pasan"
+
+paths:
+  tags:
+    - Students
+  /estudiantes:
+    get:
+      summary: "Obtener todos los estudiantes"
+      description: "Endpoint para obtener la lista completa de estudiantes"
+      responses:
+        200:
+          description: "Éxito"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Estudiante"
+        500:
+          description: "Error del servidor"
+    post:
+      summary: "Crear un nuevo estudiante"
+      description: "Endpoint para crear un nuevo estudiante"
+      parameters:
+        - in: "body"
+          name: "estudiante"
+          description: "Datos del estudiante a crear"
+          required: true
+          schema:
+            $ref: "#/definitions/Estudiante"
+      responses:
+        201:
+          description: "Estudiante creado exitosamente"
+          schema:
+            $ref: "#/definitions/Estudiante"
+        500:
+          description: "Error del servidor"
+
+definitions:
+  Estudiante:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      age:
+        type: "integer"
