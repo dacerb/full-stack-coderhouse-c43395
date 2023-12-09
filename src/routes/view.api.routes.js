@@ -1,4 +1,5 @@
 import router from "./view.cart.routes.js";
+import default_config from "../config/config.js"
 
 router.get('/', async(req,res)=>{
     const user =  req.session.user;
@@ -38,7 +39,7 @@ router.get('/', async(req,res)=>{
         apiName,
         endpoints,
         user,
-        domain_url: "http://localhost:8080",
+        domain_url: default_config.domain_url,
         sessionActive: req.session.user,
         style: 'main.css'
     });
