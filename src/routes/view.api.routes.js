@@ -38,6 +38,7 @@ router.get('/', async(req,res)=>{
         apiName,
         endpoints,
         user,
+        domain_url: "http://localhost:8080",
         sessionActive: req.session.user,
         style: 'main.css'
     });
