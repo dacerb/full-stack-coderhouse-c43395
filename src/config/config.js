@@ -34,5 +34,6 @@ export default {
     adminPassword: process.env.ADMIN_PASSWORD,
     secret: process.env.SECRET_PHRASE,
     environment: environment,
+    domain_url: process.env.DOMAIN_URL,
     optionMode
 };
