@@ -37,7 +37,7 @@ document.getElementById('curlForm').addEventListener('submit', function (event) 
         formData.set('status', 'true');
     }
 
-    fetch('http://localhost:8080/api/products/', {
+    fetch('/api/products/', {
         method: 'POST',
         headers: {
         },
