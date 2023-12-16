@@ -21,7 +21,7 @@ addToCartButtons.forEach(button => {
         const cartId = cartID.textContent
 
 
-        const url = "http://localhost:8080/api/cart/"+cartId+"/product/"+productid
+        const url = "/api/cart/"+cartId+"/product/"+productid
 
 
         fetch(url, requestOptions)
