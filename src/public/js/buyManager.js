@@ -17,7 +17,7 @@ confirmarCompraButton.addEventListener("click", function() {
     const cartId = cartIdElement.textContent.trim();
 
     // Realizar la solicitud POST con Fetch
-    fetch(`http://localhost:8080/api/cart/${cartId}/purchase`, {
+    fetch(`/api/cart/${cartId}/purchase`, {
         method: "POST",
         headers: {}
     })
@@ -25,7 +25,7 @@ confirmarCompraButton.addEventListener("click", function() {
 
             if ([404].includes(response.status)) {
                 alert("Carrito vacío!!!, te redirigimos a productos...")
-                window.location.href = "http://localhost:8080/products?page=1";
+                window.location.href = "/products?page=1";
             }
 
             return response.json()
@@ -55,5 +55,5 @@ cancelarCompraButton.addEventListener("click", function() {
 
 irAProductosButton.addEventListener("click", function() {
     // Redirigir a la página de productos
-    window.location.href = "http://localhost:8080/products?page=1";
+    window.location.href = "/products?page=1";
 });
