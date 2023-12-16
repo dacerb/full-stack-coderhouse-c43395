@@ -21,7 +21,7 @@ saveButtons.forEach(button => {
         const formData = new FormData(form);
 
         try {
-            const response = await fetch(`http://localhost:8080/api/products/${productId}`, {
+            const response = await fetch(`/api/products/${productId}`, {
                 method: 'PUT',
                 body: formData,
                 headers: {}
@@ -42,7 +42,7 @@ deleteButtons.forEach(button => {
         event.preventDefault();
         const productId = event.currentTarget.getAttribute('data-product-id');
         try {
-            const response = await fetch(`http://localhost:8080/api/products/${productId}`, {
+            const response = await fetch(`/api/products/${productId}`, {
                 method: 'DELETE',
                 headers: {}
             });
