@@ -40,7 +40,8 @@ import __dirname from './common/utils/utils.js';
 // IMPORT ROUTES
 import productsRoutes from './routes/back.products.routes.js';
 import cartRoutes from './routes/back.cart.routes.js';
-import userRouter from "./routes/back.user.routers.js";
+import userSessionsRouter from "./routes/back.user.sessions.routers.js";
+import usersRouter from "./routes/back.user.routers.js";
 import mockingProductsRouter from "./routes/back.mocking.products.router.js";
 import loggerTestRouter from "./routes/back.logger.test.router.js"
 
@@ -118,7 +119,8 @@ app.use(addLogger)
 
 // Configuracion de rutas de acceso
 app.use('/api/products', productsRoutes);
-app.use("/api/sessions", userRouter);
+app.use("/api/sessions", userSessionsRouter);
+app.use("/api/user/manage", usersRouter);
 app.use('/api/cart', cartRoutes);
 app.use('/home', homeRoutes);
 app.use('/cart', cartViewRoutes);
