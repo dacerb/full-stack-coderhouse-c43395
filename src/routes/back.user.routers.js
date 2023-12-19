@@ -5,9 +5,7 @@ const router = Router();
 
 
 //router.delete("/user/:uid", requiredRole(['admin'], null), UserController.deleteUser);
-
 //router.get("/users", requiredRole(['admin'], null), UserController.getAllUsers());
-
 //router.get("/user/:uid", requiredRole(['admin'], null), UserController.getUserById());
 
 
