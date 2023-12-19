@@ -37,6 +37,18 @@ class ManagerUser {
             });
     }
 
+    setLastLogin = async  (userId) => {
+        const currentDateTime = new Date();
+
+        userModel.findByIdAndUpdate({_id: userId}, {
+            lastLogin:  currentDateTime
+        }).then(userUpdatedLastLogin => {
+            return userUpdatedLastLogin;
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
 }
 
 export default ManagerUser;
