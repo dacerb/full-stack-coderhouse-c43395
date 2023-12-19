@@ -51,7 +51,7 @@ const datetimeRequiredDefaultNow = {
 
 const datetimeNotRequiredDefaultNow = {
     type: Date,
-    required: true,
+    required: false,
     default: Date.now
 };
 
