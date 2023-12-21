@@ -1,7 +1,10 @@
-import { productManager } from "../services/factory.js";
+import { productManager, cartManager, userManager } from "../services/factory.js";
 import CustomError from "../services/errors/custom.error.js";
 import EErrors from "../services/errors/errors.enum.js";
 import {ProductsErrMessage} from "../services/errors/messages/products.error.message.js";
+import MailingService from "../services/email/mailing.js";
+import config from "../config/config.js";
+
 
 
 // API BACK
@@ -50,9 +53,35 @@ export async function deleteProductById(req, res, next) {
     const id = pid;
 
     if (id) {
-        let delete_product = await productManager.deleteProduct(id);
+
+        // recupero el producto para notificar cuando se elimina de algun carrito premium
+        const product = await productManager.getProductById(id)
+        const delete_product = await productManager.deleteProduct(id);
 
         if (delete_product) {
+            const dispacher = new MailingService()
+
+            const cartsThatHadTheProduct = await cartManager.deleteProductByIDFromAnyCartsAndReturnCarts(id)
+            cartsThatHadTheProduct.affectedCartList.forEach(cartId => {
+                userManager.getUserByValue({cartId: cartId})
+                    .then(user => {
+
+                        if (user.rol === 'premium') {
+                            dispacher.sendSimpleMail({
+                                from: config.mailing.USER,
+                                to: user.email,
+                                subject: "¡Aviso sobre modificaciones en tu carrito!",
+                                html: `<div><h3> Sabemos que eres parte de nuestros clientes <strong>${user.rol}</strong> y queremos mantenerte informado.  </h3><p>Por esta razón queremos contarte que el producto <strong>${product.title}</strong> no se encuentra más disponible y lo hemos retirado de tu carrito,  <br>te pedimos disculpas por las molestias ocasionadas. <br>¡Gracias por seguir confiando en nosotros!..</p></div>`
+                            })
+                        }
+
+                    })
+                    .catch(error => {
+                        // poner el logger....
+                        console.error('Error:', error);
+                    });
+            })
+
             return res.status(200).send(
                 JSON.stringify({
                     "message": `the product with id ${id} was deleted.`
