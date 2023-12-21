@@ -1,0 +1,50 @@
+
+
+    <div class="profile-container">
+        <h1>User Manager</h1>
+        {{#each users}}
+            <form action="/" method="POST" class="">
+                <div class="">
+                    <p><strong>id:</strong> {{id}}</p>
+                    <div class="form-field">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="{{email}}" disabled>
+                    </div>
+                    <div class="form-field">
+                        <label for="first_name">First name:</label>
+                        <input type="text" id="first_name" name="first_name" value="{{first_name}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="last_name">Last name:</label>
+                        <input type="text" id="last_name" name="last_name" value="{{last_name}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" name="age" value="{{age}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="rol">Role:</label>
+                        <input type="text" id="rol" name="rol" value="{{rol}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="registerBy">registerBy:</label>
+                        <input type="text" id="registerBy" name="registerBy" value="{{registerBy}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="createdAt">Created At:</label>
+                        <input type="text" id="createdAt" name="createdAt" value="{{createdAt}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="updatedAt">Updated At:</label>
+                        <input type="text" id="updatedAt" name="updatedAt" value="{{updatedAt}}" disabled>
+                    </div>
+                    <div class="form-field" style="display: none">
+                        <label for="cartId">Cart Id:</label>
+                        <input type="text" id="cartId" name="cartId" value="{{cartId}}" disabled>
+                    </div>
+                </div>
+            </form>
+            <hr><hr>
+        {{/each}}
+    </div>
+

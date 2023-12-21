@@ -42,4 +42,22 @@ router.get("/chat", requiredLoginSession, requiredRole(['user'], null), async (r
     });
 });
 
+router.get("/manage/users", requiredLoginSession, async (req, res) => {
+    const sessionUser =  req.session.user;
+    const users = await userManager.getAllUsers()
+
+    const usersDTO = users.map(user => {
+        return {...new UsersDto(user)}
+    })
+
+    console.log(usersDTO)
+
+    return res.render('profile-admin-users', {
+        style: 'main.css',
+        sessionActive: req.session.user ? true : false,
+        user: sessionUser,
+        users: usersDTO
+    });
+});
+
 export default router;

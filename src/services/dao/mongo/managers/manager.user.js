@@ -49,6 +49,17 @@ class ManagerUser {
         });
     }
 
+    getAllUsers = async  () => {
+        return userModel.find()
+            .then(users => {
+                return users
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                throw error;
+            });
+    }
+
 }
 
 export default ManagerUser;
