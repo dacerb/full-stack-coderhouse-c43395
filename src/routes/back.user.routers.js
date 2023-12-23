@@ -9,8 +9,8 @@ const router = Router();
 //router.get("/user/:uid", requiredRole(['admin'], null), UserController.getUserById());
 
 
-router.delete("/user/:uid", UserController.deleteUser);
-router.get("/users", UserController.getAllUsers);
+router.delete("/", UserController.deleteUser);
+router.get("/", UserController.getAllUsers);
 router.get("/user/:uid", UserController.getUserById);
 
 export default router;

@@ -120,7 +120,7 @@ app.use(addLogger)
 // Configuracion de rutas de acceso
 app.use('/api/products', productsRoutes);
 app.use("/api/sessions", userSessionsRouter);
-app.use("/api/user/manage", usersRouter);
+app.use("/api/users", usersRouter);
 app.use('/api/cart', cartRoutes);
 app.use('/home', homeRoutes);
 app.use('/cart', cartViewRoutes);
