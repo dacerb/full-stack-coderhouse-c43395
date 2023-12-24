@@ -1,19 +1,44 @@
 import { userManager  } from "../services/factory.js";
 import UsersDto from '../services/dto/users.dto.js'
+import MailingService from "../services/email/mailing.js";
+import config from "../config/config.js";
 
 export async function deleteUser(req, res, next) {
     const { logger } = req;
     const allUsers = await userManager.getAllUsers();
-    let { limitSeconds } = req.query; // recibo por parametros el limite en segundos
-    if (isNaN(limitSeconds)) return res.status(400).send({
-            status:'error',
-            message: "the limitSeconds must be integer."
-        });
+    const rolList = ["user", "premium", "admin"]
+    const rolListProtected = ["admin"]
+    let { limitSeconds, rol, adminDelete } = req.query; // recibo por parametros el limite en segundos
+    let permitAdminDelete = false;
+    let limitMilliseconds;
+
+    // Ayuda a que no elimine el admin por error se puede modificar
+    if(adminDelete){
+        if ( adminDelete.toLowerCase().trim() === "false"){
+            console.log('FALSE')
+            permitAdminDelete = Boolean();
+        }
+        if ( adminDelete.toLowerCase().trim() === "true"){
+            console.log('TRUE')
+            permitAdminDelete = Boolean(adminDelete);
+        }
+    }
+
+    if (limitSeconds && isNaN(limitSeconds)) return res.status(400).send({
+        status:'error',
+        message: "the limitSeconds must be integer."
+    });
+
+    if (rol && !rolList.includes(rol.toLowerCase().trim())) return res.status(400).send({
+        status:'error',
+        message: `rol must be string in any values: ${rolList.join(", ")}.`
+    });
 
     if (!limitSeconds) {
-        limitSeconds = 60; //de no recibir el parametro el valor por defecto es..
+        const TwoDaysInSeconds = 172800;
+        limitMilliseconds =  TwoDaysInSeconds * 1000; //de no recibir el parametro el valor por defecto es..
     }else {
-        limitSeconds = parseInt(limitSeconds);
+        limitMilliseconds = parseInt(limitSeconds) * 1000;
     }
 
     if (!allUsers.length > 0) {
@@ -29,24 +54,52 @@ export async function deleteUser(req, res, next) {
             const currentDate = new Date();
             const userLastLogin = new Date(user.lastLogin);
             const currentDateTimestamp = currentDate.getTime();
-            const TimestampUserLastLogin = userLastLogin.getTime() + limitSeconds;
+            const TimestampUserLastLogin = userLastLogin.getTime() + limitMilliseconds;
+
+            // si no cumple con el filtro de rol se quita de la lista
+            if (!(!rol || (user.rol.toLowerCase() === rol.toLowerCase().trim())))return false;
+
+            // control para evitar borrar el admin a no ser que se solicite por query params
+            if (!adminDelete || !permitAdminDelete) {
+                if (rolListProtected.includes(user.rol.toLowerCase())) return false
+            }
 
             const elapseTime = parseInt((currentDateTimestamp - TimestampUserLastLogin));
-
-            console.log(TimestampUserLastLogin)
-            console.log(currentDateTimestamp)
-            console.log(elapseTime)
-
-            if (elapseTime > limitSeconds) return true;
+            if (elapseTime > limitMilliseconds) return true;
 
         })
 
+        if(usersToDelet){
+            const dispacher = new MailingService()
+
+            usersToDelet.forEach(user => {
+                // Mando mail
+                if (true) {
+                    console.log("Envio Mail avisando que se borro porque supero el tiempo de desconexion ultima vez ", user.lastLogin, " - ",((limitMilliseconds / 1000)/3600) / 24, "dias")
+
+
+                    dispacher.sendSimpleMail({
+                        from: config.mailing.USER,
+                        to: user.email,
+                        subject: "¡Aviso sobre tu usuario!",
+                        html: `"Envio Mail avisando que se borro porque supero el tiempo de desconexion ultima vez ", ${user.lastLogin}, " - ",${((limitMilliseconds / 1000)/3600) / 24}, "dias"`
+                    })
+                }
+
+
+                // elimino cuenta de la db
+            })
+        }
+
+
+
+
         return res.status(200).send(
                 {
-                    limitSeconds,
+                    limitSeconds: limitMilliseconds /1000,
                     qtyUsersDeleted: usersToDelet.length,
-                    usersDeleted: usersToDelet
-
+                    usersDeleted: usersToDelet,
+                    permitAdminDelete
                 }
         );
 
