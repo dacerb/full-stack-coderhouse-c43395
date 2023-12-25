@@ -18,7 +18,6 @@ router.get("/:cid", requiredLoginSession, async(req, res) => {
                 }
             }
         );
-        console.log(user)
         res.render('cart_products', {
             data: products,
             cart_id: cid,

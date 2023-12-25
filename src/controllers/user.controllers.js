@@ -16,11 +16,9 @@ export async function deleteUser(req, res, next) {
     // Ayuda a que no elimine el admin por error se puede modificar
     if(adminDelete){
         if ( adminDelete.toLowerCase().trim() === "false"){
-            console.log('FALSE')
             permitAdminDelete = Boolean();
         }
         if ( adminDelete.toLowerCase().trim() === "true"){
-            console.log('TRUE')
             permitAdminDelete = Boolean(adminDelete);
         }
     }
