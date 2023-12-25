@@ -1,4 +1,6 @@
 import { userModel } from '../models/user.model.js';
+import {productModel} from "../models/product.model.js";
+import _ from "mongoose-paginate-v2";
 
 class ManagerUser {
     getUserByEmail = async (email) => {
@@ -60,6 +62,17 @@ class ManagerUser {
             });
     }
 
+    deleteUserById = async (_id) => {
+
+        return userModel.deleteOne({_id})
+            .then(userDeleted => {
+                    return Boolean(userDeleted.deletedCount)
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 }
 
 export default ManagerUser;

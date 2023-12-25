@@ -11,6 +11,7 @@ export async function deleteUser(req, res, next) {
     let { limitSeconds, rol, adminDelete } = req.query; // recibo por parametros el limite en segundos
     let permitAdminDelete = false;
     let limitMilliseconds;
+    let userDeleted;
 
     // Ayuda a que no elimine el admin por error se puede modificar
     if(adminDelete){
@@ -50,7 +51,7 @@ export async function deleteUser(req, res, next) {
     }
 
     try {
-        const usersToDelet = allUsers.filter(user => {
+        const usersToDelete = allUsers.filter(user => {
             const currentDate = new Date();
             const userLastLogin = new Date(user.lastLogin);
             const currentDateTimestamp = currentDate.getTime();
@@ -69,24 +70,20 @@ export async function deleteUser(req, res, next) {
 
         })
 
-        if(usersToDelet){
+        if(usersToDelete){
             const dispacher = new MailingService()
-
-            usersToDelet.forEach(user => {
-
-
-
-
-                // Mando mail
-                if (true) {
-                    console.log("Envio Mail avisando que se borro porque supero el tiempo de desconexion ultima vez ", user.lastLogin, " - ",((limitMilliseconds / 1000)/3600) / 24, "dias")
-
-
-                    dispacher.sendSimpleMail({
-                        from: config.mailing.USER,
-                        to: user.email,
-                        subject: "¡Aviso importante sobre tu usuario!",
-                        html: `<div>
+            usersToDelete.map(user => {
+                return userManager.deleteUserById(user._id)
+                    .then(
+                    userIsDeleted => {
+                        // si el usuario fue eliminado envio emial
+                        if (userIsDeleted) {
+                            logger.debug(`se elimino usuario ${user._id}, se notifica a: ${user.email}`)
+                            dispacher.sendSimpleMail({
+                                from: config.mailing.USER,
+                                to: user.email,
+                                subject: "¡Aviso importante sobre tu usuario!",
+                                html: `<div>
                                     <h3>Queremos informate que hemos borrado tu usuario porque supero el tiempo de desconexion segun nuestra politica de usuarios.</h3>        
                                     <div>
                                     <p>
@@ -96,22 +93,24 @@ export async function deleteUser(req, res, next) {
                                     </p>
                                     </div>
                                 </div>`
-                    })
-                }
-
-
-                // elimino cuenta de la db
+                            })
+                            return user
+                        }
+                        return null
+                }).catch(error => {
+                    console.error('Error:', error);
+                });
             })
+            const deletedUser = await Promise.all(usersToDelete);
+            userDeleted = deletedUser.filter(user => user !== null);
         }
-
-
-
 
         return res.status(200).send(
                 {
                     limitSeconds: limitMilliseconds /1000,
-                    qtyUsersDeleted: usersToDelet.length,
-                    usersDeleted: usersToDelet,
+                    qtyUsersDeleted: usersToDelete.length,
+                    usersToDelete,
+                    userDeletedIds: userDeleted.map(user => user._id),
                     permitAdminDelete
                 }
         );

@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import * as UserController from "../controllers/user.controllers.js";
+import {requiredRole} from "./utils/utils.js";
 
 const router = Router();
 
-router.delete("/", UserController.deleteUser);
-router.get("/", UserController.getAllUsers);
+router.delete("/",  requiredRole(['admin'], null), UserController.deleteUser);
+router.get("/",  requiredRole(['admin'], null), UserController.getAllUsers);
 export default router;
