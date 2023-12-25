@@ -19,9 +19,9 @@
                 <button id=""><a href="/products">productos</a></button>
                 <button id=""><a href="/cart/{{cartId}}">carrito</a></button>
                 {{#if (isAdminHelper user.rol)}}
-                <button id=""><a href="/users/manage/users">administrar perfiles</a></button>
+                <button id=""><a href="/users">administrar perfiles</a></button>
                 {{/if}}
-                <button id=""><a href="/users">mi perfil</a></button>
+                <button id=""><a href="/users/my-profile">mi perfil</a></button>
                 <button id="logout-btn">cerrar sesion {{user.first_name}} </button>
             </div>
         </div>
