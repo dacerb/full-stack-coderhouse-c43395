@@ -73,6 +73,32 @@ class ManagerUser {
                 console.error('Error:', error);
             });
     }
+
+    getUserById = async (id) => {
+
+        return userModel.findOne({_id: id})
+            .then(user => {
+                    if (user) return user.toJSON();
+                    return user;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    updateUserRolById = async ({_id, rol}) => {
+        return userModel.findByIdAndUpdate(_id, {
+            rol
+        }, { new: true })
+            .then(userUpdated => {
+                    return userUpdated;
+                }
+            )
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
 }
 
 export default ManagerUser;

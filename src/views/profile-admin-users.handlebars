@@ -14,34 +14,50 @@
                         <label for="first_name">First name:</label>
                         <input type="text" id="first_name" name="first_name" value="{{first_name}}" disabled>
                     </div>
-                    <div class="form-field" style="display: none">
-                        <label for="last_name">Last name:</label>
-                        <input type="text" id="last_name" name="last_name" value="{{last_name}}" disabled>
-                    </div>
-                    <div class="form-field" style="display: none">
-                        <label for="age">Age:</label>
-                        <input type="number" id="age" name="age" value="{{age}}" disabled>
-                    </div>
-                    <div class="form-field" style="display: none">
+
+                    <div class="form-field" style="">
                         <label for="rol">Role:</label>
                         <input type="text" id="rol" name="rol" value="{{rol}}" disabled>
                     </div>
-                    <div class="form-field" style="display: none">
-                        <label for="registerBy">registerBy:</label>
-                        <input type="text" id="registerBy" name="registerBy" value="{{registerBy}}" disabled>
+
+                    <div class="form-field" style="">
+                        <label for="lastlogin">LastLogin:</label>
+                        <input type="text" id="lastLogin" name="lastLogin" value="{{lastLogin}}" disabled>
                     </div>
-                    <div class="form-field" style="display: none">
-                        <label for="createdAt">Created At:</label>
-                        <input type="text" id="createdAt" name="createdAt" value="{{createdAt}}" disabled>
+
+                    {{#if (isAdminHelper ../user.rol)}}
+                        <!-- Contenido para usuarios con isAdmin igual a true -->
+                        <button class="editUser" data-user-id="{{id}}">modify user</button>
+                    {{/if}}
+
+                    <div style="display: none;">
+                        <form class="userEditForm" id="userEditForm-{{_id}}" data-product-id="{{_id}}">
+
+                            <div class="form-filed__modify_role" style="">
+                                <div>
+                                    <strong>Modificación de Rol:</strong>
+                                </div>
+                               <div>
+                                   <label for="user">user
+                                       <input id="user" type="radio" name="rol" value="user" checked>
+                                   </label>
+                                   <label for="premium">premium
+                                       <input id="premium" type="radio" name="rol" value="premium">
+                                   </label>
+                                   <label for="admin">admin
+                                       <input id="admin" type="radio" name="rol" value="admin">
+                                   </label>
+                               </div>
+
+                            </div>
+                            <div>
+                                <button type="submit" class="saveUser" data-product-id="{{_id}}">Guardar Cambios</button>
+                                <button type="submit" class="deleteProduct" data-product-id="{{_id}}">Eliminar usuario</button>
+                                <button type="button" class="cancelEdit" data-product-id="{{_id}}">Cancelar</button> <!-- Botón para cancelar la edición -->
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-field" style="display: none">
-                        <label for="updatedAt">Updated At:</label>
-                        <input type="text" id="updatedAt" name="updatedAt" value="{{updatedAt}}" disabled>
-                    </div>
-                    <div class="form-field" style="display: none">
-                        <label for="cartId">Cart Id:</label>
-                        <input type="text" id="cartId" name="cartId" value="{{cartId}}" disabled>
-                    </div>
+
                 </div>
             </form>
             <hr><hr>

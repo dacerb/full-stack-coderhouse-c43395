@@ -1,4 +1,4 @@
-import { userManager  } from "../services/factory.js";
+import {userManager} from "../services/factory.js";
 import UsersDto from '../services/dto/users.dto.js'
 import MailingService from "../services/email/mailing.js";
 import config from "../config/config.js";
@@ -145,10 +145,41 @@ export async function getAllUsers(req, res, next) {
     }
 }
 
-export async function getUserById(req, res, next) {
-    return res.send(
-        {
-            message: "hola getUserById"
+export async function updateUserRolById(req, res, next) {
+    const {logger} = req
+    let { uid } = req.params;
+    const {rol} = {...req.body};
+    const id = uid;
+    const allowedRolList = ["admin", "user", "premium"]
+    try {
+
+        // validaciones:
+        if (!id) return res.status(400).send({status: "error", message: `the param id must be required.`});
+        if (!rol) return res.status(400).send({status: "error", message: `the rol key must be required.`});
+        if (!allowedRolList.includes(rol.trim().toLowerCase())) return res.status(400).send({status: "error", message: `the rol value must be in: (${allowedRolList.join(", ")})`});
+
+        if (id) {
+            const foundUser = await userManager.getUserById({_id: id});
+            if (foundUser) {
+
+                const updateUser = await userManager.updateUserRolById({
+                    _id: id,
+                    rol
+                });
+                return res.status(200).send({
+                    message: `the user with id ${id} was updated.`,
+                    result: new UsersDto(updateUser)
+                });
+            }
+            // Si no se encuetra el usuario se responde...
+            return res.status(404).send({message: `the user with id ${id} not found.`});
         }
-    );
+    }catch (error) {
+        logger.error(error)
+        next(error)
+    }
+
+
+
+
 }

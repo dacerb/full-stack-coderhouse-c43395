@@ -6,4 +6,5 @@ const router = Router();
 
 router.delete("/",  requiredRole(['admin'], null), UserController.deleteUser);
 router.get("/",  requiredRole(['admin'], null), UserController.getAllUsers);
+router.put("/:uid",  UserController.updateUserRolById);
 export default router;

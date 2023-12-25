@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { requiredLoginSession, authToken, requiredRole } from "./utils/utils.js"
 import { userManager } from '../services/factory.js'
 import UserDto from '../services/dto/user.dto.js'
+import UsersDto from "../services/dto/users.dto.js";
 const router = Router();
 
 router.get("/register/", async (req, res)=> {
@@ -42,15 +43,13 @@ router.get("/chat", requiredLoginSession, requiredRole(['user'], null), async (r
     });
 });
 
-router.get("/", requiredLoginSession, async (req, res) => {
+router.get("/", requiredLoginSession, requiredRole(['admin'], null), async (req, res) => {
     const sessionUser =  req.session.user;
     const users = await userManager.getAllUsers()
 
     const usersDTO = users.map(user => {
-        return {...new UserDto(user)}
+        return {...new UsersDto(user)}
     })
-
-    console.log(usersDTO)
 
     return res.render('profile-admin-users', {
         style: 'main.css',
