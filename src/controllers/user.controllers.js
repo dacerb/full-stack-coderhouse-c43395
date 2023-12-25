@@ -73,6 +73,10 @@ export async function deleteUser(req, res, next) {
             const dispacher = new MailingService()
 
             usersToDelet.forEach(user => {
+
+
+
+
                 // Mando mail
                 if (true) {
                     console.log("Envio Mail avisando que se borro porque supero el tiempo de desconexion ultima vez ", user.lastLogin, " - ",((limitMilliseconds / 1000)/3600) / 24, "dias")
@@ -81,8 +85,17 @@ export async function deleteUser(req, res, next) {
                     dispacher.sendSimpleMail({
                         from: config.mailing.USER,
                         to: user.email,
-                        subject: "¡Aviso sobre tu usuario!",
-                        html: `"Envio Mail avisando que se borro porque supero el tiempo de desconexion ultima vez ", ${user.lastLogin}, " - ",${((limitMilliseconds / 1000)/3600) / 24}, "dias"`
+                        subject: "¡Aviso importante sobre tu usuario!",
+                        html: `<div>
+                                    <h3>Queremos informate que hemos borrado tu usuario porque supero el tiempo de desconexion segun nuestra politica de usuarios.</h3>        
+                                    <div>
+                                    <p>
+                                    <strong>Ultima conexión: ${user.lastLogin}}</strong> 
+                                     <br>
+                                    <span>Limites de ultimo inicio de session en dias: <strong>${(((limitMilliseconds / 1000)/3600) / 24).toFixed(1) }</strong></span>
+                                    </p>
+                                    </div>
+                                </div>`
                     })
                 }
 
