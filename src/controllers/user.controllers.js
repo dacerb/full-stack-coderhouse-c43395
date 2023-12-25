@@ -2,6 +2,7 @@ import {userManager} from "../services/factory.js";
 import UsersDto from '../services/dto/users.dto.js'
 import MailingService from "../services/email/mailing.js";
 import config from "../config/config.js";
+import UserDto from "../services/dto/user.dto.js";
 
 export async function deleteUser(req, res, next) {
     const { logger } = req;
@@ -176,8 +177,32 @@ export async function updateUserRolById(req, res, next) {
         logger.error(error)
         next(error)
     }
+}
 
+export async function deleteUserById(req, res, next) {
+    const {logger} = req;
+    let { uid: _id } = req.params;
+    try {
+        if (_id) {
+            const user = await userManager.getUserById(_id)
 
+            if (!user) return res.status(404).send({status: "error", message: `user not found with id: ${_id}`})
+            const deleted_user = await userManager.deleteUserById(_id);
+            if (deleted_user) {
+                return res.status(200).send({
+                    status: "success",
+                    message: "usuario eliminado correctamente",
+                    deletedUser: new UserDto(user)
+                })
+            }
 
-
+            return res.status(400).send({
+                status: "error",
+                message: "no fue posible eliminar el usuario",
+            })
+        }
+    }catch (error) {
+        logger.error(error)
+        next(error)
+    }
 }

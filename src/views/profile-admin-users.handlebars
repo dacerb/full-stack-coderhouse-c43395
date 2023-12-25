@@ -3,64 +3,58 @@
     <div class="profile-container">
         <h1>User Manager</h1>
         {{#each users}}
-            <form action="/" method="POST" class="">
-                <div class="">
-                    <p><strong>id:</strong> {{id}}</p>
-                    <div class="form-field">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="{{email}}" disabled>
-                    </div>
-                    <div class="form-field">
-                        <label for="first_name">First name:</label>
-                        <input type="text" id="first_name" name="first_name" value="{{first_name}}" disabled>
-                    </div>
+            <div class="">
+                <p><strong>id:</strong> {{id}}</p>
+                <div class="form-field">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{email}}" disabled>
+                </div>
+                <div class="form-field">
+                    <label for="first_name">First name:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{first_name}}" disabled>
+                </div>
 
-                    <div class="form-field" style="">
-                        <label for="rol">Role:</label>
-                        <input type="text" id="rol" name="rol" value="{{rol}}" disabled>
-                    </div>
+                <div class="form-field" style="">
+                    <label for="rol">Role:</label>
+                    <input type="text" id="rol" name="rol" value="{{rol}}" disabled>
+                </div>
 
-                    <div class="form-field" style="">
-                        <label for="lastlogin">LastLogin:</label>
-                        <input type="text" id="lastLogin" name="lastLogin" value="{{lastLogin}}" disabled>
-                    </div>
+                <div class="form-field" style="">
+                    <label for="lastlogin">LastLogin:</label>
+                    <input type="text" id="lastLogin" name="lastLogin" value="{{lastLogin}}" disabled>
+                </div>
 
-                    {{#if (isAdminHelper ../user.rol)}}
-                        <!-- Contenido para usuarios con isAdmin igual a true -->
-                        <button class="editUser" data-user-id="{{id}}">modify user</button>
-                    {{/if}}
+                {{#if (isAdminHelper ../user.rol)}}
+                    <!-- Contenido para usuarios con isAdmin igual a true -->
+                    <button class="editUser" data-user-id="{{id}}">modify user</button>
+                {{/if}}
 
-                    <div style="display: none;">
-                        <form class="userEditForm" id="userEditForm-{{_id}}" data-product-id="{{_id}}">
+            </div>
+            <form class="userEditForm" id="userEditForm-{{id}}"  style="display: none;">
 
-                            <div class="form-filed__modify_role" style="">
-                                <div>
-                                    <strong>Modificación de Rol:</strong>
-                                </div>
-                               <div>
-                                   <label for="user">user
-                                       <input id="user" type="radio" name="rol" value="user" checked>
-                                   </label>
-                                   <label for="premium">premium
-                                       <input id="premium" type="radio" name="rol" value="premium">
-                                   </label>
-                                   <label for="admin">admin
-                                       <input id="admin" type="radio" name="rol" value="admin">
-                                   </label>
-                               </div>
+                <div class="userEditForm_title">
+                    <strong>Modificación de Rol:</strong>
+                </div>
+                <div class="userEditForm_rol-options">
+                    <label for="user">user
+                        <input id="user" type="radio" name="rol" value="user" checked>
+                    </label>
+                    <label for="premium">premium
+                        <input id="premium" type="radio" name="rol" value="premium">
+                    </label>
+                    <label for="admin">admin
+                        <input id="admin" type="radio" name="rol" value="admin">
+                    </label>
+                </div>
 
-                            </div>
-                            <div>
-                                <button type="submit" class="saveUser" data-product-id="{{_id}}">Guardar Cambios</button>
-                                <button type="submit" class="deleteProduct" data-product-id="{{_id}}">Eliminar usuario</button>
-                                <button type="button" class="cancelEdit" data-product-id="{{_id}}">Cancelar</button> <!-- Botón para cancelar la edición -->
-                            </div>
-                        </form>
-                    </div>
-
+                <div>
+                    <button type="submit" class="saveUser" data-user-id="{{id}}">Guardar Cambios</button>
+                    <button type="submit" class="deleteUser" data-user-id="{{id}}">Eliminar usuario</button>
+                    <button type="button" class="cancelEdit" data-user-id="{{id}}">Cancelar</button> <!-- Botón para cancelar la edición -->
                 </div>
             </form>
-            <hr><hr>
+        <hr>
         {{/each}}
     </div>
 
+<script src="/js/userEditor.js"></script>
