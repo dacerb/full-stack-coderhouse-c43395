@@ -1,8 +1,19 @@
-
-
+<h1>User Manager</h1>
     <div class="profile-container">
-        <h1>User Manager</h1>
+        <h2>Eliminar usuarios con ultima conexion expirada.</h2>
+        <form id="formLastLogin">
+            <p>
+                Por defecto se elimian los usuarios que no iniciaron en 2 dias.
+                es posible modificar el tiempo utilizando el campo colocando el tiempo en segundos transcurridos.
+            </p>
+            <input type="number" name="limitSeconds" placeholder="tiempo en segundos trascurridos." value="0">
+            <button type="button" id="runJobDeletUsers">ejecutar tarea</button>
+        </form>
+    </div>
+    <div class="profile-container">
+        <h2>Gestionar roles de usuarios.</h2>
         {{#each users}}
+
             <div class="">
                 <p><strong>id:</strong> {{id}}</p>
                 <div class="form-field">
@@ -30,29 +41,28 @@
                 {{/if}}
 
             </div>
-            <form class="userEditForm" id="userEditForm-{{id}}"  style="display: none;">
+            <div id="userEditForm-{{id}}" style="display: none">
+                <form  id="userEditForm_data-{{id}}">
+                    <label for="user-{{id}}">Usuario</label>
+                    <input type="radio" id="user-{{id}}" name="rol" value="user" checked>
 
-                <div class="userEditForm_title">
-                    <strong>Modificación de Rol:</strong>
-                </div>
-                <div class="userEditForm_rol-options">
-                    <label for="user">user
-                        <input id="user" type="radio" name="rol" value="user" checked>
-                    </label>
-                    <label for="premium">premium
-                        <input id="premium" type="radio" name="rol" value="premium">
-                    </label>
-                    <label for="admin">admin
-                        <input id="admin" type="radio" name="rol" value="admin">
-                    </label>
-                </div>
+                    <label for="premium-{{id}}">Premium</label>
+                    <input type="radio" id="premium-{{id}}" name="rol" value="premium">
 
+                    <label for="admin-{{id}}">Admin</label>
+                    <input type="radio" id="admin-{{id}}" name="rol" value="admin">
+                    <hr>
+
+                </form>
                 <div>
-                    <button type="submit" class="saveUser" data-user-id="{{id}}">Guardar Cambios</button>
-                    <button type="submit" class="deleteUser" data-user-id="{{id}}">Eliminar usuario</button>
-                    <button type="button" class="cancelEdit" data-user-id="{{id}}">Cancelar</button> <!-- Botón para cancelar la edición -->
+                    <button type="button" class="saveUser" data-user-id="{{id}}">Guardar Cambios</button>
+                    <button type="button" class="deleteUser" data-user-id="{{id}}">Eliminar usuario</button>
+                    <button type="button" class="cancelEdit" data-user-id="{{id}}">Cancelar</button>
                 </div>
-            </form>
+            </div>
+
+
+
         <hr>
         {{/each}}
     </div>
