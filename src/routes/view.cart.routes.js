@@ -18,11 +18,11 @@ router.get("/:cid", requiredLoginSession, async(req, res) => {
                 }
             }
         );
-
         res.render('cart_products', {
             data: products,
             cart_id: cid,
             user,
+            cartId: user.cartId,
             sessionActive: req.session.user ? true : false,
             style: 'home.css'
         });

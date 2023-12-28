@@ -22,7 +22,7 @@ const stringTypeSchemaNonUniqueRequired = {
 
 const stringTypeSchemaNonUniqueRequiredRoleDefaultUser = {
     type: String,
-    enum: ['user', 'admin'],
+    enum: ['user', 'admin', 'premium'],
     default: 'user',
 };
 
@@ -49,6 +49,12 @@ const datetimeRequiredDefaultNow = {
         default: Date.now
 };
 
+const datetimeNotRequiredDefaultNow = {
+    type: Date,
+    required: false,
+    default: Date.now
+};
+
 
 export {
     arrayTypeSchemaNonUniqueRequired,
@@ -59,5 +65,6 @@ export {
     stringEmailTypeSchemaUniqueRequired,
     stringEmailTypeSchemaRequired,
     datetimeRequiredDefaultNow,
-    stringTypeSchemaNonUniqueRequiredRoleDefaultUser
+    stringTypeSchemaNonUniqueRequiredRoleDefaultUser,
+    datetimeNotRequiredDefaultNow
 };

@@ -3,6 +3,8 @@ import { codeGenerator } from "../common/utils/utils.js";
 import CustomError from "../services/errors/custom.error.js";
 import {ProductsErrMessage} from "../services/errors/messages/products.error.message.js";
 import EErrors from "../services/errors/errors.enum.js";
+import MailingService from "../services/email/mailing.js";
+import config from "../config/config.js";
 
 
 // API BACK
@@ -285,8 +287,20 @@ export async function registerPurchase(req, res, next) {
         // Actualiza el carrito del usuario con los objectos filtrados
         const cartUpdated = await cartManager.updateAllProducts(cid, filterCartToUpdate.filter(Boolean));
         if (cartUpdated) {
+
+            const dispacher = new MailingService()
+
             // Si se actualiza el carrito descontando los productos procesado del carrito del usuario generamos el ticket de compra
             response = await ticketManager.newPurchase(newTicket);
+
+            dispacher.sendSimpleMail({
+                from: config.mailing.USER,
+                to: response.purchaser,
+                subject: "¡Aviso hemos registrado tu compra!",
+                html: `<div><h3>Queremos agradecerte por tu compra</h3><div>${response.description}</div><div><span><strong>Total: </strong> ${response.amount}</span></div></div>`
+            })
+
+
         }
 
         res.send({
