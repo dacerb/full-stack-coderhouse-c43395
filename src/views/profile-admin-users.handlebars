@@ -1,0 +1,70 @@
+<h1>User Manager</h1>
+    <div class="profile-container">
+        <h2>Eliminar usuarios con ultima conexion expirada.</h2>
+        <form id="formLastLogin">
+            <p>
+                Por defecto se elimian los usuarios que no iniciaron en 2 dias.
+                es posible modificar el tiempo utilizando el campo colocando el tiempo en segundos transcurridos.
+            </p>
+            <input type="number" name="limitSeconds" placeholder="tiempo en segundos trascurridos." value="0">
+            <button type="button" id="runJobDeletUsers">ejecutar tarea</button>
+        </form>
+    </div>
+    <div class="profile-container">
+        <h2>Gestionar roles de usuarios.</h2>
+        {{#each users}}
+
+            <div class="">
+                <p><strong>id:</strong> {{id}}</p>
+                <div class="form-field">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{email}}" disabled>
+                </div>
+                <div class="form-field">
+                    <label for="first_name">First name:</label>
+                    <input type="text" id="first_name" name="first_name" value="{{first_name}}" disabled>
+                </div>
+
+                <div class="form-field" style="">
+                    <label for="rol">Role:</label>
+                    <input type="text" id="rol" name="rol" value="{{rol}}" disabled>
+                </div>
+
+                <div class="form-field" style="">
+                    <label for="lastlogin">LastLogin:</label>
+                    <input type="text" id="lastLogin" name="lastLogin" value="{{lastLogin}}" disabled>
+                </div>
+
+                {{#if (isAdminHelper ../user.rol)}}
+                    <!-- Contenido para usuarios con isAdmin igual a true -->
+                    <button class="editUser" data-user-id="{{id}}">modify user</button>
+                {{/if}}
+
+            </div>
+            <div id="userEditForm-{{id}}" style="display: none">
+                <form  id="userEditForm_data-{{id}}">
+                    <label for="user-{{id}}">Usuario</label>
+                    <input type="radio" id="user-{{id}}" name="rol" value="user" checked>
+
+                    <label for="premium-{{id}}">Premium</label>
+                    <input type="radio" id="premium-{{id}}" name="rol" value="premium">
+
+                    <label for="admin-{{id}}">Admin</label>
+                    <input type="radio" id="admin-{{id}}" name="rol" value="admin">
+                    <hr>
+
+                </form>
+                <div>
+                    <button type="button" class="saveUser" data-user-id="{{id}}">Guardar Cambios</button>
+                    <button type="button" class="deleteUser" data-user-id="{{id}}">Eliminar usuario</button>
+                    <button type="button" class="cancelEdit" data-user-id="{{id}}">Cancelar</button>
+                </div>
+            </div>
+
+
+
+        <hr>
+        {{/each}}
+    </div>
+
+<script src="/js/userEditor.js"></script>

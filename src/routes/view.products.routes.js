@@ -1,7 +1,9 @@
 import {Router} from 'express';
 import {requiredLoginSession} from "./utils/utils.js"
 import { productManager, cartManager } from "../services/factory.js";
+import config from "../config/config.js";
 
+const DOMAIN_URL = config.domain_url;
 const router = Router();
 
 router.get("/", requiredLoginSession, async (req, res) => {
@@ -28,8 +30,8 @@ router.get("/", requiredLoginSession, async (req, res) => {
         let keys = data_paginate;
         delete keys.docs
 
-        keys.prevLink = keys.hasPrevPage ? `http://localhost:8080/products?page=${keys.prevPage}` : '';
-        keys.nextLink = keys.hasNextPage ? `http://localhost:8080/products?page=${keys.nextPage}` : '';
+        keys.prevLink = keys.hasPrevPage ? `${DOMAIN_URL}/products?page=${keys.prevPage}` : '';
+        keys.nextLink = keys.hasNextPage ? `${DOMAIN_URL}//products?page=${keys.nextPage}` : '';
         keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
 
         keys.cartId = user.cartId

@@ -184,6 +184,40 @@ class ManagerCart {
         });
     }
 
+    deleteProductByIDFromAnyCartsAndReturnCarts = async (productId) => {
+
+        // defino el filtro
+        const FILTER_CART = {
+            'products': {
+                $elemMatch: {
+                    'productId': productId
+                }
+            }
+        }
+
+        // Ubico los carritos que tiene el producto a eliminar
+        const affectedCarts = await cartsModel.find(FILTER_CART)
+
+        // genero una lista de carritos para luego notificar que se removio el producto
+        const affectedCartList = affectedCarts.map(cart => {
+            return cart._id.toString()
+        })
+
+        // elimino los productos
+        const cartManyUpdatePullResult =  await cartsModel.updateMany({
+                'products': {
+                    $elemMatch: {
+                        'productId': productId
+                    }
+                }
+            }, {
+                $pull: { 'products': { 'productId': productId } }
+            }
+        );
+
+        return {affectedCartList, cartManyUpdatePullResult}
+    }
+
 }
 
 export default ManagerCart;

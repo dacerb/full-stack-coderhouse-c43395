@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import * as ModelType from "../../../../common/utils/schemaModelsType.js"
 import {
-        stringEmailTypeSchemaUniqueRequired,
-        stringTypeSchemaNonUniqueRequired
+    datetimeNotRequiredDefaultNow,
+    stringEmailTypeSchemaUniqueRequired,
+    stringTypeSchemaNonUniqueRequired
 } from "../../../../common/utils/schemaModelsType.js";
 
 const collectionName = 'users';
@@ -15,6 +16,7 @@ const userSchema = new mongoose.Schema({
             password: ModelType.stringTypeSchemaNonUniqueRequired,
             rol: ModelType.stringTypeSchemaNonUniqueRequiredRoleDefaultUser,
             registerBy: ModelType.stringTypeSchemaNonUniqueRequired,
+            lastLogin: ModelType.datetimeNotRequiredDefaultNow,
             cartId: {
                     type: mongoose.Schema.Types.ObjectId,
                     ref: "carts"
