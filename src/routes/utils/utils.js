@@ -45,6 +45,7 @@ export const generateJWToken = (data, exp_time) => {
 }
 
 export const authToken = (req, res, next) => {
+    const {logger} = req;
     const authHeader = req.header.authorization;
     console.log(authHeader);
     if (!authHeader) return res.status(401).send({error: "User not authenticated or missing token."})

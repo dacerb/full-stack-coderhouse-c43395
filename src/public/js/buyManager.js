@@ -7,7 +7,6 @@ const irAProductosButton = document.getElementById("ir-a-productos");
 botonCompra.addEventListener("click", function() {
     // Mostrar el modal de confirmación
     modalConfirmacion.style.display = "block";
-    console.log('CLIC')
 });
 
 confirmarCompraButton.addEventListener("click", function() {

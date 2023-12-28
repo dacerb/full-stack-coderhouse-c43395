@@ -113,6 +113,7 @@ const initializePassport = () => {
     passport.deserializeUser( async (id, done) => {
         try {
             let user = await userManager.getUserByValue(id)
+            let userLastLoginMark = await  userManager.setLastLogin(id._id)
             done(null, user)
         }catch (error) {
             console.error(error)

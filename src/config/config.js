@@ -35,5 +35,10 @@ export default {
     secret: process.env.SECRET_PHRASE,
     environment: environment,
     domain_url: process.env.DOMAIN_URL,
+    mailing: {
+        SERVICE: process.env.GMAIL_SERVICE,
+        USER: process.env.GMAIL_ACCOUNT,
+        PASSWORD: process.env.GMAIL_APP_PASSWD
+    },
     optionMode
 };
