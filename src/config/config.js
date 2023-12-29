@@ -40,5 +40,8 @@ export default {
         USER: process.env.GMAIL_ACCOUNT,
         PASSWORD: process.env.GMAIL_APP_PASSWD
     },
+    prefixAdd: process.env.PREFIX_THUMBNAILS,
+    pathImagesRemove: process.env.PATH_IMAGE_REMOVE,
+
     optionMode
 };
