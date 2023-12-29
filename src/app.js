@@ -15,6 +15,8 @@ const app = express();
 const PORT = default_config.port;
 const MONGO_URL = default_config.mongoUrl;
 const SECRET = default_config.secret;
+const PREFIX_ADD = default_config.prefixAdd
+const PATH_IMAGE_REMOVE = default_config.pathImagesRemove
 
 const swaggerOption = {
     definition: {
@@ -73,8 +75,7 @@ app.set('view engine', 'handlebars');
 const hbs = handlebars.create({
     helpers: {
         formatThumbnailPath: function(filePath) {
-            const prefixToRemove = 'D:\\CURSOS\\full-stack-coderhouse-c43395\\src\\public\\thumbnails\\';
-            const removePath = '/thumbnails/' + filePath.replace(prefixToRemove, '');
+            const removePath = PREFIX_ADD + filePath.replace(PATH_IMAGE_REMOVE, '');
             return removePath;
         },
         isAdminHelper: function(rol) {

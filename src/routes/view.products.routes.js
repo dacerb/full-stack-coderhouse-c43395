@@ -31,7 +31,7 @@ router.get("/", requiredLoginSession, async (req, res) => {
         delete keys.docs
 
         keys.prevLink = keys.hasPrevPage ? `${DOMAIN_URL}/products?page=${keys.prevPage}` : '';
-        keys.nextLink = keys.hasNextPage ? `${DOMAIN_URL}//products?page=${keys.nextPage}` : '';
+        keys.nextLink = keys.hasNextPage ? `${DOMAIN_URL}/products?page=${keys.nextPage}` : '';
         keys.isValid = !(options.page <= 0 || options.page > keys.totalPages)
 
         keys.cartId = user.cartId
