@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "c50ddc2d-ba54-4ac0-b17f-2513d1f2068f",
-		"name": "e-comerce-coder_local",
+		"_postman_id": "a0bf330e-ae5a-4b09-acd5-46bc89bbac72",
+		"name": "e-comerce-coder_railway",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3018126"
 	},
@@ -16,11 +16,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"products"
@@ -36,11 +38,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products?limit=1&page=1",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"products"
@@ -117,11 +121,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products/64efd63124ea540a6277a920",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"products",
@@ -210,11 +216,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products/",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"products",
@@ -231,11 +239,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products/64efd65b24ea540a6277a930",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"products",
@@ -257,11 +267,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/656cd31ec34e3c2fa875c56e",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -287,11 +299,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -308,11 +322,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64ed574dd5c974a80521118e",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -338,11 +354,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64efff9bc23108d2ec48b4f6",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -359,11 +377,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64efff9bc23108d2ec48b4f6/purchase",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -396,11 +416,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/658a222582698efc71c65e59/product/6589f905462a9522aabea342",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -428,11 +450,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64effb6843acebb9fc45cd15/products/64ed52c91512379e5ee3ea68",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -451,11 +475,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64ed574dd5c974a80521118e/products/64ed52831512379e5ee3ea53",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"cart",
@@ -479,11 +505,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/home",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"home"
 							]
@@ -498,11 +526,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/cart/64ee69b7a7b8bd040c5d0d72",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"cart",
 								"64ee69b7a7b8bd040c5d0d72"
@@ -518,11 +548,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/products",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"products"
 							]
@@ -537,11 +569,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/github/error",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"github",
 								"error"
@@ -557,11 +591,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/github/login",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"github",
 								"login"
@@ -582,11 +618,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"sessions"
@@ -602,11 +640,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/logout",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"sessions",
@@ -632,11 +672,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/register",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"sessions",
@@ -662,11 +704,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/login",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"sessions",
@@ -695,11 +739,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/fail-register/",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"sessions",
@@ -729,45 +775,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/fail-login/",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
-							"path": [
-								"api",
-								"sessions",
-								"fail-login",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/sessions/fail-login Copy",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dac.ace@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/fail-login/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
 							"path": [
 								"api",
 								"sessions",
@@ -796,11 +810,13 @@
 						],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users?limitSeconds=1",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"users"
@@ -838,11 +854,13 @@
 						],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users/658a100ac50c263011254835",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"users",
@@ -874,11 +892,13 @@
 						},
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users/6589f863462a9522aabea2fb",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"users",
@@ -895,11 +915,13 @@
 						"header": [],
 						"url": {
 							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users",
-							"protocol": "http",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
 							],
-							"port": "8080",
 							"path": [
 								"api",
 								"users"
