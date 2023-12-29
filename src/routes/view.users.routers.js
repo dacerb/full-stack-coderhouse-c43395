@@ -30,6 +30,7 @@ router.get("/my-profile", requiredLoginSession, async (req, res) => {
     });
 });
 
+
 router.get("/chat", requiredLoginSession, requiredRole(['user', 'premium'], null), async (req, res) => {
     const sessionUser =  req.session.user;
     const user = await userManager.getUserByEmail(sessionUser.email)
