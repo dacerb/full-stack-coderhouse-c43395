@@ -1,0 +1,936 @@
+{
+	"info": {
+		"_postman_id": "a0bf330e-ae5a-4b09-acd5-46bc89bbac72",
+		"name": "e-comerce-coder_railway",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3018126"
+	},
+	"item": [
+		{
+			"name": "/api/products",
+			"item": [
+				{
+					"name": "/api/products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/:pid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products?limit=1&page=1",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/:pid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "OOAK MAngo",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "redoblante",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "ZSPAS123",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "2000",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "snare",
+									"type": "text"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": "/D:/CURSOS/full-stack-coderhouse-c43395/desafios/Motores de plantilla y socket/src/public/thumbnails/1691119634193-mango-sonor.png"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products/64efd63124ea540a6277a920",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products",
+								"64efd63124ea540a6277a920"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "adminCod3r123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "adminCoder@coder.com",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AoHF5bZsWJOHRmY6EZNodjgsPj6F7XAC7.qa%2FlcSO0tH3VDyWiFlI7qEwQHsdsrsJGdx0pSVFmWZE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Sonor AQ2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "RAK JAZZ ATR",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "M990712ASEDs",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "1642",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "99",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "drum",
+									"type": "text"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": "/C:/Users/user/Desktop/lg_d234565fda3af3b099e2069051ed0344-removebg-preview.png"
+								},
+								{
+									"key": "thumbnails",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products/",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/products/:pid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/products/64efd65b24ea540a6277a930",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"products",
+								"64efd65b24ea540a6277a930"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/cart",
+			"item": [
+				{
+					"name": "/api/cart/:cid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/656cd31ec34e3c2fa875c56e",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"656cd31ec34e3c2fa875c56e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Id\": \"Number/String\",\r\n    \"products\": \"Array of objects\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64ed574dd5c974a80521118e",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"64ed574dd5c974a80521118e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"productId\": \"64efffb6c23108d2ec48b500\",\r\n        \"qty\": 100\r\n    },\r\n    {\r\n        \"productId\": \"64ed52c91512379e5ee3ea68\",\r\n        \"qty\": 2200\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64efff9bc23108d2ec48b4f6",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"64efff9bc23108d2ec48b4f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/:cid/purchase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64efff9bc23108d2ec48b4f6/purchase",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"64efff9bc23108d2ec48b4f6",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/:cid/product/:pid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3ABWOSxhA7bKYezXmCJZ5hL3VTcwCdBkFI.URrYK%2FJ8IWq%2FgAJutbeMCZDGXZUnsjhXM8l5MNA1MjI; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/658a222582698efc71c65e59/product/6589f905462a9522aabea342",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"658a222582698efc71c65e59",
+								"product",
+								"6589f905462a9522aabea342"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid/products/:pid",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"qty\": 19\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64effb6843acebb9fc45cd15/products/64ed52c91512379e5ee3ea68",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"64effb6843acebb9fc45cd15",
+								"products",
+								"64ed52c91512379e5ee3ea68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid/products/:pid",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/cart/64ed574dd5c974a80521118e/products/64ed52831512379e5ee3ea53",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"cart",
+								"64ed574dd5c974a80521118e",
+								"products",
+								"64ed52831512379e5ee3ea53"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "views",
+			"item": [
+				{
+					"name": "/home",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/home",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"home"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cart/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/cart/64ee69b7a7b8bd040c5d0d72",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"cart",
+								"64ee69b7a7b8bd040c5d0d72"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/products",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "github/error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/github/error",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"github",
+								"error"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "github/login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/github/login",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"github",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/sessions",
+			"item": [
+				{
+					"name": "/api/sessions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/logout",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"dda\", \r\n    \"last_name\": \"ACE\", \r\n    \"email\": \"dac.123123asd12vb3@gmail.com\", \r\n    \"age\": 30, \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/register",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"adminCoder@coder.com\", \r\n    \"password\": \"adminCod3r123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/login",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/fail-register",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dac.ace@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/fail-register/",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"fail-register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/sessions/fail-login",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dac.ace@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/sessions/fail-login/",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"sessions",
+								"fail-login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/users",
+			"item": [
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AvTyhZYwfK6g02cLmh2P8I5XvyLMb5cY5.QCcBtnDFgMr%2FGfYtZaODkYJAhDni0xiFX5%2BllO862QE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users?limitSeconds=1",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "limitSeconds",
+									"value": "1"
+								},
+								{
+									"key": "rol",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "adminDelete",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/:uid",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AvTyhZYwfK6g02cLmh2P8I5XvyLMb5cY5.QCcBtnDFgMr%2FGfYtZaODkYJAhDni0xiFX5%2BllO862QE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users/658a100ac50c263011254835",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users",
+								"658a100ac50c263011254835"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/:uid",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AvTyhZYwfK6g02cLmh2P8I5XvyLMb5cY5.QCcBtnDFgMr%2FGfYtZaODkYJAhDni0xiFX5%2BllO862QE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"rol\": \"user\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users/6589f863462a9522aabea2fb",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users",
+								"6589f863462a9522aabea2fb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://full-stack-coderhouse-c43395-production.up.railway.app/api/users",
+							"protocol": "https",
+							"host": [
+								"full-stack-coderhouse-c43395-production",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

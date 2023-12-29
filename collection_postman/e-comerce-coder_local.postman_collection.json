@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c50ddc2d-ba54-4ac0-b17f-2513d1f2068f",
-		"name": "e-comerce-coder",
+		"name": "e-comerce-coder_local",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3018126"
 	},
@@ -35,7 +35,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/products?limit=1&page=3",
+							"raw": "http://localhost:8080/api/products?limit=1&page=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -52,7 +52,7 @@
 								},
 								{
 									"key": "page",
-									"value": "3"
+									"value": "1"
 								}
 							]
 						}
@@ -134,29 +134,50 @@
 				{
 					"name": "/api/products",
 					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "adminCod3r123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "adminCoder@coder.com",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AoHF5bZsWJOHRmY6EZNodjgsPj6F7XAC7.qa%2FlcSO0tH3VDyWiFlI7qEwQHsdsrsJGdx0pSVFmWZE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Sonor select force",
+									"value": "Sonor AQ2",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "gama media",
+									"value": "RAK JAZZ ATR",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "ssqes1",
+									"value": "M990712ASEDs",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "1980",
+									"value": "1642",
 									"type": "text"
 								},
 								{
@@ -177,7 +198,7 @@
 								{
 									"key": "thumbnails",
 									"type": "file",
-									"src": "/C:/Users/user/Desktop/descarga.jpg"
+									"src": "/C:/Users/user/Desktop/lg_d234565fda3af3b099e2069051ed0344-removebg-preview.png"
 								},
 								{
 									"key": "thumbnails",
@@ -235,7 +256,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/cart/64efff9bc23108d2ec48b4f6",
+							"raw": "http://localhost:8080/api/cart/656cd31ec34e3c2fa875c56e",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -244,39 +265,7 @@
 							"path": [
 								"api",
 								"cart",
-								"64efff9bc23108d2ec48b4f6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/cart/:cid/product/:pid",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/cart/64efff9bc23108d2ec48b4f6/product/64efffb6c23108d2ec48b500",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cart",
-								"64efff9bc23108d2ec48b4f6",
-								"product",
-								"64efffb6c23108d2ec48b500"
+								"656cd31ec34e3c2fa875c56e"
 							]
 						}
 					},
@@ -315,6 +304,27 @@
 				{
 					"name": "/api/cart/ :cid",
 					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"64ed574dd5c974a80521118e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/ :cid",
+					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -337,6 +347,66 @@
 								"api",
 								"cart",
 								"64efff9bc23108d2ec48b4f6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/:cid/purchase",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cart/64efff9bc23108d2ec48b4f6/purchase",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"64efff9bc23108d2ec48b4f6",
+								"purchase"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/cart/:cid/product/:pid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3ABWOSxhA7bKYezXmCJZ5hL3VTcwCdBkFI.URrYK%2FJ8IWq%2FgAJutbeMCZDGXZUnsjhXM8l5MNA1MjI; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cart/658a222582698efc71c65e59/product/6589f905462a9522aabea342",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cart",
+								"658a222582698efc71c65e59",
+								"product",
+								"6589f905462a9522aabea342"
 							]
 						}
 					},
@@ -392,27 +462,6 @@
 								"64ed574dd5c974a80521118e",
 								"products",
 								"64ed52831512379e5ee3ea53"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/cart/ :cid",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/cart/64ed574dd5c974a80521118e",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"cart",
-								"64ed574dd5c974a80521118e"
 							]
 						}
 					},
@@ -524,7 +573,7 @@
 			]
 		},
 		{
-			"name": "/sessions",
+			"name": "/api/sessions",
 			"item": [
 				{
 					"name": "/api/sessions",
@@ -604,7 +653,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dac.123123asd12vb3@gmail.com\", \r\n    \"password\": \"008sadn123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"adminCoder@coder.com\", \r\n    \"password\": \"adminCod3r123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -724,6 +773,136 @@
 								"sessions",
 								"fail-login",
 								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/api/users",
+			"item": [
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AvTyhZYwfK6g02cLmh2P8I5XvyLMb5cY5.QCcBtnDFgMr%2FGfYtZaODkYJAhDni0xiFX5%2BllO862QE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/users?limitSeconds=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "limitSeconds",
+									"value": "1"
+								},
+								{
+									"key": "rol",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "adminDelete",
+									"value": "true",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/:uid",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AvTyhZYwfK6g02cLmh2P8I5XvyLMb5cY5.QCcBtnDFgMr%2FGfYtZaODkYJAhDni0xiFX5%2BllO862QE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/users/658a100ac50c263011254835",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"658a100ac50c263011254835"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users/:uid",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Set-Cookie",
+								"value": "connect.sid=s%3AvTyhZYwfK6g02cLmh2P8I5XvyLMb5cY5.QCcBtnDFgMr%2FGfYtZaODkYJAhDni0xiFX5%2BllO862QE; Path=/; HttpOnly",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"rol\": \"user\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/6589f863462a9522aabea2fb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"6589f863462a9522aabea2fb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
 							]
 						}
 					},
